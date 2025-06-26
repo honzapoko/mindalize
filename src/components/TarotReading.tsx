@@ -321,8 +321,6 @@ const TarotReading: React.FC = () => {
                   className="tarot-image"
                   src={cardMeanings[cardName as keyof typeof cardMeanings].imageUrl}
                   alt={cardName}
-                  width={200}    // Add this line (adjust size as needed)
-                  height={320}   // Add this line (adjust size as needed)
                   loading="lazy"
                 />
                 <div>
