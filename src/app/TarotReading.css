@@ -1,0 +1,129 @@
+.tarot-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #ede9fe;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tarot-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #c4b5fd;
+}
+
+.tarot-section {
+  margin-bottom: 1rem;
+}
+.tarot-confirmation {
+  color: #fff;              /* bílé písmo */
+  background: #22c55e;      /* zelené pozadí, můžete změnit */
+  margin: 16px 0;
+  font-weight: bold;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: center;
+}
+.tarot-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: #312e81;
+  border: 2px solid #a78bfa;
+  color: #ede9fe;
+}
+
+.tarot-select {
+  margin-left: 1rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  background-color: #4c1d95;
+  color: #ede9fe;
+  border: 1px solid #a78bfa;
+}
+
+.tarot-button {
+  padding: 0.75rem 1.25rem;
+  background-color: #7c3aed;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tarot-results {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tarot-summary {
+  background-color: #5b21b6;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  color: #ede9fe;
+}
+
+.tarot-insight {
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.tarot-card {
+  background-color: #4c1d95;
+  padding: 1rem;
+  width: 200px !important;
+  /* nebo větší, pokud chcete, ale musí být >= šířce obrázku */
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border: 2px solid #a78bfa;
+}
+
+.tarot-image {
+  width: 200px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
+  height: 320px !important;
+  min-height: 320px !important;
+  max-height: 320px !important;
+  object-fit: cover;
+}
+
+.tarot-history {
+  margin-top: 2rem;
+}
+
+.tarot-history h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #c4b5fd;
+}
+
+.tarot-history-item {
+  border-bottom: 1px solid #a78bfa;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #312e81;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.tarot-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: transparent;
+  color: #ede9fe;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* volitelně */
+body {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}

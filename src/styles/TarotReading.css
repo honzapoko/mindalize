@@ -1,0 +1,154 @@
+.tarot-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 16px 64px 16px;
+}
+
+.tarot-title {
+  color: #fff;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.tarot-form {
+  background: rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.tarot-section {
+  margin-bottom: 1.2rem;
+}
+
+.tarot-label {
+  color: #fff;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.tarot-input,
+.tarot-select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  background: #fff;      /* light background */
+  color: #000;           /* black text */
+  box-sizing: border-box;
+}
+
+.tarot-input:focus,
+.tarot-select:focus {
+  outline: 2px solid #a78bfa;
+}
+
+.tarot-button {
+  width: 100%;
+  background: #a21caf;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 20px;
+  margin-top: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+
+.tarot-button:hover {
+  background: #86198f;
+}
+
+.tarot-result-title {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.tarot-results {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.tarot-card {
+  background: rgba(255,255,255,0.13);
+  border-radius: 12px;
+  padding: 1.2rem;
+  min-width: 180px;
+  max-width: 220px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.tarot-card-title,
+.tarot-card > strong {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.tarot-card-desc,
+.tarot-insight {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #ede9fe;
+}
+
+.tarot-image {
+  width: 120px;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  background: #ede9fe;
+}
+
+.tarot-history {
+  margin-top: 2rem;
+}
+
+.tarot-history h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.tarot-history-item {
+  border-bottom: 1px solid #a78bfa;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #ede9fe;
+  color: #312e81;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.tarot-summary {
+  background: rgba(255,255,255,0.13);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
