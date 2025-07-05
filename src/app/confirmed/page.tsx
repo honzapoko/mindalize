@@ -15,28 +15,28 @@ export default function ConfirmedPage() {
           <li>🔮 Přístup k exkluzivním výkladům a funkcím.</li>
           <li>✨ Další nové funkce již brzy!</li>
         </ul>
-        <a
-          href="https://checkout.stripe.com/c/pay/cs_test_a1ehL3QTPwVRdON6td6rcOXD3bTg201jVRfpXxGEvZjmgSnKa6ooWjDxE2"
-          className="button-primary"
-          style={{
-            marginTop: 16,
-            marginBottom: 16,
-            padding: '0.7rem 1.5rem',
-            borderRadius: 8,
-            background: '#312e81',
-            color: '#fff',
-            fontWeight: 600,
-            fontSize: '1rem',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'inline-block',
-            textDecoration: 'none'
-          }}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Chci prémiové členství
-        </a>
+<form action="/api/create-checkout-session" method="POST">
+  <button
+    type="submit"
+    className="button-primary"
+    style={{
+      marginTop: 16,
+      marginBottom: 16,
+      padding: '0.7rem 1.5rem',
+      borderRadius: 8,
+      background: '#312e81',
+      color: '#fff',
+      fontWeight: 600,
+      fontSize: '1rem',
+      border: 'none',
+      cursor: 'pointer',
+      display: 'inline-block',
+      textDecoration: 'none'
+    }}
+  >
+    Chci prémiové členství
+  </button>
+</form>
         <div>
           <Link href="/" className="button-secondary" style={{ color: '#312e81', textDecoration: 'underline', fontWeight: 500 }}>
             Zpět na hlavní stránku
