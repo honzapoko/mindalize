@@ -50,7 +50,6 @@ const { data: confirmation } = await supabase
 
   // 0.5. Check if user is premium (auto-create if not exists)
   let isPremium = false;
-  let userRows = null;
 
   const { data: existingUser } = await supabase
     .from('users')
