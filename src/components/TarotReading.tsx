@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import '../styles/TarotReading.css';
 import { supabase } from '../supabaseClient';
@@ -170,6 +169,9 @@ type TarotHistoryItem = {
 
 const TarotReading: React.FC = () => {
   const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [goals, setGoals] = useState('');
+  const [occupation, setOccupation] = useState('');
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [question, setQuestion] = useState('');
@@ -177,55 +179,100 @@ const TarotReading: React.FC = () => {
   const [cards, setCards] = useState<string[]>([]);
   const [zodiac, setZodiac] = useState('');
   const [lifePath, setLifePath] = useState('');
+  const [spreadType, setSpreadType] = useState('1');
   const [history, setHistory] = useState<TarotHistoryItem[]>([]);
   const [confirmation, setConfirmation] = useState('');
-  useEffect(() => {
-    const stored = localStorage.getItem('tarotHistory');
-    if (stored) {
-      setHistory(JSON.parse(stored));
-    }
-  }, []);
+  const [chatbotAnswer, setChatbotAnswer] = useState('');
+  const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+useEffect(() => {
+  const stored = localStorage.getItem('tarotHistory');
+  if (stored) {
+    setHistory(JSON.parse(stored));
+  }
+  setMounted(true); // <-- add this line
+}, []);
 
   useEffect(() => {
     setZodiac(getZodiacSign(birthdate));
     setLifePath(getLifePathNumber(birthdate));
   }, [birthdate]);
 
-  const handleDraw = async (e: React.FormEvent) => {
+const handleDraw = async (e: React.FormEvent) => {
   e.preventDefault();
-  setConfirmation(''); // reset předchozího potvrzení
-  if (!name || !birthdate || !question || !email) return;
-  const drawn = getRandomCardKeys(numCards);
+  setConfirmation('');
+  setChatbotAnswer('');
+  setIsLoadingChatbot(true);
+
+  let numCardsToDraw = 1;
+  if (spreadType === '3') numCardsToDraw = 3;
+  else if (spreadType === '5') numCardsToDraw = 5;
+  else if (spreadType === 'celtic') numCardsToDraw = 10;
+  else if (spreadType === 'partnersky') numCardsToDraw = 7;
+
+  const drawn = getRandomCardKeys(numCardsToDraw);
   setCards(drawn);
 
-  const newItem: TarotHistoryItem = {
-    name,
-    birthdate,
-    question,
-    zodiac: getZodiacSign(birthdate),
-    lifePath: getLifePathNumber(birthdate),
-    cards: drawn,
-    date: new Date().toISOString(),
-  };
+  try {
+    const res = await fetch('/api/chatbot', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        name,
+        birthdate,
+        zodiac,
+        lifePath,
+        question,
+        cards: drawn,
+        spreadType,
+        city,
+        goals,
+        occupation,
+      }),
+    });
+    const data = await res.json();
+    setIsLoadingChatbot(false);
 
-  const { error } = await supabase.from('readings').insert([
-    {
-      email,
-      ...newItem,
-      cards: JSON.stringify(drawn),
+    if (data.error) {
+      setChatbotAnswer(data.error);
+      return;
     }
-  ]);
-  if (error) {
-    alert('Chyba při ukládání do databáze!\n' + error.message);
-  } else {
-    setConfirmation('Výklad byl úspěšně odeslán! Děkujeme.');
-  }
 
-  const newHistory = [newItem, ...history].slice(0, 10);
-  setHistory(newHistory);
-  localStorage.setItem('tarotHistory', JSON.stringify(newHistory));
+    setChatbotAnswer(data.aiAnswer || 'Odpověď není dostupná.');
+    setConfirmation(data.confirmationMessage || 'Potvrzovací e-mail byl odeslán! Prosím potvrďte svou adresu.');
+
+    // --- MOVE THIS BLOCK HERE ---
+    const newHistoryItem = {
+      name,
+      birthdate,
+      question,
+      zodiac,
+      lifePath,
+      cards: drawn,
+      date: new Date().toISOString(),
+    };
+    const updatedHistory = [newHistoryItem, ...history].slice(0, 10);
+    setHistory(updatedHistory);
+    localStorage.setItem('tarotHistory', JSON.stringify(updatedHistory));
+    // --- END BLOCK ---
+
+  } catch (e) {
+    setIsLoadingChatbot(false);
+    setChatbotAnswer('Chyba při získávání odpovědi od AI.');
+  }
 };
 
+const handleBuyPremium = async () => {
+  const res = await fetch('/api/create-checkout-session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+  const data = await res.json();
+  window.location.href = data.url;
+};
 
   return (
     <div className="tarot-container">
@@ -243,6 +290,27 @@ const TarotReading: React.FC = () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
+          />
+          <input
+           className="tarot-input"
+           type="text"
+           value={city}
+           onChange={e => setCity(e.target.value)}
+           placeholder="Město narození"
+          />
+          <input
+          className="tarot-input"
+          type="text"
+          value={occupation}
+          onChange={e => setOccupation(e.target.value)}
+          placeholder="Povolání (volitelné)"
+          />
+          <input
+          className="tarot-input"
+          type="text"
+          value={goals}
+          onChange={e => setGoals(e.target.value)}
+          placeholder="Osobní cíle"
           />
         </div>
         <div className="tarot-section">
@@ -283,22 +351,36 @@ const TarotReading: React.FC = () => {
         </div>
         <div className="tarot-section">
           <label className="tarot-label">
-            <span role="img" aria-label="spread">🃏</span> Výběr rozkladu
-          </label>
-          <select
-            className="tarot-select"
-            value={numCards}
-            onChange={e => setNumCards(Number(e.target.value))}
-          >
-            <option value={1}>1 karta</option>
-            <option value={3}>3 karty</option>
-            <option value={5}>5 karet</option>
-          </select>
-        </div>
+  Typ výkladu:
+  <select
+    value={spreadType}
+    onChange={e => setSpreadType(e.target.value)}
+    required
+  >
+    <option value="1">1 karta (Rada)</option>
+    <option value="3">3 karty (Minulost/Přítomnost/Budoucnost)</option>
+    <option value="5">5 karet (Vývoj situace)</option>
+    <option value="celtic">Keltský kříž (PREMIUM)</option>
+    <option value="partnersky">Partnerský výklad (PREMIUM)</option>
+  </select>
+</label>
+    </div>
+      
         <button className="tarot-button" type="submit">
           Vyložit karty
         </button>
       </form>
+
+    {/* ADD THE PREMIUM BUTTON HERE */}
+    <button
+      className="tarot-button tarot-premium"
+      type="button"
+      onClick={handleBuyPremium}
+      disabled={!email}
+      style={{ marginTop: 24 }}
+    >
+      Koupit prémiový přístup
+    </button>
 
 {confirmation && (
   <div className="tarot-confirmation">
@@ -321,6 +403,9 @@ const TarotReading: React.FC = () => {
                   className="tarot-image"
                   src={cardMeanings[cardName as keyof typeof cardMeanings].imageUrl}
                   alt={cardName}
+                  width={300} // set your desired width
+                  height={450} // set your desired height, or the correct aspect ratio
+                  style={{ width: '100%', height: 'auto' }} // maintain aspect ratio if resizing
                   loading="lazy"
                 />
                 <div>
@@ -330,21 +415,28 @@ const TarotReading: React.FC = () => {
               </div>
             ))}
           </div>
-        </>
+               </>
       )}
-
-      <div className="tarot-history">
-        <h2>Historie výkladů</h2>
-        {history.length === 0 && <div>Žádné výklady zatím nejsou.</div>}
-        {history.map((item, idx) => (
-          <div className="tarot-history-item" key={idx}>
-            <div>
-              <strong>Karty:</strong>{' '}
-              {item.cards.map(cardName => cardName).join(', ')}
-            </div>
-          </div>
-        ))}
+      
+{chatbotAnswer && (
+  <div className="tarot-chatbot-answer" style={{ marginTop: 16, background: '#312e81', color: '#fff', padding: 16, borderRadius: 8 }}>
+    {chatbotAnswer}
+  </div>
+)}
+{mounted && (
+  <div className="tarot-history">
+    <h2>Historie výkladů</h2>
+    {history.length === 0 && <div>Žádné výklady zatím nejsou.</div>}
+    {history.map((item, idx) => (
+      <div className="tarot-history-item" key={idx}>
+        <div>
+          <strong>Karty:</strong>{' '}
+          {item.cards.map(cardName => cardName).join(', ')}
+        </div>
       </div>
+    ))}
+  </div>
+)}
     </div>
   );
 };

@@ -1,6 +1,10 @@
 "use client";
 import TarotReading from '../components/TarotReading';
 
-export default function Page() {
-  return <TarotReading />;
+export default function HomePage() {
+  return (
+    <main>
+      <TarotReading />
+    </main>
+  );
 }
