@@ -1,4 +1,3 @@
-import { supabase } from '../../../supabaseClient';
 import { NextRequest, NextResponse } from 'next/server';
 import { randomUUID } from 'crypto';
 import { Resend } from 'resend';
