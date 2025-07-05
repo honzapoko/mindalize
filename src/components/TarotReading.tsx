@@ -182,7 +182,7 @@ const TarotReading: React.FC = () => {
   const [history, setHistory] = useState<TarotHistoryItem[]>([]);
   const [confirmation, setConfirmation] = useState('');
   const [chatbotAnswer, setChatbotAnswer] = useState('');
-//  const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
+  const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
   const [mounted, setMounted] = useState(false);
 
 useEffect(() => {
