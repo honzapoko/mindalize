@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/TarotReading.css';
-import { supabase } from '../supabaseClient';
 import Image from 'next/image';
 
 const cardMeanings = {
