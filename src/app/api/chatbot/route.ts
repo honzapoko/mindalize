@@ -27,13 +27,13 @@ export async function POST(req: NextRequest) {
   const { name, birthdate, zodiac, lifePath, question, cards, email, spreadType, city, goals, occupation } = body;
 
   // 1. Upsert confirmation row and send confirmation email if needed
-  let { data: confirmation } = await supabase
+const { data: confirmation } = ...
     .from('user_confirmations')
     .select('confirmed, confirmation_token')
     .eq('email', email)
     .maybeSingle();
 
-  let token = confirmation?.confirmation_token || randomUUID();
+  const token = confirmation?.confirmation_token || randomUUID();
 
   if (!confirmation || !confirmation.confirmed) {
     await supabase

@@ -175,7 +175,7 @@ const TarotReading: React.FC = () => {
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [question, setQuestion] = useState('');
-  const [numCards, setNumCards] = useState(3);
+//  const [numCards, setNumCards] = useState(3);
   const [cards, setCards] = useState<string[]>([]);
   const [zodiac, setZodiac] = useState('');
   const [lifePath, setLifePath] = useState('');
@@ -183,7 +183,7 @@ const TarotReading: React.FC = () => {
   const [history, setHistory] = useState<TarotHistoryItem[]>([]);
   const [confirmation, setConfirmation] = useState('');
   const [chatbotAnswer, setChatbotAnswer] = useState('');
-  const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
+//  const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
   const [mounted, setMounted] = useState(false);
 
 useEffect(() => {
