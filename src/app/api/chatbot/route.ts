@@ -35,18 +35,22 @@ const { data: confirmation } = await supabase
 
   const token = confirmation?.confirmation_token || randomUUID();
 
-  if (!confirmation || !confirmation.confirmed) {
-    await supabase
-      .from('user_confirmations')
-      .upsert([{ email, confirmation_token: token, confirmed: false }], { onConflict: 'email' });
+if (!confirmation || !confirmation.confirmed) {
+  const { error: upsertError } = await supabase
+    .from('user_confirmations')
+    .upsert([{ email, confirmation_token: token, confirmed: false }], { onConflict: 'email' });
 
-    const confirmUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/confirm-email?token=${token}`;
-    await sendEmail({
-      to: email,
-      subject: 'Potvrďte svůj e-mail',
-      html: `<p>Klikněte pro potvrzení: <a href="${confirmUrl}">Potvrdit e-mail</a></p>`,
-    });
+  if (upsertError) {
+    console.error('Error upserting user_confirmations:', upsertError);
   }
+
+  const confirmUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/confirm-email?token=${token}`;
+  await sendEmail({
+    to: email,
+    subject: 'Potvrďte svůj e-mail',
+    html: `<p>Klikněte pro potvrzení: <a href="${confirmUrl}">Potvrdit e-mail</a></p>`,
+  });
+}
 
   // 0.5. Check if user is premium (auto-create if not exists)
   let isPremium = false;
