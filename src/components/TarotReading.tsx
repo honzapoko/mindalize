@@ -258,10 +258,10 @@ const handleDraw = async (e: React.FormEvent) => {
     localStorage.setItem('tarotHistory', JSON.stringify(updatedHistory));
     // --- END BLOCK ---
 
-  } catch (e) {
-    setIsLoadingChatbot(false);
-    setChatbotAnswer('Chyba při získávání odpovědi od AI.');
-  }
+} catch {
+  setIsLoadingChatbot(false);
+  setChatbotAnswer('Chyba při získávání odpovědi od AI.');
+}
 };
 
 const handleBuyPremium = async () => {
