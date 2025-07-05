@@ -68,10 +68,9 @@ const { data: confirmation } = await supabase
     }
     // isPremium stays false
   } else {
-    userRows = existingUser;
-    if (userRows.premium === true) {
-      isPremium = true;
-    }
+  if (existingUser && existingUser.premium === true) {
+  isPremium = true;
+}
   }
 
   // 0. Check how many readings this email already has
