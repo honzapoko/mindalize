@@ -4,8 +4,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req: NextRequest) {
-  // For demo: get the latest confirmed user (replace with real logic)
+export async function POST() {
   const { data: user } = await supabase
     .from('user_confirmations')
     .select('email')
