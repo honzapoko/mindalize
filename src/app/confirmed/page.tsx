@@ -6,18 +6,31 @@ export default function ConfirmedPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
-  const handleDailyProphecy = async () => {
-    setLoading(true);
-    setResult(null);
-    try {
-      const res = await fetch('/api/send-daily-prophecy', { method: 'POST' });
-      const data = await res.json();
-      setResult(data.message || data.error);
-} catch {
-      setResult('Nastala chyba při odesílání proroctví.');
-    }
-    setLoading(false);
-  };
+const handleDailyProphecy = async () => {
+  setLoading(true);
+  setResult(null);
+  try {
+    const res = await fetch('/api/send-daily-prophecy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }), // <-- email musí být dostupný!
+    });
+    const data = await res.json();
+    setResult(data.message || data.error);
+  } catch {
+    setResult('Nastala chyba při odesílání proroctví.');
+  }
+  setLoading(false);
+};
+
+const [email, setEmail] = useState('');
+
+<input
+  type="email"
+  value={email}
+  onChange={e => setEmail(e.target.value)}
+  placeholder="Zadejte svůj e-mail"
+/>
 
   return (
     <div className="tarot-container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
