@@ -3,34 +3,26 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function ConfirmedPage() {
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
-const handleDailyProphecy = async () => {
-  setLoading(true);
-  setResult(null);
-  try {
-    const res = await fetch('/api/send-daily-prophecy', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }), // <-- email musí být dostupný!
-    });
-    const data = await res.json();
-    setResult(data.message || data.error);
-  } catch {
-    setResult('Nastala chyba při odesílání proroctví.');
-  }
-  setLoading(false);
-};
-
-const [email, setEmail] = useState('');
-
-<input
-  type="email"
-  value={email}
-  onChange={e => setEmail(e.target.value)}
-  placeholder="Zadejte svůj e-mail"
-/>
+  const handleDailyProphecy = async () => {
+    setLoading(true);
+    setResult(null);
+    try {
+      const res = await fetch('/api/send-daily-prophecy', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      setResult(data.message || data.error);
+    } catch {
+      setResult('Nastala chyba při odesílání proroctví.');
+    }
+    setLoading(false);
+  };
 
   return (
     <div className="tarot-container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -46,6 +38,20 @@ const [email, setEmail] = useState('');
           <li>🔮 Přístup k exkluzivním výkladům a funkcím.</li>
           <li>✨ Další nové funkce již brzy!</li>
         </ul>
+        <input
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Zadejte svůj e-mail"
+          style={{
+            width: '100%',
+            padding: '0.5rem',
+            marginBottom: 12,
+            borderRadius: 8,
+            border: '1px solid #ccc',
+            fontSize: '1rem'
+          }}
+        />
         <button
           className="button-primary"
           style={{
@@ -63,7 +69,7 @@ const [email, setEmail] = useState('');
             textDecoration: 'none'
           }}
           onClick={handleDailyProphecy}
-          disabled={loading}
+          disabled={loading || !email}
         >
           {loading ? 'Odesílám...' : 'Chci dostávat denní proroctví'}
         </button>
