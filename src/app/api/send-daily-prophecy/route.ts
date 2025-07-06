@@ -101,5 +101,5 @@ export async function POST(req: Request) {
 } catch (error) {
   console.error('Chyba v send-daily-prophecy:', error);
   return NextResponse.json({ error: String(error) }, { status: 500 });
-}
+}   
 }
