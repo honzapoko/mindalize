@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '../../../supabaseClient';
 import { Resend } from 'resend';
-import cardMeanings from '@/cardMeanings';
+import cardMeanings from '../../../cardMeanings';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
