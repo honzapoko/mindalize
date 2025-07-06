@@ -1,4 +1,3 @@
-// /api/confirm-email/route.ts
 import { supabase } from '../../../supabaseClient';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -19,5 +18,8 @@ export async function GET(req: NextRequest) {
     .update({ confirmed: true })
     .eq('confirmation_token', token);
 
-  return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/confirmed`);
+  // Přesměrování na confirmed s e-mailem v query parametru
+  return NextResponse.redirect(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/confirmed?email=${encodeURIComponent(confirmation.email)}`
+  );
 }
