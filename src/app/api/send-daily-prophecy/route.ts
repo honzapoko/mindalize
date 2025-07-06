@@ -25,12 +25,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
     }
 
-    // Find confirmed user
-const { email } = await req.json();
-if (!email) {
-  return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
-}
-
 const { data: user } = await supabase
   .from('user_confirmations')
   .select('email, name, birthdate, goals')
