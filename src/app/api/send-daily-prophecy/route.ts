@@ -39,13 +39,13 @@ export async function POST(req: Request) {
     }
 
     // Dotáhni údaje z readings
-    const { data: reading, error: readingError } = await supabase
-      .from('readings')
-      .select('name, birthdate, goals')
-      .ilike('email', email.trim())
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .maybeSingle();
+const { data: reading } = await supabase
+  .from('readings')
+  .select('name, birthdate, goals')
+  .ilike('email', email.trim())
+  .order('created_at', { ascending: false })
+  .limit(1)
+  .maybeSingle();
 
     const name = reading?.name || 'uživatel';
     const birthdate = reading?.birthdate || 'neznámé datum';
