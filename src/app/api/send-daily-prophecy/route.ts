@@ -17,8 +17,7 @@ function drawCards(n: number) {
   return drawn;
 }
 
-export async function POST() {
-  // Get latest confirmed user (replace with real user logic as needed)
+export async function POST(req: Request) {
 const { email } = await req.json();
 const { data: user } = await supabase
   .from('user_confirmations')
