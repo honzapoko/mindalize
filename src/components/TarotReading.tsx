@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/TarotReading.css';
 import Image from 'next/image';
-import cardMeanings from '@/cardMeanings';
+import cardMeanings from '../../cardMeanings';
 
 const ZODIAC_SIGNS = [
   { name: 'Aries', start: [3, 21], end: [4, 19] },
