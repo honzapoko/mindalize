@@ -23,17 +23,33 @@ export async function POST(req: Request) {
     if (!email) {
       return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
     }
-console.log('API voláno s e-mailem:', email);
-const { data: user, error } = await supabase
-  .from('user_confirmations')
-  .select('email, name, birthdate, goals, confirmed')
-  .ilike('email', email.trim())
-  .eq('confirmed', true)
-  .maybeSingle();
-console.log('Výsledek dotazu:', user, 'Chyba:', error);
+    console.log('API voláno s e-mailem:', email);
+
+    // Ověř potvrzeného uživatele
+    const { data: user, error: userError } = await supabase
+      .from('user_confirmations')
+      .select('email, confirmed')
+      .ilike('email', email.trim())
+      .eq('confirmed', true)
+      .maybeSingle();
+    console.log('Výsledek dotazu:', user, 'Chyba:', userError);
+
     if (!user?.email) {
       return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
     }
+
+    // Dotáhni údaje z readings
+    const { data: reading, error: readingError } = await supabase
+      .from('readings')
+      .select('name, birthdate, goals')
+      .ilike('email', email.trim())
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    const name = reading?.name || 'uživatel';
+    const birthdate = reading?.birthdate || 'neznámé datum';
+    const goals = reading?.goals || 'neuveden';
 
     // Draw 3 random cards
     const cards = drawCards(3);
@@ -46,7 +62,7 @@ console.log('Výsledek dotazu:', user, 'Chyba:', error);
     // Build prompt for OpenAI
     const today = new Date().toISOString().slice(0, 10);
     const prompt =
-      `Jsi tarotový průvodce. Pro uživatele jménem ${user.name || 'uživatel'}, narozeného ${user.birthdate || 'neznámé datum'}, s životním cílem "${user.goals || 'neuveden'}", byly na den ${today} vytaženy tyto karty: ${cards.join(', ')}. ` +
+      `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byly na den ${today} vytaženy tyto karty: ${cards.join(', ')}. ` +
       `Vytvoř unikátní, laskavé a inspirativní proroctví pro tento den, které propojí význam těchto karet s jeho životní cestou. ` +
       `Odpověď napiš česky, maximálně 500 znaků.`;
 
