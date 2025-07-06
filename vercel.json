@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/send-daily-prophecy/batch",
+      "schedule": "0 9 * * *"
+    }
+  ]
+}
