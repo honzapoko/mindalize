@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function ConfirmedPage() {
-  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
@@ -13,8 +12,6 @@ export default function ConfirmedPage() {
     try {
       const res = await fetch('/api/send-daily-prophecy', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
       });
       const data = await res.json();
       setResult(data.message || data.error);
@@ -38,20 +35,6 @@ export default function ConfirmedPage() {
           <li>🔮 Přístup k exkluzivním výkladům a funkcím.</li>
           <li>✨ Další nové funkce již brzy!</li>
         </ul>
-        <input
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="Zadejte svůj e-mail"
-          style={{
-            width: '100%',
-            padding: '0.5rem',
-            marginBottom: 12,
-            borderRadius: 8,
-            border: '1px solid #ccc',
-            fontSize: '1rem'
-          }}
-        />
         <button
           className="button-primary"
           style={{
@@ -69,7 +52,7 @@ export default function ConfirmedPage() {
             textDecoration: 'none'
           }}
           onClick={handleDailyProphecy}
-          disabled={loading || !email}
+          disabled={loading}
         >
           {loading ? 'Odesílám...' : 'Chci dostávat denní proroctví'}
         </button>
