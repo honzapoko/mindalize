@@ -17,26 +17,20 @@ function drawCards(n: number) {
   return drawn;
 }
 
-export async function POST(req: Request) {
+export async function POST() {
   try {
-    // Parse email from request body
-    const { email } = await req.json();
-    if (!email) {
-      return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
+    // Najdi posledního potvrzeného uživatele
+    const { data: user } = await supabase
+      .from('user_confirmations')
+      .select('email, name, birthdate, goals')
+      .eq('confirmed', true)
+      .order('updated_at', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (!user?.email) {
+      return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
     }
-
-console.log('Hledám email:', email.trim());
-const { data: user } = await supabase
-  .from('user_confirmations')
-  .select('email, name, birthdate, goals')
-  .ilike('email', email.trim())
-  .eq('confirmed', true)
-  .maybeSingle();
-console.log('Výsledek dotazu:', user);
-
-if (!user?.email) {
-  return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
-}
 
     // Draw 3 random cards
     const cards = drawCards(3);
@@ -99,8 +93,8 @@ if (!user?.email) {
       cards: cardInfos,
       prophecy,
     });
-} catch (error) {
-  console.error('Chyba v send-daily-prophecy:', error);
-  return NextResponse.json({ error: String(error) }, { status: 500 });
-}   
+  } catch (error) {
+    console.error('Chyba v send-daily-prophecy:', error);
+    return NextResponse.json({ error: String(error) }, { status: 500 });
+  }
 }
