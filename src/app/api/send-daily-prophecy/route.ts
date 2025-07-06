@@ -98,8 +98,8 @@ export async function POST(req: Request) {
       cards: cardInfos,
       prophecy,
     });
-  } catch (error) {
-    console.error('Chyba v send-daily-prophecy:', error);
-    return NextResponse.json({ error: 'Nastala chyba na serveru.' }, { status: 500 });
-  }
+} catch (error) {
+  console.error('Chyba v send-daily-prophecy:', error);
+  return NextResponse.json({ error: String(error) }, { status: 500 });
+}
 }
