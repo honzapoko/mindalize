@@ -1,10 +1,20 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function ConfirmedPage() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+  const [email, setEmail] = useState('');
+
+  // Získání e-mailu z query parametru při načtení stránky
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const emailParam = params.get("email") || "";
+      setEmail(emailParam);
+    }
+  }, []);
 
   const handleDailyProphecy = async () => {
     setLoading(true);
@@ -12,6 +22,8 @@ export default function ConfirmedPage() {
     try {
       const res = await fetch('/api/send-daily-prophecy', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
       });
       const data = await res.json();
       setResult(data.message || data.error);
@@ -52,7 +64,7 @@ export default function ConfirmedPage() {
             textDecoration: 'none'
           }}
           onClick={handleDailyProphecy}
-          disabled={loading}
+          disabled={loading || !email}
         >
           {loading ? 'Odesílám...' : 'Chci dostávat denní proroctví'}
         </button>
