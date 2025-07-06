@@ -25,12 +25,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
     }
 
+console.log('Hledám email:', email.trim());
 const { data: user } = await supabase
   .from('user_confirmations')
   .select('email, name, birthdate, goals')
   .ilike('email', email.trim())
   .eq('confirmed', true)
   .maybeSingle();
+console.log('Výsledek dotazu:', user);
+
+  wait supabase
+  .from('users')
+  .update({ confirmed: true })
+  .eq('email', confirmation.email);
 
 if (!user?.email) {
   return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
