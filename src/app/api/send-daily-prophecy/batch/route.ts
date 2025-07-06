@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       });
       const data = await res.json();
       results.push({ email: user.email, status: res.status, message: data.message || data.error });
-    } catch (err) {
+    } catch {
       results.push({ email: user.email, status: 500, message: 'Chyba při odesílání požadavku.' });
     }
   }
