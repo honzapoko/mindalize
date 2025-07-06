@@ -13,7 +13,7 @@ export default function ConfirmedPage() {
       const res = await fetch('/api/send-daily-prophecy', { method: 'POST' });
       const data = await res.json();
       setResult(data.message || data.error);
-    } catch (e) {
+} catch {
       setResult('Nastala chyba při odesílání proroctví.');
     }
     setLoading(false);
