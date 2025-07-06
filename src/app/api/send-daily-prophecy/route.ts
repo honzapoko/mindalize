@@ -17,20 +17,20 @@ function drawCards(n: number) {
   return drawn;
 }
 
-export async function POST() {
-  try {
-    // Najdi posledního potvrzeného uživatele
-    const { data: user } = await supabase
-      .from('user_confirmations')
-      .select('email, name, birthdate, goals')
-      .eq('confirmed', true)
-      .order('updated_at', { ascending: false })
-      .limit(1)
-      .maybeSingle();
-
-    if (!user?.email) {
-      return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
-    }
+export async function POST(req: Request) {
+  const { email } = await req.json().catch(() => ({}));
+  if (!email) {
+    return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
+  }
+  const { data: user } = await supabase
+    .from('user_confirmations')
+    .select('email, name, birthdate, goals')
+    .ilike('email', email.trim())
+    .eq('confirmed', true)
+    .maybeSingle();
+  if (!user?.email) {
+    return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
+  }
 
     // Draw 3 random cards
     const cards = drawCards(3);
