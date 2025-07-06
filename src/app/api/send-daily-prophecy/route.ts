@@ -23,12 +23,14 @@ export async function POST(req: Request) {
     if (!email) {
       return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
     }
-    const { data: user } = await supabase
-      .from('user_confirmations')
-      .select('email, name, birthdate, goals')
-      .ilike('email', email.trim())
-      .eq('confirmed', true)
-      .maybeSingle();
+console.log('API voláno s e-mailem:', email);
+const { data: user, error } = await supabase
+  .from('user_confirmations')
+  .select('email, name, birthdate, goals, confirmed')
+  .ilike('email', email.trim())
+  .eq('confirmed', true)
+  .maybeSingle();
+console.log('Výsledek dotazu:', user, 'Chyba:', error);
     if (!user?.email) {
       return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
     }
