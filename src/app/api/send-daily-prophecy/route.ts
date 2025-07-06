@@ -34,11 +34,6 @@ const { data: user } = await supabase
   .maybeSingle();
 console.log('Výsledek dotazu:', user);
 
-  wait supabase
-  .from('users')
-  .update({ confirmed: true })
-  .eq('email', confirmation.email);
-
 if (!user?.email) {
   return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
 }
