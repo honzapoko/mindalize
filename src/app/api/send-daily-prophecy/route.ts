@@ -19,13 +19,13 @@ function drawCards(n: number) {
 
 export async function POST() {
   // Get latest confirmed user (replace with real user logic as needed)
-  const { data: user } = await supabase
-    .from('user_confirmations')
-    .select('email, name, birthdate, goals')
-    .eq('confirmed', true)
-    .order('id', { ascending: false })
-    .limit(1)
-    .maybeSingle();
+const { email } = await req.json();
+const { data: user } = await supabase
+  .from('user_confirmations')
+  .select('email, name, birthdate, goals')
+  .eq('email', email)
+  .eq('confirmed', true)
+  .maybeSingle();
 
   if (!user?.email) {
     return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
