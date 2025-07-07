@@ -138,7 +138,7 @@ const prompt =
   `Zvaž také předchozí otázky a odpovědi:\n${history}\n` +
   `Odpověz pouze česky, laskavě a s povzbuzením. ` +
   `Nejprve odpověz na význam karet (${cards.join(', ')}) v kontextu jeho otázky: "${question}". ` +
-  `Poté udělej prázdný řádek k oddělení výkladu karet a pokračuj astrologickou předpovědí. ` +
+  `Poté udělej prázdný řádek (ENTER) k oddělení výkladu karet a pokračuj astrologickou předpovědí. ` +
   ` ${aztroText} V astrologické části popiš, jaké astrologické vlivy (např. postavení Slunce, Měsíce, planet) mohou ovlivnit jeho den a co to znamená, a přidej krátké astrologické doporučení. ` +
   `Navrhni konkrétní krok nebo afirmaci pro další růst. Celková odpověď maximálně 1000 znaků. Text pěkně strukturuj, můžeš použít odstavce, tučné písmo pro zvýraznění a podobně. `;
 
