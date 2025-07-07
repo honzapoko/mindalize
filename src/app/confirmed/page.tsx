@@ -44,6 +44,8 @@ export default function ConfirmedPage() {
         <h2 style={{ marginBottom: 12 }}>Co získáte s prémiovým členstvím?</h2>
         <ul className="benefits-list" style={{ textAlign: 'left', margin: '0 auto 24px auto', maxWidth: 400 }}>
           <li>🃏 Každý den e-mail s kartami dne, vybranými speciálně pro vaše jméno, datum narození a cíl.</li>
+          <li>🔮 Každou neděli Týdenní výklad karet - Keltský kříž</li>
+          <li>🔮 Každý měsíc Velký měsíční unikátní výklad přímo Vám na míru</li>
           <li>🔮 Přístup k exkluzivním výkladům a funkcím.</li>
           <li>✨ Další nové funkce již brzy!</li>
         </ul>
