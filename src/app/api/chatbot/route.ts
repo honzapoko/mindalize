@@ -138,9 +138,9 @@ const prompt =
   `Zvaž také předchozí otázky a odpovědi:\n${history}\n` +
   `Odpověz pouze česky, laskavě a s povzbuzením. ` +
   `Nejprve odpověz na význam karet (${cards.join(', ')}) v kontextu jeho otázky: "${question}". ` +
-  `Poté nech prázdný řádek a pokračuj astrologickou předpovědí: Denní astrologická předpověď: ${aztroText} ` +
+  `Poté nech prázdný řádek a pokračuj astrologickou předpovědí. Denní astrologická předpověď: ${aztroText} ` +
   `V astrologické části popiš, jaké astrologické vlivy (např. postavení Slunce, Měsíce, planet) mohou ovlivnit jeho den a co to znamená, a přidej krátké astrologické doporučení. ` +
-  `Navrhni konkrétní krok nebo afirmaci pro další růst. Celková odpověď maximálně 1000 znaků.`;
+  `Navrhni konkrétní krok nebo afirmaci pro další růst. Celková odpověď maximálně 1000 znaků. Text pěkně strukturuj, můžeš použít odstavce, tučné písmo pro zvýraznění a podobně. `;
 
 // 4. Call OpenAI as before
 const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
