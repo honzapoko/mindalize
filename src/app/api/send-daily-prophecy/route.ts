@@ -64,7 +64,7 @@ const { data: reading } = await supabase
     const prompt =
       `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byly na den ${today} vytaženy tyto karty: ${cards.join(', ')}. ` +
       `Vytvoř unikátní, laskavé a inspirativní proroctví pro tento den, které propojí význam těchto karet s jeho životní cestou. ` +
-      `Odpověď napiš česky, maximálně 500 znaků.`;
+      `Odpověď napiš česky, maximálně 1000 znaků. Vždy konči tečkou, ne v polovině věty. `;
 
     // Call OpenAI
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
