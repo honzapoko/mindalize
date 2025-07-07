@@ -135,11 +135,12 @@ const prompt =
   `Jsi osobní duchovní průvodce uživatele jménem ${name}. ` +
   `Zohledni jeho datum narození (${birthdate}), znamení (${zodiac}), životní číslo (${lifePath}), ` +
   `město narození (${city}), osobní cíle (${goals}), typ výkladu (${spreadType}). ` +
-  `Denní astrologická předpověď: ${aztroText} ` +
   `Zvaž také předchozí otázky a odpovědi:\n${history}\n` +
   `Odpověz pouze česky, laskavě a s povzbuzením. ` +
-  `Vysvětli význam karet (${cards.join(', ')}) v kontextu jeho otázky: "${question}". ` +
-  `Navrhni konkrétní krok nebo afirmaci pro další růst.`;
+  `Nejprve odpověz na význam karet (${cards.join(', ')}) v kontextu jeho otázky: "${question}". ` +
+  `Poté nech prázdný řádek a pokračuj astrologickou předpovědí: Denní astrologická předpověď: ${aztroText} ` +
+  `V astrologické části popiš, jaké astrologické vlivy (např. postavení Slunce, Měsíce, planet) mohou ovlivnit jeho den a co to znamená, a přidej krátké astrologické doporučení. ` +
+  `Navrhni konkrétní krok nebo afirmaci pro další růst. Celková odpověď maximálně 1000 znaků.`;
 
 // 4. Call OpenAI as before
 const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -151,7 +152,7 @@ const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
   body: JSON.stringify({
     model: 'gpt-3.5-turbo',
     messages: [{ role: 'user', content: prompt }],
-    max_tokens: 500,
+    max_tokens: 1000,
   }),
 });
 
