@@ -101,6 +101,19 @@ if (!confirmation || !confirmation.confirmed) {
     );
   }
 
+  async function getAztroHoroscope(zodiac: string): Promise<string> {
+  try {
+    const res = await fetch(`https://aztro.sameerkumar.website/?sign=${zodiac.toLowerCase()}&day=today`, {
+      method: 'POST'
+    });
+    const data = await res.json();
+    // Use only the first 300 characters for brevity
+    return (data.description as string).slice(0, 300);
+  } catch {
+    return '';
+  }
+}
+
   // 1. Fetch user history from Supabase
   const { data: historyRows } = await supabase
     .from('readings')
@@ -115,31 +128,36 @@ if (!confirmation || !confirmation.confirmed) {
     .join('\n');
 
   // 3. Build the prompt
-  const prompt =
-    `Jsi osobní duchovní průvodce uživatele jménem ${name}. ` +
-    `Zohledni jeho datum narození (${birthdate}), znamení (${zodiac}), životní číslo (${lifePath}), ` +
-    `město narození (${city}), osobní cíle (${goals}), typ výkladu (${spreadType}). ` +
-    `Zvaž také předchozí otázky a odpovědi:\n${history}\n` +
-    `Odpověz pouze česky, laskavě a s povzbuzením. ` +
-    `Vysvětli význam karet (${cards.join(', ')}) v kontextu jeho otázky: "${question}". ` +
-    `Navrhni konkrétní krok nebo afirmaci pro další růst.`;
+// 3. Build the prompt (now async, because we fetch aztro)
+const aztroText = await getAztroHoroscope(zodiac);
 
-  // 4. Call OpenAI as before
-  const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 1000,
-    }),
-  });
+const prompt =
+  `Jsi osobní duchovní průvodce uživatele jménem ${name}. ` +
+  `Zohledni jeho datum narození (${birthdate}), znamení (${zodiac}), životní číslo (${lifePath}), ` +
+  `město narození (${city}), osobní cíle (${goals}), typ výkladu (${spreadType}). ` +
+  `Denní astrologická předpověď: ${aztroText} ` +
+  `Zvaž také předchozí otázky a odpovědi:\n${history}\n` +
+  `Odpověz pouze česky, laskavě a s povzbuzením. ` +
+  `Vysvětli význam karet (${cards.join(', ')}) v kontextu jeho otázky: "${question}". ` +
+  `Navrhni konkrétní krok nebo afirmaci pro další růst.`;
 
-  const openaiData = await openaiRes.json();
-  const answer = openaiData.choices?.[0]?.message?.content || 'Odpověď není dostupná.';
+// 4. Call OpenAI as before
+const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+  },
+  body: JSON.stringify({
+    model: 'gpt-3.5-turbo',
+    messages: [{ role: 'user', content: prompt }],
+    max_tokens: 500,
+  }),
+});
+
+const openaiData = await openaiRes.json();
+const answer = openaiData.choices?.[0]?.message?.content || 'Odpověď není dostupná.';
+
 
   // 5. Store in Supabase
   const { error } = await supabase.from('readings').insert([
