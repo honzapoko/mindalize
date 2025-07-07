@@ -1,0 +1,15 @@
+name: Send Daily Prophecy
+
+on:
+  schedule:
+    - cron: '0 7 * * *' # každý den v 7:00 UTC (9:00 CEST)
+  workflow_dispatch:     # umožní ruční spuštění
+
+jobs:
+  send-prophecy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call batch endpoint
+        run: |
+          curl -X POST "https://mindalize.com/api/send-daily-prophecy/batch" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
