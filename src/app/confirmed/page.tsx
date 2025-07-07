@@ -48,7 +48,7 @@ export default function ConfirmedPage() {
           <li>🔮 Každý měsíc Velký měsíční unikátní výklad přímo Vám na míru</li>
           <li>🔮 Přístup k exkluzivním výkladům a funkcím.</li>
           <li>✨ Každý měsíc horoskop pro Vaše znamení a datum narození s postavením planet</li>
-          <li>✨ Další nové funkce již brzy!</li>
+          <li>✨ To vše a mnohem více od 200 Kč/týden</li>
         </ul>
         <button
           className="button-primary"
