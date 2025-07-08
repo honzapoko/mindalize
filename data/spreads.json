@@ -1,0 +1,389 @@
+[
+  {
+    "name": "Single Card",
+    "cz": "Jedna karta",
+    "description": "Rychlý výklad na jednoduchou otázku nebo denní inspiraci.",
+    "positions": [
+      { "name": "Message", "cz": "Poselství", "meaning": "Hlavní sdělení nebo rada pro tazatele." }
+    ]
+  },
+  {
+    "name": "Three Card Spread",
+    "cz": "Výklad na tři karty",
+    "description": "Jednoduchý výklad pro rychlý vhled do minulosti, přítomnosti a budoucnosti.",
+    "positions": [
+      { "name": "Past", "cz": "Minulost", "meaning": "Co je za vámi, co ovlivňuje současnou situaci." },
+      { "name": "Present", "cz": "Přítomnost", "meaning": "Co se děje nyní, hlavní téma nebo výzva." },
+      { "name": "Future", "cz": "Budoucnost", "meaning": "Co vás čeká, možný vývoj situace." }
+    ]
+  },
+  {
+    "name": "Celtic Cross",
+    "cz": "Keltský kříž",
+    "description": "Klasický a hluboký výklad pro komplexní pohled na situaci.",
+    "positions": [
+      { "name": "Present", "cz": "Přítomnost", "meaning": "Hlavní téma nebo situace." },
+      { "name": "Challenge", "cz": "Výzva", "meaning": "Co stojí v cestě, překážka." },
+      { "name": "Past", "cz": "Minulost", "meaning": "Kořeny situace, minulý vliv." },
+      { "name": "Future", "cz": "Budoucnost", "meaning": "Co přijde v blízké době." },
+      { "name": "Above", "cz": "Vědomí", "meaning": "Vědomé myšlenky, cíl." },
+      { "name": "Below", "cz": "Nevědomí", "meaning": "Nevědomé vlivy, podvědomí." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Doporučení, jak postupovat." },
+      { "name": "External", "cz": "Vnější vlivy", "meaning": "Okolnosti, lidé kolem vás." },
+      { "name": "Hopes", "cz": "Naděje a obavy", "meaning": "Vaše přání nebo strachy." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný vývoj nebo závěr." }
+    ]
+  },
+  {
+    "name": "Relationship Spread",
+    "cz": "Partnerský výklad",
+    "description": "Výklad pro vztahy a partnerství.",
+    "positions": [
+      { "name": "You", "cz": "Vy", "meaning": "Vaše role nebo pocity ve vztahu." },
+      { "name": "Partner", "cz": "Partner", "meaning": "Role nebo pocity partnera." },
+      { "name": "Dynamic", "cz": "Dynamika", "meaning": "Energie mezi vámi, vztahová dynamika." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Doporučení pro vztah." }
+    ]
+  },
+  {
+    "name": "Career Spread",
+    "cz": "Kariérní výklad",
+    "description": "Výklad zaměřený na práci, kariéru a profesní růst.",
+    "positions": [
+      { "name": "Current Situation", "cz": "Současná situace", "meaning": "Jaká je vaše pracovní situace." },
+      { "name": "Challenge", "cz": "Výzva", "meaning": "Co vám stojí v cestě v kariéře." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak postupovat dál." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný vývoj vaší kariéry." }
+    ]
+  },
+  {
+    "name": "Year Ahead Spread",
+    "cz": "Výklad na rok dopředu",
+    "description": "Výklad pro každý měsíc v roce, vhodný na narozeniny nebo Nový rok.",
+    "positions": [
+      { "name": "January", "cz": "Leden", "meaning": "Téma pro leden." },
+      { "name": "February", "cz": "Únor", "meaning": "Téma pro únor." },
+      { "name": "March", "cz": "Březen", "meaning": "Téma pro březen." },
+      { "name": "April", "cz": "Duben", "meaning": "Téma pro duben." },
+      { "name": "May", "cz": "Květen", "meaning": "Téma pro květen." },
+      { "name": "June", "cz": "Červen", "meaning": "Téma pro červen." },
+      { "name": "July", "cz": "Červenec", "meaning": "Téma pro červenec." },
+      { "name": "August", "cz": "Srpen", "meaning": "Téma pro srpen." },
+      { "name": "September", "cz": "Září", "meaning": "Téma pro září." },
+      { "name": "October", "cz": "Říjen", "meaning": "Téma pro říjen." },
+      { "name": "November", "cz": "Listopad", "meaning": "Téma pro listopad." },
+      { "name": "December", "cz": "Prosinec", "meaning": "Téma pro prosinec." }
+    ]
+  },
+  {
+    "name": "Five Card Spread",
+    "cz": "Výklad na pět karet",
+    "description": "Výklad pro hlubší pohled na situaci.",
+    "positions": [
+      { "name": "Past", "cz": "Minulost", "meaning": "Co je za vámi." },
+      { "name": "Present", "cz": "Přítomnost", "meaning": "Co se děje nyní." },
+      { "name": "Hidden Influences", "cz": "Skryté vlivy", "meaning": "Co ovlivňuje situaci." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Doporučení." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný vývoj." }
+    ]
+  },
+  {
+    "name": "Decision Spread",
+    "cz": "Výklad na rozhodnutí",
+    "description": "Pomáhá při rozhodování mezi dvěma možnostmi.",
+    "positions": [
+      { "name": "Option 1", "cz": "Možnost 1", "meaning": "První možnost." },
+      { "name": "Option 2", "cz": "Možnost 2", "meaning": "Druhá možnost." },
+      { "name": "What you need to know", "cz": "Co je třeba vědět", "meaning": "Důležité informace." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Doporučení." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný vývoj." }
+    ]
+  },
+  {
+    "name": "Horseshoe Spread",
+    "cz": "Podkova",
+    "description": "Výklad na sedm karet pro širší pohled na situaci.",
+    "positions": [
+      { "name": "Past", "cz": "Minulost", "meaning": "Co je za vámi." },
+      { "name": "Present", "cz": "Přítomnost", "meaning": "Co se děje nyní." },
+      { "name": "Hidden Influences", "cz": "Skryté vlivy", "meaning": "Co ovlivňuje situaci." },
+      { "name": "Obstacles", "cz": "Překážky", "meaning": "Co stojí v cestě." },
+      { "name": "Attitudes of Others", "cz": "Postoje ostatních", "meaning": "Jak vás vnímají druzí." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Doporučení." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný vývoj." }
+    ]
+  },
+  {
+    "name": "Seven Card Chakra Spread",
+    "cz": "Čakrový výklad",
+    "description": "Výklad na sedm čaker pro osobní rozvoj.",
+    "positions": [
+      { "name": "Root", "cz": "Kořenová čakra", "meaning": "Základní potřeby, stabilita." },
+      { "name": "Sacral", "cz": "Sakrální čakra", "meaning": "Emoce, tvořivost." },
+      { "name": "Solar Plexus", "cz": "Solar plexus", "meaning": "Sebevědomí, síla." },
+      { "name": "Heart", "cz": "Srdeční čakra", "meaning": "Láska, vztahy." },
+      { "name": "Throat", "cz": "Krční čakra", "meaning": "Komunikace." },
+      { "name": "Third Eye", "cz": "Čelní čakra", "meaning": "Intuice." },
+      { "name": "Crown", "cz": "Korunní čakra", "meaning": "Spiritualita." }
+    ]
+  },
+  {
+    "name": "Shadow Work Spread",
+    "cz": "Stínový výklad",
+    "description": "Výklad zaměřený na práci se stínem a vnitřní bloky.",
+    "positions": [
+      { "name": "Shadow", "cz": "Stín", "meaning": "Co je třeba přijmout." },
+      { "name": "Origin", "cz": "Původ", "meaning": "Odkud stín pochází." },
+      { "name": "Lesson", "cz": "Lekce", "meaning": "Co se lze naučit." },
+      { "name": "Healing", "cz": "Léčení", "meaning": "Jak se posunout dál." }
+    ]
+  },
+  {
+    "name": "Self-Discovery Spread",
+    "cz": "Sebepoznávací výklad",
+    "description": "Výklad pro hlubší pochopení sebe sama.",
+    "positions": [
+      { "name": "Who am I?", "cz": "Kdo jsem?", "meaning": "Vaše podstata." },
+      { "name": "What do I want?", "cz": "Co chci?", "meaning": "Vaše touhy." },
+      { "name": "What holds me back?", "cz": "Co mě brzdí?", "meaning": "Překážky." },
+      { "name": "How to move forward?", "cz": "Jak dál?", "meaning": "Rada pro další krok." }
+    ]
+  },
+  {
+    "name": "Monthly Spread",
+    "cz": "Měsíční výklad",
+    "description": "Výklad na každý týden v měsíci.",
+    "positions": [
+      { "name": "Week 1", "cz": "1. týden", "meaning": "Téma pro první týden." },
+      { "name": "Week 2", "cz": "2. týden", "meaning": "Téma pro druhý týden." },
+      { "name": "Week 3", "cz": "3. týden", "meaning": "Téma pro třetí týden." },
+      { "name": "Week 4", "cz": "4. týden", "meaning": "Téma pro čtvrtý týden." }
+    ]
+  },
+  {
+    "name": "Spiritual Path Spread",
+    "cz": "Duchovní cesta",
+    "description": "Výklad pro pochopení duchovní cesty.",
+    "positions": [
+      { "name": "Current Path", "cz": "Současná cesta", "meaning": "Kde se nacházíte." },
+      { "name": "Lesson", "cz": "Lekce", "meaning": "Co se máte naučit." },
+      { "name": "Obstacle", "cz": "Překážka", "meaning": "Co vám brání." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak postupovat dál." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný duchovní vývoj." }
+    ]
+  },
+  {
+    "name": "Healing Spread",
+    "cz": "Léčivý výklad",
+    "description": "Výklad zaměřený na uzdravení a obnovu.",
+    "positions": [
+      { "name": "What needs healing?", "cz": "Co potřebuje léčení?", "meaning": "Oblast, která vyžaduje pozornost." },
+      { "name": "Root cause", "cz": "Příčina", "meaning": "Původ problému." },
+      { "name": "Healing advice", "cz": "Rada k léčení", "meaning": "Jak se uzdravit." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný vývoj po uzdravení." }
+    ]
+  },
+  {
+    "name": "New Moon Spread",
+    "cz": "Výklad na novoluní",
+    "description": "Výklad pro nové začátky a záměry.",
+    "positions": [
+      { "name": "What to begin?", "cz": "Co začít?", "meaning": "Nový směr nebo projekt." },
+      { "name": "What to release?", "cz": "Co pustit?", "meaning": "Co už neslouží." },
+      { "name": "Support", "cz": "Podpora", "meaning": "Co vám pomůže." }
+    ]
+  },
+  {
+    "name": "Full Moon Spread",
+    "cz": "Výklad na úplněk",
+    "description": "Výklad pro dokončení a sklizeň.",
+    "positions": [
+      { "name": "What is coming to fruition?", "cz": "Co dozrává?", "meaning": "Co se naplňuje." },
+      { "name": "What to celebrate?", "cz": "Co oslavit?", "meaning": "Úspěchy a radost." },
+      { "name": "What to release?", "cz": "Co pustit?", "meaning": "Co je třeba opustit." }
+    ]
+  },
+  {
+    "name": "Birthday Spread",
+    "cz": "Narozeninový výklad",
+    "description": "Výklad na nový osobní rok.",
+    "positions": [
+      { "name": "Lesson from last year", "cz": "Lekce z minulého roku", "meaning": "Co jste se naučili." },
+      { "name": "Theme for this year", "cz": "Téma pro tento rok", "meaning": "Hlavní téma." },
+      { "name": "Challenge", "cz": "Výzva", "meaning": "Co bude výzvou." },
+      { "name": "Gift", "cz": "Dárek", "meaning": "Co vám rok přinese." }
+    ]
+  },
+  {
+    "name": "Self-Love Spread",
+    "cz": "Výklad sebelásky",
+    "description": "Výklad pro podporu sebelásky a sebevědomí.",
+    "positions": [
+      { "name": "How do I see myself?", "cz": "Jak se vidím?", "meaning": "Váš pohled na sebe." },
+      { "name": "What do I need?", "cz": "Co potřebuji?", "meaning": "Co vám chybí." },
+      { "name": "How to nurture myself?", "cz": "Jak o sebe pečovat?", "meaning": "Rada pro péči o sebe." }
+    ]
+  },
+  {
+    "name": "Family Spread",
+    "cz": "Rodinný výklad",
+    "description": "Výklad zaměřený na rodinné vztahy.",
+    "positions": [
+      { "name": "You", "cz": "Vy", "meaning": "Vaše role v rodině." },
+      { "name": "Family", "cz": "Rodina", "meaning": "Energie rodiny." },
+      { "name": "Challenge", "cz": "Výzva", "meaning": "Co je třeba řešit." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Doporučení." }
+    ]
+  },
+  {
+    "name": "Prosperity Spread",
+    "cz": "Výklad hojnosti",
+    "description": "Výklad pro finance a prosperitu.",
+    "positions": [
+      { "name": "Current finances", "cz": "Současné finance", "meaning": "Vaše finanční situace." },
+      { "name": "Block", "cz": "Blok", "meaning": "Co brání hojnosti." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak podpořit prosperitu." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný vývoj." }
+    ]
+  },
+  {
+    "name": "Yes/No Spread",
+    "cz": "Ano/Ne výklad",
+    "description": "Jednoduchý výklad na otázku ano/ne.",
+    "positions": [
+      { "name": "Yes", "cz": "Ano", "meaning": "Argumenty pro ano." },
+      { "name": "No", "cz": "Ne", "meaning": "Argumenty pro ne." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Doporučení." }
+    ]
+  },
+  {
+    "name": "Dream Interpretation Spread",
+    "cz": "Výklad snu",
+    "description": "Výklad pro pochopení významu snu.",
+    "positions": [
+      { "name": "Dream message", "cz": "Poselství snu", "meaning": "Hlavní význam snu." },
+      { "name": "Hidden meaning", "cz": "Skrytý význam", "meaning": "Co je pod povrchem." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak s tím pracovat." }
+    ]
+  },
+  {
+    "name": "Spiritual Guidance Spread",
+    "cz": "Duchovní vedení",
+    "description": "Výklad pro spojení s vyšším vedením.",
+    "positions": [
+      { "name": "Message from spirit", "cz": "Poselství ducha", "meaning": "Co vám chce říct vaše vyšší já." },
+      { "name": "Block", "cz": "Blok", "meaning": "Co brání spojení." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak se otevřít vedení." }
+    ]
+  },
+  {
+    "name": "Past Life Spread",
+    "cz": "Výklad minulého života",
+    "description": "Výklad pro vhled do minulých životů.",
+    "positions": [
+      { "name": "Who was I?", "cz": "Kým jsem byl/a?", "meaning": "Vaše minulá inkarnace." },
+      { "name": "Lesson", "cz": "Lekce", "meaning": "Co jste se měli naučit." },
+      { "name": "Influence", "cz": "Vliv", "meaning": "Jak minulý život ovlivňuje současnost." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak využít poznání." }
+    ]
+  },
+  {
+    "name": "Soulmate Spread",
+    "cz": "Výklad na spřízněnou duši",
+    "description": "Výklad pro nalezení nebo pochopení vztahu se spřízněnou duší.",
+    "positions": [
+      { "name": "Where are you now?", "cz": "Kde jste nyní?", "meaning": "Vaše současná situace." },
+      { "name": "What blocks you?", "cz": "Co vám brání?", "meaning": "Překážky na cestě." },
+      { "name": "What brings you together?", "cz": "Co vás spojuje?", "meaning": "Spojovací energie." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak vztah rozvíjet." }
+    ]
+  },
+  {
+    "name": "Obstacle Spread",
+    "cz": "Výklad překážek",
+    "description": "Výklad pro pochopení a překonání překážek.",
+    "positions": [
+      { "name": "Obstacle", "cz": "Překážka", "meaning": "Co vám brání." },
+      { "name": "Root cause", "cz": "Příčina", "meaning": "Odkud překážka pochází." },
+      { "name": "Solution", "cz": "Řešení", "meaning": "Jak překážku překonat." }
+    ]
+  },
+  {
+    "name": "Personal Growth Spread",
+    "cz": "Výklad osobního růstu",
+    "description": "Výklad pro podporu osobního rozvoje.",
+    "positions": [
+      { "name": "Strength", "cz": "Síla", "meaning": "Vaše silná stránka." },
+      { "name": "Weakness", "cz": "Slabina", "meaning": "Co je třeba zlepšit." },
+      { "name": "Opportunity", "cz": "Příležitost", "meaning": "Co vám může pomoci." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak růst." }
+    ]
+  },
+  {
+    "name": "Weekly Spread",
+    "cz": "Výklad na týden",
+    "description": "Výklad na každý den v týdnu.",
+    "positions": [
+      { "name": "Monday", "cz": "Pondělí", "meaning": "Téma pro pondělí." },
+      { "name": "Tuesday", "cz": "Úterý", "meaning": "Téma pro úterý." },
+      { "name": "Wednesday", "cz": "Středa", "meaning": "Téma pro středu." },
+      { "name": "Thursday", "cz": "Čtvrtek", "meaning": "Téma pro čtvrtek." },
+      { "name": "Friday", "cz": "Pátek", "meaning": "Téma pro pátek." },
+      { "name": "Saturday", "cz": "Sobota", "meaning": "Téma pro sobotu." },
+      { "name": "Sunday", "cz": "Neděle", "meaning": "Téma pro neděli." }
+    ]
+  },
+  {
+    "name": "Monthly Goal Spread",
+    "cz": "Výklad měsíčních cílů",
+    "description": "Výklad pro nastavení a dosažení cílů v daném měsíci.",
+    "positions": [
+      { "name": "Goal", "cz": "Cíl", "meaning": "Hlavní cíl měsíce." },
+      { "name": "Obstacle", "cz": "Překážka", "meaning": "Co může stát v cestě." },
+      { "name": "Support", "cz": "Podpora", "meaning": "Co vám pomůže." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak postupovat." }
+    ]
+  },
+  {
+    "name": "Inner Child Spread",
+    "cz": "Výklad vnitřního dítěte",
+    "description": "Výklad pro léčení a pochopení vnitřního dítěte.",
+    "positions": [
+      { "name": "Your inner child", "cz": "Vaše vnitřní dítě", "meaning": "Jak se cítí vaše vnitřní dítě." },
+      { "name": "Need", "cz": "Potřeba", "meaning": "Co vaše vnitřní dítě potřebuje." },
+      { "name": "Healing", "cz": "Léčení", "meaning": "Jak o něj pečovat." }
+    ]
+  },
+  {
+    "name": "Letting Go Spread",
+    "cz": "Výklad na opuštění starého",
+    "description": "Výklad pro uvolnění a opuštění toho, co už neslouží.",
+    "positions": [
+      { "name": "What to let go", "cz": "Co pustit", "meaning": "Co je třeba opustit." },
+      { "name": "Why hold on", "cz": "Proč se držím", "meaning": "Důvod lpění." },
+      { "name": "How to release", "cz": "Jak pustit", "meaning": "Jak se uvolnit." }
+    ]
+  },
+  {
+    "name": "Manifestation Spread",
+    "cz": "Výklad manifestace",
+    "description": "Výklad pro podporu manifestace přání.",
+    "positions": [
+      { "name": "Desire", "cz": "Přání", "meaning": "Co si přejete." },
+      { "name": "Block", "cz": "Blok", "meaning": "Co brání manifestaci." },
+      { "name": "Action", "cz": "Akce", "meaning": "Co je třeba udělat." },
+      { "name": "Outcome", "cz": "Výsledek", "meaning": "Možný výsledek." }
+    ]
+  },
+  {
+    "name": "Transformation Spread",
+    "cz": "Výklad transformace",
+    "description": "Výklad pro období změn a transformace.",
+    "positions": [
+      { "name": "Current state", "cz": "Současný stav", "meaning": "Kde jste nyní." },
+      { "name": "What is changing", "cz": "Co se mění", "meaning": "Co se proměňuje." },
+      { "name": "Support", "cz": "Podpora", "meaning": "Co vám pomůže." },
+      { "name": "Advice", "cz": "Rada", "meaning": "Jak změnu zvládnout." }
+    ]
+  }
+]

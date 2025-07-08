@@ -1,0 +1,268 @@
+{
+  "planets": [
+    {
+      "name": "Sun",
+      "cz": "Slunce",
+      "keywords": ["vitalita", "ego", "identita", "sebevyjádření", "tvořivost"],
+      "meaning": "Jádro osobnosti, vitalita, ego, vůle, životní síla.",
+      "house": "5. dům (tvořivost, děti, radost)",
+      "retrograde": null,
+      "inSigns": {
+        "Aries": "Energie, odvaha, začátky, impulzivnost.",
+        "Taurus": "Stabilita, praktičnost, smyslnost.",
+        "Gemini": "Komunikace, zvídavost, pohyblivost.",
+        "Cancer": "Citlivost, péče, rodina.",
+        "Leo": "Sebevědomí, tvořivost, vůdcovství.",
+        "Virgo": "Analýza, služba, detail.",
+        "Libra": "Diplomacie, vztahy, harmonie.",
+        "Scorpio": "Intenzita, transformace, tajemství.",
+        "Sagittarius": "Optimismus, svoboda, poznání.",
+        "Capricorn": "Ambice, disciplína, vytrvalost.",
+        "Aquarius": "Originalita, nezávislost, humanita.",
+        "Pisces": "Soucit, intuice, spiritualita."
+      }
+    },
+    {
+      "name": "Moon",
+      "cz": "Měsíc",
+      "keywords": ["emoce", "podvědomí", "instinkt", "mateřství", "zvyky"],
+      "meaning": "Emoce, vnitřní svět, potřeba bezpečí, zvyky, rodina.",
+      "house": "4. dům (domov, rodina, kořeny)",
+      "retrograde": null,
+      "phases": {
+        "New Moon": "Začátek nových věcí, plánování.",
+        "First Quarter": "Rozhodnutí, první kroky.",
+        "Full Moon": "Vrchol, sklizeň, silné emoce.",
+        "Last Quarter": "Uvolnění, odpuštění, uzavírání."
+      },
+      "inSigns": {
+        "Aries": "Impulzivní emoce, rychlé reakce.",
+        "Taurus": "Stabilní city, potřeba pohodlí.",
+        "Gemini": "Proměnlivé nálady, komunikace.",
+        "Cancer": "Silná citlivost, péče o blízké.",
+        "Leo": "Potřeba uznání, dramatické projevy.",
+        "Virgo": "Analytické emoce, péče o zdraví.",
+        "Libra": "Hledání harmonie, vztahové emoce.",
+        "Scorpio": "Intenzivní, hluboké city.",
+        "Sagittarius": "Optimistické, svobodné emoce.",
+        "Capricorn": "Zdrženlivost, praktičnost.",
+        "Aquarius": "Nezávislost, originalita v citech.",
+        "Pisces": "Empatie, snivost, obětavost."
+      }
+    },
+    {
+      "name": "Mercury",
+      "cz": "Merkur",
+      "keywords": ["myšlení", "komunikace", "učení", "logika", "cestování"],
+      "meaning": "Myšlení, komunikace, intelekt, pohyb, obchod.",
+      "house": "3. dům (komunikace, sourozenci, krátké cesty)",
+      "retrograde": "Zmatky v komunikaci, zpoždění, návraty do minulosti, technické potíže.",
+      "inSigns": {
+        "Aries": "Rychlé myšlení, přímočarost.",
+        "Taurus": "Praktické myšlení, pomalost.",
+        "Gemini": "Zvídavost, všestrannost.",
+        "Cancer": "Citlivá komunikace, paměť.",
+        "Leo": "Sebevědomý projev, kreativita.",
+        "Virgo": "Analýza, detail, preciznost.",
+        "Libra": "Diplomacie, objektivita.",
+        "Scorpio": "Hloubka, tajemství, intuice.",
+        "Sagittarius": "Filozofie, otevřenost.",
+        "Capricorn": "Praktičnost, strategie.",
+        "Aquarius": "Originalita, inovace.",
+        "Pisces": "Intuice, představivost."
+      }
+    },
+    {
+      "name": "Venus",
+      "cz": "Venuše",
+      "keywords": ["láska", "krása", "hodnoty", "vztahy", "umění"],
+      "meaning": "Láska, vztahy, harmonie, estetika, hodnoty.",
+      "house": "2. dům (hodnoty, majetek) a 7. dům (vztahy, partnerství)",
+      "retrograde": "Přehodnocení vztahů a hodnot, návraty starých lásek.",
+      "inSigns": {
+        "Aries": "Vášnivá, impulzivní láska.",
+        "Taurus": "Stabilita, smyslnost, věrnost.",
+        "Gemini": "Hravost, komunikace.",
+        "Cancer": "Citlivost, péče.",
+        "Leo": "Velkorysost, dramatická láska.",
+        "Virgo": "Praktičnost, služba.",
+        "Libra": "Harmonie, diplomacie.",
+        "Scorpio": "Intenzita, žárlivost.",
+        "Sagittarius": "Svoboda, dobrodružství.",
+        "Capricorn": "Zodpovědnost, tradice.",
+        "Aquarius": "Nezávislost, originalita.",
+        "Pisces": "Romantika, obětavost."
+      }
+    },
+    {
+      "name": "Mars",
+      "cz": "Mars",
+      "keywords": ["energie", "akce", "odvaha", "sexualita", "agrese"],
+      "meaning": "Energie, akce, odvaha, iniciativa, sexualita.",
+      "house": "1. dům (osobnost, začátky, tělo)",
+      "retrograde": "Snížená energie, frustrace, vnitřní napětí.",
+      "inSigns": {
+        "Aries": "Přímá akce, odvaha.",
+        "Taurus": "Vytrvalost, tvrdohlavost.",
+        "Gemini": "Verbální energie, rozptýlenost.",
+        "Cancer": "Obrana, pasivní agrese.",
+        "Leo": "Sebevědomí, tvořivost.",
+        "Virgo": "Pracovitost, detail.",
+        "Libra": "Diplomacie, nerozhodnost.",
+        "Scorpio": "Intenzita, sexualita.",
+        "Sagittarius": "Dobrodružství, optimismus.",
+        "Capricorn": "Disciplína, ambice.",
+        "Aquarius": "Originalita, rebelie.",
+        "Pisces": "Pasivita, inspirace."
+      }
+    },
+    {
+      "name": "Jupiter",
+      "cz": "Jupiter",
+      "keywords": ["štěstí", "expanze", "růst", "víra", "vzdělání"],
+      "meaning": "Štěstí, expanze, růst, víra, vzdělání, cestování.",
+      "house": "9. dům (vzdělání, cizina, filozofie)",
+      "retrograde": "Vnitřní růst, přehodnocení cílů.",
+      "inSigns": {
+        "Aries": "Odvaha, průkopnictví.",
+        "Taurus": "Materiální růst, stabilita.",
+        "Gemini": "Vzdělání, komunikace.",
+        "Cancer": "Rodinné hodnoty, péče.",
+        "Leo": "Velkorysost, tvořivost.",
+        "Virgo": "Praktičnost, služba.",
+        "Libra": "Spravedlnost, vztahy.",
+        "Scorpio": "Transformace, hloubka.",
+        "Sagittarius": "Optimismus, svoboda.",
+        "Capricorn": "Ambice, disciplína.",
+        "Aquarius": "Humanita, inovace.",
+        "Pisces": "Soucit, spiritualita."
+      }
+    },
+    {
+      "name": "Saturn",
+      "cz": "Saturn",
+      "keywords": ["zodpovědnost", "disciplína", "omezení", "struktura", "karma"],
+      "meaning": "Zodpovědnost, disciplína, omezení, lekce, karma.",
+      "house": "10. dům (kariéra, autorita, společenské postavení)",
+      "retrograde": "Vnitřní disciplína, přehodnocení závazků.",
+      "inSigns": {
+        "Aries": "Zkoušky odvahy, samostatnost.",
+        "Taurus": "Materiální jistota, trpělivost.",
+        "Gemini": "Mentální disciplína, komunikace.",
+        "Cancer": "Rodinné povinnosti, citová uzavřenost.",
+        "Leo": "Sebekázeň, vůdcovství.",
+        "Virgo": "Pracovitost, detail.",
+        "Libra": "Spravedlnost, vztahy.",
+        "Scorpio": "Transformace, kontrola.",
+        "Sagittarius": "Víra, filozofie.",
+        "Capricorn": "Ambice, vytrvalost.",
+        "Aquarius": "Reformy, originalita.",
+        "Pisces": "Oběť, soucit."
+      }
+    },
+    {
+      "name": "Uranus",
+      "cz": "Uran",
+      "keywords": ["revoluce", "změna", "originalita", "nezávislost", "progres"],
+      "meaning": "Revoluce, změna, originalita, náhlé zvraty, technologie.",
+      "house": "11. dům (přátelství, skupiny, inovace)",
+      "retrograde": "Vnitřní změny, nečekané události vnitřního světa.",
+      "inSigns": {
+        "Aries": "Průkopnické změny.",
+        "Taurus": "Finanční inovace.",
+        "Gemini": "Nové myšlenky.",
+        "Cancer": "Změny v rodině.",
+        "Leo": "Tvořivá originalita.",
+        "Virgo": "Inovace v práci.",
+        "Libra": "Nové vztahy.",
+        "Scorpio": "Transformace.",
+        "Sagittarius": "Nové filozofie.",
+        "Capricorn": "Revoluce v kariéře.",
+        "Aquarius": "Vrcholná originalita.",
+        "Pisces": "Duchovní probuzení."
+      }
+    },
+    {
+      "name": "Neptune",
+      "cz": "Neptun",
+      "keywords": ["intuice", "sny", "iluze", "spiritualita", "umění"],
+      "meaning": "Intuice, sny, iluze, spiritualita, inspirace.",
+      "house": "12. dům (podvědomí, sny, izolace)",
+      "retrograde": "Odhalení iluzí, vnitřní pravda.",
+      "inSigns": {
+        "Aries": "Duchovní odvaha.",
+        "Taurus": "Snění o jistotě.",
+        "Gemini": "Inspirace v komunikaci.",
+        "Cancer": "Citová spiritualita.",
+        "Leo": "Tvořivá inspirace.",
+        "Virgo": "Služba a soucit.",
+        "Libra": "Ideály ve vztazích.",
+        "Scorpio": "Mystika, transformace.",
+        "Sagittarius": "Duchovní hledání.",
+        "Capricorn": "Iluzorní ambice.",
+        "Aquarius": "Kolektivní sny.",
+        "Pisces": "Vrcholná spiritualita."
+      }
+    },
+    {
+      "name": "Pluto",
+      "cz": "Pluto",
+      "keywords": ["transformace", "moc", "regenerace", "tajemství", "smrt/znovuzrození"],
+      "meaning": "Transformace, moc, regenerace, hluboké změny.",
+      "house": "8. dům (transformace, smrt, sexualita, finance druhých)",
+      "retrograde": "Vnitřní transformace, hluboké změny uvnitř.",
+      "inSigns": {
+        "Aries": "Transformace identity.",
+        "Taurus": "Hodnoty a majetek.",
+        "Gemini": "Myšlení, komunikace.",
+        "Cancer": "Rodina, kořeny.",
+        "Leo": "Tvořivost, ego.",
+        "Virgo": "Zdraví, služba.",
+        "Libra": "Vztahy, spravedlnost.",
+        "Scorpio": "Intenzita, sexualita.",
+        "Sagittarius": "Víra, poznání.",
+        "Capricorn": "Moc, kariéra.",
+        "Aquarius": "Kolektiv, změna.",
+        "Pisces": "Duchovní transformace."
+      }
+    },
+    {
+      "name": "Chiron",
+      "cz": "Chiron",
+      "keywords": ["zranění", "léčení", "moudrost", "učitel", "transformace"],
+      "meaning": "Zranění, která vedou k léčení a moudrosti.",
+      "house": "Proměnlivé, podle postavení v horoskopu.",
+      "retrograde": "Vnitřní léčení, návrat ke starým zraněním.",
+      "inSigns": {
+        "Aries": "Léčení identity.",
+        "Taurus": "Léčení hodnot a těla.",
+        "Gemini": "Léčení komunikace.",
+        "Cancer": "Léčení rodiny a emocí.",
+        "Leo": "Léčení sebevědomí.",
+        "Virgo": "Léčení zdraví a služby.",
+        "Libra": "Léčení vztahů.",
+        "Scorpio": "Léčení sexuality a moci.",
+        "Sagittarius": "Léčení víry.",
+        "Capricorn": "Léčení autority.",
+        "Aquarius": "Léčení kolektivu.",
+        "Pisces": "Léčení soucitu."
+      }
+    },
+    {
+      "name": "North Node",
+      "cz": "Severní uzel",
+      "keywords": ["osud", "směr", "vývoj", "růst", "budoucnost"],
+      "meaning": "Směr duše, kam směřovat, karmický růst.",
+      "house": "Proměnlivé, podle postavení v horoskopu.",
+      "retrograde": null
+    },
+    {
+      "name": "South Node",
+      "cz": "Jižní uzel",
+      "keywords": ["minulost", "karma", "talenty", "zvyky", "komfortní zóna"],
+      "meaning": "Minulé životy, zvyky, co je třeba opustit.",
+      "house": "Proměnlivé, podle postavení v horoskopu.",
+      "retrograde": null
+    }
+  ]
+}

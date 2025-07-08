@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Aries",
+    "cz": "Beran",
+    "dateRange": "March 21 - April 19",
+    "element": "Fire",
+    "traits": ["energetic", "courageous", "confident", "impulsive"],
+    "love": "Berani jsou vášniví a upřímní v lásce, často jdou přímo za svým srdcem.",
+    "work": "V práci jsou průbojní, rádi vedou a nebojí se výzev.",
+    "health": "Dávejte pozor na přetížení a úrazy hlavy.",
+    "famousPeople": ["Leonardo da Vinci", "Lady Gaga", "Robert Downey Jr."]
+  },
+  {
+    "name": "Taurus",
+    "cz": "Býk",
+    "dateRange": "April 20 - May 20",
+    "element": "Earth",
+    "traits": ["practical", "reliable", "patient", "stubborn"],
+    "love": "Býci jsou oddaní a hledají stabilitu, v lásce jsou věrní.",
+    "work": "Vynikají v trpělivosti a vytrvalosti, jsou spolehliví kolegové.",
+    "health": "Pozor na pohodlnost a přejídání.",
+    "famousPeople": ["Adele", "William Shakespeare", "David Beckham"]
+  },
+  {
+    "name": "Gemini",
+    "cz": "Blíženci",
+    "dateRange": "May 21 - June 20",
+    "element": "Air",
+    "traits": ["curious", "adaptable", "communicative", "nervous"],
+    "love": "Blíženci jsou hraví a komunikativní, potřebují intelektuální stimulaci.",
+    "work": "Rychle se učí, jsou flexibilní a mají rádi změny.",
+    "health": "Dbejte na dostatek odpočinku, pozor na nervozitu.",
+    "famousPeople": ["Angelina Jolie", "Johnny Depp", "Marilyn Monroe"]
+  },
+  {
+    "name": "Cancer",
+    "cz": "Rak",
+    "dateRange": "June 21 - July 22",
+    "element": "Water",
+    "traits": ["emotional", "protective", "intuitive", "moody"],
+    "love": "Raci jsou citliví a pečující, hledají bezpečí a blízkost.",
+    "work": "Vynikají v péči o druhé, jsou loajální a oddaní.",
+    "health": "Pozor na žaludek a citlivost na stres.",
+    "famousPeople": ["Tom Hanks", "Selena Gomez", "Princess Diana"]
+  },
+  {
+    "name": "Leo",
+    "cz": "Lev",
+    "dateRange": "July 23 - August 22",
+    "element": "Fire",
+    "traits": ["generous", "creative", "confident", "dramatic"],
+    "love": "Lvi jsou vášniví a velkorysí, rádi jsou středem pozornosti.",
+    "work": "Mají vůdčí schopnosti, jsou kreativní a inspirativní.",
+    "health": "Dbejte na srdce a krevní oběh.",
+    "famousPeople": ["Barack Obama", "Madonna", "Jennifer Lopez"]
+  },
+  {
+    "name": "Virgo",
+    "cz": "Panna",
+    "dateRange": "August 23 - September 22",
+    "element": "Earth",
+    "traits": ["analytical", "practical", "modest", "critical"],
+    "love": "Panny jsou věrné a pečlivé, hledají dokonalost.",
+    "work": "Vynikají v organizaci a detailní práci.",
+    "health": "Pozor na zažívání a přílišnou sebekritiku.",
+    "famousPeople": ["Beyoncé", "Keanu Reeves", "Freddie Mercury"]
+  },
+  {
+    "name": "Libra",
+    "cz": "Váhy",
+    "dateRange": "September 23 - October 22",
+    "element": "Air",
+    "traits": ["diplomatic", "fair", "sociable", "indecisive"],
+    "love": "Váhy hledají harmonii a partnerství, jsou okouzlující.",
+    "work": "Mají smysl pro spravedlnost, jsou týmoví hráči.",
+    "health": "Dbejte na ledviny a rovnováhu v životě.",
+    "famousPeople": ["Will Smith", "Gwyneth Paltrow", "Mahatma Gandhi"]
+  },
+  {
+    "name": "Scorpio",
+    "cz": "Štír",
+    "dateRange": "October 23 - November 21",
+    "element": "Water",
+    "traits": ["passionate", "resourceful", "mysterious", "jealous"],
+    "love": "Štíři jsou intenzivní a hlubocí, v lásce oddaní.",
+    "work": "Mají silnou vůli a intuici, jdou do hloubky.",
+    "health": "Pozor na reprodukční orgány a žárlivost.",
+    "famousPeople": ["Bill Gates", "Julia Roberts", "Pablo Picasso"]
+  },
+  {
+    "name": "Sagittarius",
+    "cz": "Střelec",
+    "dateRange": "November 22 - December 21",
+    "element": "Fire",
+    "traits": ["optimistic", "adventurous", "honest", "impatient"],
+    "love": "Střelci jsou svobodomyslní a upřímní, milují dobrodružství.",
+    "work": "Mají rádi nové výzvy a cestování.",
+    "health": "Dbejte na stehna a pohybový aparát.",
+    "famousPeople": ["Taylor Swift", "Brad Pitt", "Winston Churchill"]
+  },
+  {
+    "name": "Capricorn",
+    "cz": "Kozoroh",
+    "dateRange": "December 22 - January 19",
+    "element": "Earth",
+    "traits": ["disciplined", "ambitious", "practical", "reserved"],
+    "love": "Kozorozi jsou věrní a zodpovědní, hledají stabilitu.",
+    "work": "Jsou pracovití a cílevědomí, dosahují svých cílů.",
+    "health": "Pozor na kosti a klouby.",
+    "famousPeople": ["Jim Carrey", "Michelle Obama", "Martin Luther King Jr."]
+  },
+  {
+    "name": "Aquarius",
+    "cz": "Vodnář",
+    "dateRange": "January 20 - February 18",
+    "element": "Air",
+    "traits": ["independent", "innovative", "humanitarian", "unpredictable"],
+    "love": "Vodnáři jsou originální a svobodomyslní, hledají porozumění.",
+    "work": "Mají inovativní myšlení, rádi pomáhají druhým.",
+    "health": "Dbejte na kotníky a krevní oběh.",
+    "famousPeople": ["Oprah Winfrey", "Shakira", "Charles Darwin"]
+  },
+  {
+    "name": "Pisces",
+    "cz": "Ryby",
+    "dateRange": "February 19 - March 20",
+    "element": "Water",
+    "traits": ["compassionate", "intuitive", "artistic", "sensitive"],
+    "love": "Ryby jsou citlivé a empatické, hledají hluboké spojení.",
+    "work": "Mají umělecké sklony a silnou intuici.",
+    "health": "Pozor na nohy a únik do iluzí.",
+    "famousPeople": ["Albert Einstein", "Rihanna", "Steve Jobs"]
+  }
+]

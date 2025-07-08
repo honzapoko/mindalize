@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Conjunction",
+    "cz": "Konjunkce",
+    "symbol": "☌",
+    "meaning": "Spojení dvou planet, energie se spojují a zesilují."
+  },
+  {
+    "name": "Opposition",
+    "cz": "Opozice",
+    "symbol": "☍",
+    "meaning": "Napětí, protiklady, potřeba najít rovnováhu."
+  },
+  {
+    "name": "Trine",
+    "cz": "Trigon",
+    "symbol": "△",
+    "meaning": "Harmonie, plynulost, podpora."
+  },
+  {
+    "name": "Square",
+    "cz": "Kvadratura",
+    "symbol": "□",
+    "meaning": "Napětí, výzva, konflikt, růst skrze překážky."
+  },
+  {
+    "name": "Sextile",
+    "cz": "Sextil",
+    "symbol": "✶",
+    "meaning": "Příležitost, spolupráce, lehká podpora."
+  },
+  {
+    "name": "Quincunx",
+    "cz": "Kvinkunx",
+    "symbol": "⚻",
+    "meaning": "Nesoulad, potřeba přizpůsobení, jemné napětí."
+  }
+]

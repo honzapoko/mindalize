@@ -1,0 +1,200 @@
+[
+  {
+    "name": "The Fool",
+    "cz": "Blázen",
+    "arcana": "Major",
+    "number": 0,
+    "upright": "Začátek nové cesty, spontánnost, důvěra, otevřenost.",
+    "reversed": "Nerozvážnost, neuvážené kroky, naivita.",
+    "keywords": ["nový začátek", "dobrodružství", "potenciál"]
+  },
+  {
+    "name": "The Magician",
+    "cz": "Mág",
+    "arcana": "Major",
+    "number": 1,
+    "upright": "Sebevědomí, tvořivost, schopnost dosáhnout cíle.",
+    "reversed": "Manipulace, nevyužitý potenciál, iluze.",
+    "keywords": ["vůle", "akce", "dovednosti"]
+  },
+  {
+    "name": "The High Priestess",
+    "cz": "Velekněžka",
+    "arcana": "Major",
+    "number": 2,
+    "upright": "Intuice, tajemství, vnitřní hlas, moudrost.",
+    "reversed": "Potlačená intuice, tajnosti, zmatek.",
+    "keywords": ["intuice", "tajemství", "moudrost"]
+  },
+  {
+    "name": "The Empress",
+    "cz": "Císařovna",
+    "arcana": "Major",
+    "number": 3,
+    "upright": "Plodnost, hojnost, péče, tvořivost.",
+    "reversed": "Zablokovaná tvořivost, závislost, neplodnost.",
+    "keywords": ["plodnost", "hojnost", "péče"]
+  },
+  {
+    "name": "The Emperor",
+    "cz": "Císař",
+    "arcana": "Major",
+    "number": 4,
+    "upright": "Autorita, stabilita, řád, kontrola.",
+    "reversed": "Tyranie, tvrdohlavost, ztráta kontroly.",
+    "keywords": ["autorita", "řád", "stabilita"]
+  },
+  {
+    "name": "The Hierophant",
+    "cz": "Velekněz",
+    "arcana": "Major",
+    "number": 5,
+    "upright": "Tradice, duchovní vedení, učení, konvence.",
+    "reversed": "Nekonvenčnost, rebelie, dogmatismus.",
+    "keywords": ["tradice", "učení", "spiritualita"]
+  },
+  {
+    "name": "The Lovers",
+    "cz": "Milenci",
+    "arcana": "Major",
+    "number": 6,
+    "upright": "Láska, volba, harmonie, partnerství.",
+    "reversed": "Nerozhodnost, konflikty, rozchod.",
+    "keywords": ["láska", "volba", "partnerství"]
+  },
+  {
+    "name": "The Chariot",
+    "cz": "Vůz",
+    "arcana": "Major",
+    "number": 7,
+    "upright": "Vítězství, vůle, odhodlání, pohyb vpřed.",
+    "reversed": "Ztráta kontroly, opozice, stagnace.",
+    "keywords": ["vítězství", "odhodlání", "pohyb"]
+  },
+  {
+    "name": "Strength",
+    "cz": "Síla",
+    "arcana": "Major",
+    "number": 8,
+    "upright": "Odvaha, vnitřní síla, trpělivost, soucit.",
+    "reversed": "Slabost, pochybnosti, nedostatek odvahy.",
+    "keywords": ["síla", "odvaha", "trpělivost"]
+  },
+  {
+    "name": "The Hermit",
+    "cz": "Poustevník",
+    "arcana": "Major",
+    "number": 9,
+    "upright": "Samota, introspekce, hledání pravdy.",
+    "reversed": "Izolace, osamělost, odmítání pomoci.",
+    "keywords": ["samota", "moudrost", "hledání"]
+  },
+  {
+    "name": "Wheel of Fortune",
+    "cz": "Kolo štěstí",
+    "arcana": "Major",
+    "number": 10,
+    "upright": "Změna, osud, cykly, štěstí.",
+    "reversed": "Smůla, stagnace, odpor ke změně.",
+    "keywords": ["osud", "změna", "cykly"]
+  },
+  {
+    "name": "Justice",
+    "cz": "Spravedlnost",
+    "arcana": "Major",
+    "number": 11,
+    "upright": "Spravedlnost, pravda, rovnováha, rozhodnutí.",
+    "reversed": "Nespravedlnost, neupřímnost, nevyváženost.",
+    "keywords": ["spravedlnost", "pravda", "rovnováha"]
+  },
+  {
+    "name": "The Hanged Man",
+    "cz": "Viselce",
+    "arcana": "Major",
+    "number": 12,
+    "upright": "Oběť, nový pohled, odložení, přijetí.",
+    "reversed": "Odmítání změny, stagnace, neochota pustit.",
+    "keywords": ["oběť", "změna pohledu", "přijetí"]
+  },
+  {
+    "name": "Death",
+    "cz": "Smrt",
+    "arcana": "Major",
+    "number": 13,
+    "upright": "Transformace, konec, nový začátek.",
+    "reversed": "Odmítání změny, stagnace, strach z konce.",
+    "keywords": ["transformace", "konec", "obnova"]
+  },
+  {
+    "name": "Temperance",
+    "cz": "Střídmost",
+    "arcana": "Major",
+    "number": 14,
+    "upright": "Rovnováha, harmonie, trpělivost, mír.",
+    "reversed": "Nerovnováha, přehánění, netrpělivost.",
+    "keywords": ["rovnováha", "harmonie", "trpělivost"]
+  },
+  {
+    "name": "The Devil",
+    "cz": "Ďábel",
+    "arcana": "Major",
+    "number": 15,
+    "upright": "Pokušení, závislost, materialismus, omezení.",
+    "reversed": "Osvobození, překonání závislosti, uvědomění.",
+    "keywords": ["pokušení", "závislost", "omezení"]
+  },
+  {
+    "name": "The Tower",
+    "cz": "Věž",
+    "arcana": "Major",
+    "number": 16,
+    "upright": "Náhlá změna, otřes, osvobození, zničení iluzí.",
+    "reversed": "Odpor ke změně, strach z pádu, stagnace.",
+    "keywords": ["změna", "otřes", "osvobození"]
+  },
+  {
+    "name": "The Star",
+    "cz": "Hvězda",
+    "arcana": "Major",
+    "number": 17,
+    "upright": "Naděje, inspirace, uzdravení, víra.",
+    "reversed": "Ztráta víry, pesimismus, zklamání.",
+    "keywords": ["naděje", "inspirace", "uzdravení"]
+  },
+  {
+    "name": "The Moon",
+    "cz": "Měsíc",
+    "arcana": "Major",
+    "number": 18,
+    "upright": "Intuice, iluze, sny, podvědomí.",
+    "reversed": "Zmatek, strach, klam.",
+    "keywords": ["intuice", "iluze", "sny"]
+  },
+  {
+    "name": "The Sun",
+    "cz": "Slunce",
+    "arcana": "Major",
+    "number": 19,
+    "upright": "Radost, úspěch, vitalita, štěstí.",
+    "reversed": "Dočasné potíže, pesimismus, ztráta radosti.",
+    "keywords": ["radost", "úspěch", "vitalita"]
+  },
+  {
+    "name": "Judgement",
+    "cz": "Soud",
+    "arcana": "Major",
+    "number": 20,
+    "upright": "Obrození, rozhodnutí, odpuštění, nový začátek.",
+    "reversed": "Odmítání změny, vina, nerozhodnost.",
+    "keywords": ["obrození", "rozhodnutí", "odpuštění"]
+  },
+  {
+    "name": "The World",
+    "cz": "Svět",
+    "arcana": "Major",
+    "number": 21,
+    "upright": "Dokončení, úspěch, naplnění, cesta domů.",
+    "reversed": "Nedokončené záležitosti, zpoždění, stagnace.",
+    "keywords": ["úspěch", "naplnění", "cesta"]
+  }
+]

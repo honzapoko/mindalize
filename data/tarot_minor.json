@@ -1,0 +1,569 @@
+[
+  // Poháry (Cups)
+  {
+    "name": "Ace of Cups",
+    "cz": "Eso pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 1,
+    "upright": "Nové emoce, začátek vztahu, otevřené srdce.",
+    "reversed": "Potlačené emoce, zklamání, blokované city.",
+    "keywords": ["emoce", "začátek", "láska"]
+  },
+  {
+    "name": "Two of Cups",
+    "cz": "Dva poháry",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 2,
+    "upright": "Partnerství, spojení, harmonie, dohoda.",
+    "reversed": "Neshody, rozchod, nevyvážený vztah.",
+    "keywords": ["partnerství", "harmonie", "spojení"]
+  },
+  {
+    "name": "Three of Cups",
+    "cz": "Tři poháry",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 3,
+    "upright": "Oslava, přátelství, radost, sdílení.",
+    "reversed": "Izolace, zklamání, přehánění v oslavách.",
+    "keywords": ["oslava", "přátelství", "radost"]
+  },
+  {
+    "name": "Four of Cups",
+    "cz": "Čtyři poháry",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 4,
+    "upright": "Nespokojenost, apatie, potřeba změny.",
+    "reversed": "Nové příležitosti, otevřenost změně.",
+    "keywords": ["nespokojenost", "apatie", "změna"]
+  },
+  {
+    "name": "Five of Cups",
+    "cz": "Pět pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 5,
+    "upright": "Zklamání, smutek, lítost, ztráta.",
+    "reversed": "Naděje, smíření, nový začátek.",
+    "keywords": ["zklamání", "smutek", "ztráta"]
+  },
+  {
+    "name": "Six of Cups",
+    "cz": "Šest pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 6,
+    "upright": "Vzpomínky, dětství, radost z minulosti.",
+    "reversed": "Neschopnost pustit minulost, stagnace.",
+    "keywords": ["vzpomínky", "dětství", "radost"]
+  },
+  {
+    "name": "Seven of Cups",
+    "cz": "Sedm pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 7,
+    "upright": "Iluzie, volby, fantazie, nerozhodnost.",
+    "reversed": "Jasnost, rozhodnutí, realismus.",
+    "keywords": ["iluze", "volby", "fantazie"]
+  },
+  {
+    "name": "Eight of Cups",
+    "cz": "Osm pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 8,
+    "upright": "Odchod, hledání smyslu, opuštění.",
+    "reversed": "Strach odejít, stagnace, nespokojenost.",
+    "keywords": ["odchod", "hledání", "opuštění"]
+  },
+  {
+    "name": "Nine of Cups",
+    "cz": "Devět pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 9,
+    "upright": "Splněné přání, spokojenost, radost.",
+    "reversed": "Nespokojenost, přehánění, povrchnost.",
+    "keywords": ["přání", "spokojenost", "radost"]
+  },
+  {
+    "name": "Ten of Cups",
+    "cz": "Deset pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": 10,
+    "upright": "Štěstí, rodina, harmonie, naplnění.",
+    "reversed": "Neshody v rodině, neúplné štěstí.",
+    "keywords": ["štěstí", "rodina", "harmonie"]
+  },
+  {
+    "name": "Page of Cups",
+    "cz": "Páže pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": "Page",
+    "upright": "Zvědavost, nové emoce, zpráva, kreativita.",
+    "reversed": "Nezralost, nejistota, zklamání.",
+    "keywords": ["zvědavost", "emoce", "kreativita"]
+  },
+  {
+    "name": "Knight of Cups",
+    "cz": "Rytíř pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": "Knight",
+    "upright": "Romantika, nabídka, idealismus, snění.",
+    "reversed": "Nerealistická očekávání, nestálost.",
+    "keywords": ["romantika", "nabídka", "idealismus"]
+  },
+  {
+    "name": "Queen of Cups",
+    "cz": "Královna pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": "Queen",
+    "upright": "Empatie, péče, citlivost, intuice.",
+    "reversed": "Přecitlivělost, nejistota, uzavřenost.",
+    "keywords": ["empatie", "péče", "intuice"]
+  },
+  {
+    "name": "King of Cups",
+    "cz": "Král pohárů",
+    "arcana": "Minor",
+    "suit": "Cups",
+    "number": "King",
+    "upright": "Moudrost, vyrovnanost, laskavost, porozumění.",
+    "reversed": "Potlačené emoce, manipulace, chlad.",
+    "keywords": ["moudrost", "vyrovnanost", "porozumění"]
+  },
+
+  // Meče (Swords)
+  {
+    "name": "Ace of Swords",
+    "cz": "Eso mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 1,
+    "upright": "Jasnost, pravda, nový začátek, intelekt.",
+    "reversed": "Zmatek, neupřímnost, blokace.",
+    "keywords": ["jasnost", "pravda", "začátek"]
+  },
+  {
+    "name": "Two of Swords",
+    "cz": "Dva meče",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 2,
+    "upright": "Rozhodování, rovnováha, slepá volba.",
+    "reversed": "Nerozhodnost, blokace, nečinnost.",
+    "keywords": ["rozhodování", "rovnováha", "volba"]
+  },
+  {
+    "name": "Three of Swords",
+    "cz": "Tři meče",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 3,
+    "upright": "Smutek, zlomené srdce, bolest, ztráta.",
+    "reversed": "Uzdravení, odpuštění, překonání bolesti.",
+    "keywords": ["smutek", "bolest", "ztráta"]
+  },
+  {
+    "name": "Four of Swords",
+    "cz": "Čtyři meče",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 4,
+    "upright": "Odpočinek, regenerace, klid, meditace.",
+    "reversed": "Nečinnost, únava, neklid.",
+    "keywords": ["odpočinek", "regenerace", "klid"]
+  },
+  {
+    "name": "Five of Swords",
+    "cz": "Pět mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 5,
+    "upright": "Konflikt, porážka, napětí, hádka.",
+    "reversed": "Smíření, uvolnění napětí, odpuštění.",
+    "keywords": ["konflikt", "porážka", "napětí"]
+  },
+  {
+    "name": "Six of Swords",
+    "cz": "Šest mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 6,
+    "upright": "Přechod, změna, cesta vpřed, úleva.",
+    "reversed": "Zaseknutí, neochota změnit se.",
+    "keywords": ["přechod", "změna", "cesta"]
+  },
+  {
+    "name": "Seven of Swords",
+    "cz": "Sedm mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 7,
+    "upright": "Podvod, klam, strategie, únik.",
+    "reversed": "Odhalení, přiznání, upřímnost.",
+    "keywords": ["podvod", "klam", "strategie"]
+  },
+  {
+    "name": "Eight of Swords",
+    "cz": "Osm mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 8,
+    "upright": "Omezení, pocit pasti, bezmoc.",
+    "reversed": "Osvobození, nový pohled, naděje.",
+    "keywords": ["omezení", "pasti", "bezmoc"]
+  },
+  {
+    "name": "Nine of Swords",
+    "cz": "Devět mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 9,
+    "upright": "Úzkost, strach, noční můry, vina.",
+    "reversed": "Úleva, překonání strachu, naděje.",
+    "keywords": ["úzkost", "strach", "vina"]
+  },
+  {
+    "name": "Ten of Swords",
+    "cz": "Deset mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": 10,
+    "upright": "Konec, zrada, bolest, definitivní změna.",
+    "reversed": "Obnova, nový začátek, uzdravení.",
+    "keywords": ["konec", "zrada", "změna"]
+  },
+  {
+    "name": "Page of Swords",
+    "cz": "Páže mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": "Page",
+    "upright": "Zvědavost, nové myšlenky, komunikace.",
+    "reversed": "Pomluvy, neupřímnost, zbrklost.",
+    "keywords": ["zvědavost", "myšlenky", "komunikace"]
+  },
+  {
+    "name": "Knight of Swords",
+    "cz": "Rytíř mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": "Knight",
+    "upright": "Rychlost, rozhodnost, odvaha, akce.",
+    "reversed": "Nedostatek taktu, zbrklost, konflikty.",
+    "keywords": ["rychlost", "odvaha", "akce"]
+  },
+  {
+    "name": "Queen of Swords",
+    "cz": "Královna mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": "Queen",
+    "upright": "Nezávislost, objektivita, jasnost, upřímnost.",
+    "reversed": "Chlad, kritika, odtažitost.",
+    "keywords": ["nezávislost", "jasnost", "upřímnost"]
+  },
+  {
+    "name": "King of Swords",
+    "cz": "Král mečů",
+    "arcana": "Minor",
+    "suit": "Swords",
+    "number": "King",
+    "upright": "Autorita, intelekt, spravedlnost, logika.",
+    "reversed": "Tyranie, neústupnost, zneužití moci.",
+    "keywords": ["autorita", "intelekt", "spravedlnost"]
+  },
+
+  // Hole (Wands)
+  {
+    "name": "Ace of Wands",
+    "cz": "Eso holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 1,
+    "upright": "Inspirace, nový začátek, energie, nadšení.",
+    "reversed": "Blokace, ztráta motivace, odklad.",
+    "keywords": ["inspirace", "začátek", "energie"]
+  },
+  {
+    "name": "Two of Wands",
+    "cz": "Dvě hole",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 2,
+    "upright": "Plánování, rozhodování, vize, možnosti.",
+    "reversed": "Nerozhodnost, strach z neznámého.",
+    "keywords": ["plánování", "rozhodování", "vize"]
+  },
+  {
+    "name": "Three of Wands",
+    "cz": "Tři hole",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 3,
+    "upright": "Rozvoj, expanze, očekávání, příležitosti.",
+    "reversed": "Zpoždění, omezení, frustrace.",
+    "keywords": ["rozvoj", "expanze", "příležitosti"]
+  },
+  {
+    "name": "Four of Wands",
+    "cz": "Čtyři hole",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 4,
+    "upright": "Oslava, úspěch, stabilita, domov.",
+    "reversed": "Neshody doma, zpoždění oslav.",
+    "keywords": ["oslava", "úspěch", "domov"]
+  },
+  {
+    "name": "Five of Wands",
+    "cz": "Pět holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 5,
+    "upright": "Konflikt, soutěž, výzva, rivalita.",
+    "reversed": "Vyřešení konfliktu, spolupráce.",
+    "keywords": ["konflikt", "soutěž", "výzva"]
+  },
+  {
+    "name": "Six of Wands",
+    "cz": "Šest holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 6,
+    "upright": "Vítězství, uznání, úspěch, pokrok.",
+    "reversed": "Ztráta uznání, neúspěch, pýcha.",
+    "keywords": ["vítězství", "uznání", "úspěch"]
+  },
+  {
+    "name": "Seven of Wands",
+    "cz": "Sedm holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 7,
+    "upright": "Obrana, odvaha, vytrvalost, boj.",
+    "reversed": "Vzdání se, slabost, ústup.",
+    "keywords": ["obrana", "odvaha", "boj"]
+  },
+  {
+    "name": "Eight of Wands",
+    "cz": "Osm holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 8,
+    "upright": "Rychlost, pohyb, změna, komunikace.",
+    "reversed": "Zpoždění, zmatek, překážky.",
+    "keywords": ["rychlost", "pohyb", "změna"]
+  },
+  {
+    "name": "Nine of Wands",
+    "cz": "Devět holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 9,
+    "upright": "Vytrvalost, obrana, síla, odolnost.",
+    "reversed": "Únava, vzdání se, slabost.",
+    "keywords": ["vytrvalost", "obrana", "síla"]
+  },
+  {
+    "name": "Ten of Wands",
+    "cz": "Deset holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": 10,
+    "upright": "Břemeno, odpovědnost, námaha, tlak.",
+    "reversed": "Uvolnění, sdílení břemene, vyčerpání.",
+    "keywords": ["břemeno", "odpovědnost", "námaha"]
+  },
+  {
+    "name": "Page of Wands",
+    "cz": "Páže holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": "Page",
+    "upright": "Nadšení, objevování, zpráva, dobrodružství.",
+    "reversed": "Nedostatek směru, zbrklost, nerozvážnost.",
+    "keywords": ["nadšení", "objevování", "dobrodružství"]
+  },
+  {
+    "name": "Knight of Wands",
+    "cz": "Rytíř holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": "Knight",
+    "upright": "Akce, energie, odvaha, dobrodružství.",
+    "reversed": "Netrpělivost, impulzivita, nestálost.",
+    "keywords": ["akce", "energie", "odvaha"]
+  },
+  {
+    "name": "Queen of Wands",
+    "cz": "Královna holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": "Queen",
+    "upright": "Sebevědomí, nezávislost, charisma, tvořivost.",
+    "reversed": "Nedůvěra, žárlivost, nejistota.",
+    "keywords": ["sebevědomí", "nezávislost", "charisma"]
+  },
+  {
+    "name": "King of Wands",
+    "cz": "Král holí",
+    "arcana": "Minor",
+    "suit": "Wands",
+    "number": "King",
+    "upright": "Vůdce, inspirace, vize, odvaha.",
+    "reversed": "Panovačnost, impulzivita, netrpělivost.",
+    "keywords": ["vůdce", "inspirace", "vize"]
+  },
+
+  // Pentakly (Pentacles)
+  {
+    "name": "Ace of Pentacles",
+    "cz": "Eso pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 1,
+    "upright": "Nová příležitost, hojnost, stabilita, prosperita.",
+    "reversed": "Ztracená příležitost, nestabilita, ztráta.",
+    "keywords": ["příležitost", "hojnost", "stabilita"]
+  },
+  {
+    "name": "Two of Pentacles",
+    "cz": "Dva pentakly",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 2,
+    "upright": "Rovnováha, flexibilita, přizpůsobení, rozhodování.",
+    "reversed": "Nerovnováha, chaos, přetížení.",
+    "keywords": ["rovnováha", "flexibilita", "rozhodování"]
+  },
+  {
+    "name": "Three of Pentacles",
+    "cz": "Tři pentakly",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 3,
+    "upright": "Spolupráce, týmová práce, dovednosti, úspěch.",
+    "reversed": "Neshody, nedostatek spolupráce, neuznání.",
+    "keywords": ["spolupráce", "tým", "dovednosti"]
+  },
+  {
+    "name": "Four of Pentacles",
+    "cz": "Čtyři pentakly",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 4,
+    "upright": "Stabilita, šetření, bezpečí, kontrola.",
+    "reversed": "Lakota, strach ze ztráty, uzavřenost.",
+    "keywords": ["stabilita", "šetření", "kontrola"]
+  },
+  {
+    "name": "Five of Pentacles",
+    "cz": "Pět pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 5,
+    "upright": "Nedostatek, ztráta, osamění, finanční potíže.",
+    "reversed": "Naděje, zlepšení, podpora.",
+    "keywords": ["nedostatek", "ztráta", "potíže"]
+  },
+  {
+    "name": "Six of Pentacles",
+    "cz": "Šest pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 6,
+    "upright": "Štědrost, pomoc, sdílení, rovnováha.",
+    "reversed": "Nerovnováha, závislost, dluhy.",
+    "keywords": ["štědrost", "pomoc", "rovnováha"]
+  },
+  {
+    "name": "Seven of Pentacles",
+    "cz": "Sedm pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 7,
+    "upright": "Trpělivost, investice, čekání na výsledek.",
+    "reversed": "Netrpělivost, ztráta, neúspěch.",
+    "keywords": ["trpělivost", "investice", "výsledek"]
+  },
+  {
+    "name": "Eight of Pentacles",
+    "cz": "Osm pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 8,
+    "upright": "Práce, dovednosti, učení, pilnost.",
+    "reversed": "Nuda, nedostatek motivace, chyba.",
+    "keywords": ["práce", "dovednosti", "učení"]
+  },
+  {
+    "name": "Nine of Pentacles",
+    "cz": "Devět pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 9,
+    "upright": "Nezávislost, úspěch, hojnost, sebedůvěra.",
+    "reversed": "Ztráta, závislost, nejistota.",
+    "keywords": ["nezávislost", "úspěch", "hojnost"]
+  },
+  {
+    "name": "Ten of Pentacles",
+    "cz": "Deset pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": 10,
+    "upright": "Dědictví, rodina, stabilita, dlouhodobý úspěch.",
+    "reversed": "Rodinné spory, ztráta, nestabilita.",
+    "keywords": ["dědictví", "rodina", "stabilita"]
+  },
+  {
+    "name": "Page of Pentacles",
+    "cz": "Páže pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": "Page",
+    "upright": "Nové příležitosti, studium, zvídavost, rozvoj.",
+    "reversed": "Nedostatek motivace, ztráta zájmu.",
+    "keywords": ["příležitosti", "studium", "rozvoj"]
+  },
+  {
+    "name": "Knight of Pentacles",
+    "cz": "Rytíř pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": "Knight",
+    "upright": "Pracovitost, spolehlivost, vytrvalost, rutina.",
+    "reversed": "Lenost, stagnace, tvrdohlavost.",
+    "keywords": ["pracovitost", "spolehlivost", "vytrvalost"]
+  },
+  {
+    "name": "Queen of Pentacles",
+    "cz": "Královna pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": "Queen",
+    "upright": "Praktičnost, péče, hojnost, stabilita.",
+    "reversed": "Zanedbávání, materialismus, nejistota.",
+    "keywords": ["praktičnost", "péče", "hojnost"]
+  },
+  {
+    "name": "King of Pentacles",
+    "cz": "Král pentaklů",
+    "arcana": "Minor",
+    "suit": "Pentacles",
+    "number": "King",
+    "upright": "Úspěch, stabilita, bezpečí, štědrost.",
+    "reversed": "Chamtivost, ztráta, neupřímnost.",
+    "keywords": ["úspěch", "stabilita", "štědrost"]
+  }
+]

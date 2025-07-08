@@ -1,0 +1,10 @@
+[
+  { "name": "New Moon", "cz": "Nov", "meaning": "Začátek nového cyklu, nové záměry." },
+  { "name": "Waxing Crescent", "cz": "Dorůstající srpek", "meaning": "Růst, naděje, nové možnosti." },
+  { "name": "First Quarter", "cz": "První čtvrť", "meaning": "Akce, rozhodnutí, překonání překážek." },
+  { "name": "Waxing Gibbous", "cz": "Dorůstající měsíc", "meaning": "Dolaďování, příprava na vrchol." },
+  { "name": "Full Moon", "cz": "Úplněk", "meaning": "Vrchol, sklizeň, silné emoce." },
+  { "name": "Waning Gibbous", "cz": "Couvající měsíc", "meaning": "Sdílení, vděčnost, reflexe." },
+  { "name": "Last Quarter", "cz": "Poslední čtvrť", "meaning": "Uvolnění, odpuštění, uzavírání." },
+  { "name": "Waning Crescent", "cz": "Couvající srpek", "meaning": "Odpočinek, uzavření cyklu, příprava na nový začátek." }
+]

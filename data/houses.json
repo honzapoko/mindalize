@@ -1,0 +1,86 @@
+[
+  {
+    "number": 1,
+    "cz": "První dům",
+    "en": "First House",
+    "keywords": ["osobnost", "vzhled", "začátky", "sebevyjádření"],
+    "meaning": "Já, osobnost, první dojem, tělo, začátky."
+  },
+  {
+    "number": 2,
+    "cz": "Druhý dům",
+    "en": "Second House",
+    "keywords": ["hodnoty", "majetek", "peníze", "sebehodnota"],
+    "meaning": "Hodnoty, finance, majetek, vlastní schopnosti."
+  },
+  {
+    "number": 3,
+    "cz": "Třetí dům",
+    "en": "Third House",
+    "keywords": ["komunikace", "učení", "sourozenci", "cesty"],
+    "meaning": "Komunikace, myšlení, krátké cesty, sourozenci."
+  },
+  {
+    "number": 4,
+    "cz": "Čtvrtý dům",
+    "en": "Fourth House",
+    "keywords": ["domov", "rodina", "kořeny", "bezpečí"],
+    "meaning": "Domov, rodina, kořeny, vnitřní bezpečí."
+  },
+  {
+    "number": 5,
+    "cz": "Pátý dům",
+    "en": "Fifth House",
+    "keywords": ["tvořivost", "děti", "radost", "zábava"],
+    "meaning": "Tvořivost, děti, láska, radost, koníčky."
+  },
+  {
+    "number": 6,
+    "cz": "Šestý dům",
+    "en": "Sixth House",
+    "keywords": ["práce", "zdraví", "služba", "rutina"],
+    "meaning": "Práce, zdraví, každodenní povinnosti, služba."
+  },
+  {
+    "number": 7,
+    "cz": "Sedmý dům",
+    "en": "Seventh House",
+    "keywords": ["vztahy", "partnerství", "spolupráce", "smlouvy"],
+    "meaning": "Vztahy, partnerství, smlouvy, otevření nepřátelé."
+  },
+  {
+    "number": 8,
+    "cz": "Osmý dům",
+    "en": "Eighth House",
+    "keywords": ["transformace", "smrt", "sex", "finance druhých"],
+    "meaning": "Transformace, smrt, sexualita, finance druhých."
+  },
+  {
+    "number": 9,
+    "cz": "Devátý dům",
+    "en": "Ninth House",
+    "keywords": ["vzdělání", "cestování", "víra", "filozofie"],
+    "meaning": "Vzdělání, cizina, víra, filozofie, vyšší smysl."
+  },
+  {
+    "number": 10,
+    "cz": "Desátý dům",
+    "en": "Tenth House",
+    "keywords": ["kariéra", "postavení", "autorita", "cíle"],
+    "meaning": "Kariéra, společenské postavení, autorita, cíle."
+  },
+  {
+    "number": 11,
+    "cz": "Jedenáctý dům",
+    "en": "Eleventh House",
+    "keywords": ["přátelství", "skupiny", "budoucnost", "ideály"],
+    "meaning": "Přátelství, skupiny, ideály, budoucnost."
+  },
+  {
+    "number": 12,
+    "cz": "Dvanáctý dům",
+    "en": "Twelfth House",
+    "keywords": ["podvědomí", "izolace", "tajemství", "léčení"],
+    "meaning": "Podvědomí, izolace, tajemství, léčení, minulost."
+  }
+]
