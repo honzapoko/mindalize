@@ -1,5 +1,5 @@
 "use client";
-import { planets, houses, aspects } from "@/data/astroMeanings";
+import { planets, houses, aspects } from "../../../data/astroMeanings";
 
 export default function AstroMeaningsPage() {
   const today = new Date().toLocaleDateString("cs-CZ", {
