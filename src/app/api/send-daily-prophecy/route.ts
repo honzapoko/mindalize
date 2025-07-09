@@ -52,12 +52,20 @@ const { data: reading } = await supabase
     const goals = reading?.goals || 'neuveden';
 
     // Draw 3 random cards
+const BASE_URL = "https://mindalize.com";
+
     const cards = drawCards(3);
-    const cardInfos = cards.map(card => ({
-      name: card,
-      imageUrl: cardMeanings[card]?.imageUrl || '',
-      description: cardMeanings[card]?.description?.split('.')[0] || '',
-    }));
+const cardInfos = cards.map(card => {
+  let imageUrl = cardMeanings[card]?.imageUrl || '';
+  if (imageUrl && imageUrl.startsWith('/')) {
+    imageUrl = BASE_URL + imageUrl;
+  }
+  return {
+    name: card,
+    imageUrl,
+    description: cardMeanings[card]?.description?.split('.')[0] || '',
+  };
+});
 
     // Build prompt for OpenAI
     const today = new Date().toISOString().slice(0, 10);
