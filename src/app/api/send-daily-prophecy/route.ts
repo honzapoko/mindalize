@@ -82,7 +82,7 @@ const { data: reading } = await supabase
 
     const openaiData = await openaiRes.json();
     let prophecy = openaiData.choices?.[0]?.message?.content?.trim() || 'Odpověď není dostupná.';
-    if (prophecy.length > 500) prophecy = prophecy.slice(0, 497) + '...';
+    if (prophecy.length > 1000) prophecy = prophecy.slice(0, 497) + '...';
 
     // Build HTML for email
     const cardsHtml = cardInfos.map(card =>
