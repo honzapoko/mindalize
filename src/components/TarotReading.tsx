@@ -186,7 +186,7 @@ const handleBuyPremium = async () => {
   return (
     <div className="tarot-container">
       <h1 className="tarot-title">
-        <span role="img" aria-label="crystal ball">🔮</span> Esoterický výklad karet
+        <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
       </h1>
       <form onSubmit={handleDraw}>
         <div className="tarot-section">
