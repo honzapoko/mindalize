@@ -197,7 +197,6 @@ const handleBuyPremium = async () => {
   });
   const data = await res.json();
   window.location.href = data.url;
-};
 
   return (
     <div className="tarot-container">
@@ -216,7 +215,6 @@ const handleBuyPremium = async () => {
             onChange={e => setEmail(e.target.value)}
             required
           />
-        </div>
         </div>
            {/* <input
            className="tarot-input"
@@ -243,7 +241,6 @@ const handleBuyPremium = async () => {
           onChange={e => setGoals(e.target.value)}
           placeholder="Osobní cíle"
           />
-        </div>
         </div>
         <div className="tarot-section">
           <label className="tarot-label">
