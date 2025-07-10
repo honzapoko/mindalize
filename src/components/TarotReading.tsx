@@ -80,7 +80,7 @@ const TarotReading: React.FC = () => {
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
   const [goals, setGoals] = useState('');
-  const [occupation, setOccupation] = useState('');
+ // const [occupation, setOccupation] = useState('');
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [question, setQuestion] = useState('');
@@ -138,7 +138,7 @@ const handleDraw = async (e: React.FormEvent) => {
         spreadType,
         city,
         goals,
-        occupation,
+      //  occupation,
       }),
     });
     const data = await res.json();
