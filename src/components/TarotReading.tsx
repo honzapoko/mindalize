@@ -197,6 +197,7 @@ const handleBuyPremium = async () => {
   });
   const data = await res.json();
   window.location.href = data.url;
+};
 
   return (
     <div className="tarot-container">
