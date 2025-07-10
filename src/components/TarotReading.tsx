@@ -214,6 +214,10 @@ const handleBuyPremium = async () => {
           onChange={e => setOccupation(e.target.value)}
           placeholder="Povolání (volitelné)"
           />*/}
+        <div className="tarot-section">
+          <label className="tarot-label">
+            <span role="img" aria-label="person">👤</span> Osobní cíle
+          </label>
           <input
           className="tarot-input"
           type="text"
@@ -221,6 +225,7 @@ const handleBuyPremium = async () => {
           onChange={e => setGoals(e.target.value)}
           placeholder="Osobní cíle"
           />
+        </div>
         </div>
         <div className="tarot-section">
           <label className="tarot-label">
@@ -277,22 +282,48 @@ const handleBuyPremium = async () => {
     >
       <option value="1">1 karta (Rada)</option>
       <option value="3">3 karty (Minulost/Přítomnost/Budoucnost)</option>
-      <option value="5">5 karet (Vývoj situace)</option>
+      <option value="5">5 karet (Vývoj situace) (PREMIUM)</option>
       <option value="celtic">Keltský kříž (PREMIUM)</option>
       <option value="partnersky">Partnerský výklad (PREMIUM)</option>
-      <option value="7">7 karet (Týdenní výklad)</option>
-      <option value="horseshoe">Podkova (7 karet)</option>
-      <option value="relationship">Vztahový výklad (6 karet)</option>
-      <option value="career">Kariérní výklad (5 karet)</option>
-      <option value="year">Výklad na rok (12 karet)</option>
-      <option value="chakra">Čakrový výklad (7 karet)</option>
+      <option value="7">7 karet (Týdenní výklad) (PREMIUM)</option>
+      <option value="horseshoe">Podkova (7 karet) (PREMIUM)</option>
+      <option value="relationship">Vztahový výklad (6 karet) (PREMIUM)</option>
+      <option value="career">Kariérní výklad (5 karet) (PREMIUM)</option>
+      <option value="year">Výklad na rok (12 karet) (PREMIUM)</option>
+      <option value="chakra">Čakrový výklad (7 karet) (PREMIUM)</option>
     </select>
   </label>
 </div>
-      
-        <button className="tarot-button" type="submit">
-          Vyložit karty
-        </button>
+
+// Add logic to block non-premium users from submitting premium spreads
+const isPremiumSpread = () => {
+  return (
+    spreadType === "5" ||
+    spreadType === "celtic" ||
+    spreadType === "partnersky" ||
+    spreadType === "7" ||
+    spreadType === "horseshoe" ||
+    spreadType === "relationship" ||
+    spreadType === "career" ||
+    spreadType === "year" ||
+    spreadType === "chakra"
+  );
+};
+
+// In your form, disable the submit button for premium spreads if the user is not premium
+<button
+  className="tarot-button"
+  type="submit"
+  disabled={isPremiumSpread() && !userIsPremium} // userIsPremium = your logic for premium user
+>
+  Vyložit karty
+</button>
+
+{isPremiumSpread() && !userIsPremium && (
+  <div style={{ color: "#b91c1c", marginTop: 8 }}>
+    Tento typ výkladu je dostupný pouze pro prémiové uživatele.
+  </div>
+)}
       </form>
 
     {/* ADD THE PREMIUM BUTTON HERE */}
