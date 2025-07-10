@@ -216,6 +216,8 @@ const handleBuyPremium = async () => {
             onChange={e => setEmail(e.target.value)}
             required
           />
+        </div>
+        </div>
            {/* <input
            className="tarot-input"
            type="text"
