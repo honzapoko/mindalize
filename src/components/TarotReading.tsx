@@ -78,7 +78,7 @@ type TarotHistoryItem = {
 
 const TarotReading: React.FC = () => {
   const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
+ // const [city, setCity] = useState('');
   const [goals, setGoals] = useState('');
  // const [occupation, setOccupation] = useState('');
   const [name, setName] = useState('');
@@ -136,7 +136,7 @@ const handleDraw = async (e: React.FormEvent) => {
         question,
         cards: drawn,
         spreadType,
-        city,
+      //  city,
         goals,
       //  occupation,
       }),
@@ -200,13 +200,13 @@ const handleBuyPremium = async () => {
             onChange={e => setEmail(e.target.value)}
             required
           />
-          <input
+           /* <input
            className="tarot-input"
            type="text"
            value={city}
            onChange={e => setCity(e.target.value)}
            placeholder="Město narození"
-          />
+          />*/
         /* <input ---
           className="tarot-input"
           type="text"
@@ -261,17 +261,32 @@ const handleBuyPremium = async () => {
         <div className="tarot-section">
           <label className="tarot-label">
   Typ výkladu:
-  <select
-    value={spreadType}
-    onChange={e => setSpreadType(e.target.value)}
-    required
-  >
-    <option value="1">1 karta (Rada)</option>
-    <option value="3">3 karty (Minulost/Přítomnost/Budoucnost)</option>
-    <option value="5">5 karet (Vývoj situace)</option>
-    <option value="celtic">Keltský kříž (PREMIUM)</option>
-    <option value="partnersky">Partnerský výklad (PREMIUM)</option>
-  </select>
+<select
+      value={spreadType}
+      onChange={e => setSpreadType(e.target.value)}
+      required
+      style={{
+        width: "100%",
+        minHeight: "48px",
+        fontSize: "1.1em",
+        marginTop: 8,
+        padding: "8px",
+        borderRadius: "8px",
+        border: "1px solid #ccc",
+      }}
+    >
+      <option value="1">1 karta (Rada)</option>
+      <option value="3">3 karty (Minulost/Přítomnost/Budoucnost)</option>
+      <option value="5">5 karet (Vývoj situace)</option>
+      <option value="celtic">Keltský kříž (PREMIUM)</option>
+      <option value="partnersky">Partnerský výklad (PREMIUM)</option>
+      <option value="7">7 karet (Týdenní výklad)</option>
+      <option value="horseshoe">Podkova (7 karet)</option>
+      <option value="relationship">Vztahový výklad (6 karet)</option>
+      <option value="career">Kariérní výklad (5 karet)</option>
+      <option value="year">Výklad na rok (12 karet)</option>
+      <option value="chakra">Čakrový výklad (7 karet)</option>
+    </select>
 </label>
     </div>
       
