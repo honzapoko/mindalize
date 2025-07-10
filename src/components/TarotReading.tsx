@@ -310,7 +310,7 @@ const handleBuyPremium = async () => {
   </label>
 </div>
 
-// In your form, disable the submit button for premium spreads if the user is not premium
+{/* In your form, disable the submit button for premium spreads if the user is not premium */}
 <button
   className="tarot-button"
   type="submit"
