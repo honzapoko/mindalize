@@ -67,8 +67,14 @@ const cardInfos = cards.map(card => {
   };
 });
 
+function formatDate(dateString: string) {
+  const [year, month, day] = dateString.split("-");
+  return `${day}.${month}.${year}`;
+}
+
     // Build prompt for OpenAI
-    const today = new Date().toISOString().slice(0, 10);
+    const todayISO = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    const today = formatDate(todayISO); // DD.MM.YYYY
     const prompt =
       `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byly na den ${today} vytaženy tyto karty: ${cards.join(', ')}. ` +
       `Vytvoř unikátní, laskavé a inspirativní proroctví pro tento den, které propojí význam těchto karet s jeho životní cestou. ` +
@@ -90,7 +96,7 @@ const cardInfos = cards.map(card => {
 
     const openaiData = await openaiRes.json();
     let prophecy = openaiData.choices?.[0]?.message?.content?.trim() || 'Odpověď není dostupná.';
-    if (prophecy.length > 1000) prophecy = prophecy.slice(0, 497) + '...';
+if (prophecy.length > 1000) prophecy = prophecy.slice(0, 997) + '...';
 
     // Build HTML for email
     const cardsHtml = cardInfos.map(card =>
