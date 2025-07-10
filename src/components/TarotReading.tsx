@@ -173,6 +173,21 @@ const handleDraw = async (e: React.FormEvent) => {
 }
 };
 
+// Add logic to block non-premium users from submitting premium spreads
+const isPremiumSpread = () => {
+  return (
+    spreadType === "5" ||
+    spreadType === "celtic" ||
+    spreadType === "partnersky" ||
+    spreadType === "7" ||
+    spreadType === "horseshoe" ||
+    spreadType === "relationship" ||
+    spreadType === "career" ||
+    spreadType === "year" ||
+    spreadType === "chakra"
+  );
+};
+
 const handleBuyPremium = async () => {
   const res = await fetch('/api/create-checkout-session', {
     method: 'POST',
@@ -294,21 +309,6 @@ const handleBuyPremium = async () => {
     </select>
   </label>
 </div>
-
-// Add logic to block non-premium users from submitting premium spreads
-const isPremiumSpread = () => {
-  return (
-    spreadType === "5" ||
-    spreadType === "celtic" ||
-    spreadType === "partnersky" ||
-    spreadType === "7" ||
-    spreadType === "horseshoe" ||
-    spreadType === "relationship" ||
-    spreadType === "career" ||
-    spreadType === "year" ||
-    spreadType === "chakra"
-  );
-};
 
 // In your form, disable the submit button for premium spreads if the user is not premium
 <button
