@@ -85,6 +85,7 @@ const TarotReading: React.FC = () => {
   const [birthdate, setBirthdate] = useState('');
   const [question, setQuestion] = useState('');
 //  const [numCards, setNumCards] = useState(3);
+  const userIsPremium = false; // TODO: Replace with your real premium user logic
   const [cards, setCards] = useState<string[]>([]);
   const [zodiac, setZodiac] = useState('');
   const [lifePath, setLifePath] = useState('');
