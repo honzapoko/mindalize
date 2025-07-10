@@ -200,20 +200,20 @@ const handleBuyPremium = async () => {
             onChange={e => setEmail(e.target.value)}
             required
           />
-           /* <input
+           {/* <input
            className="tarot-input"
            type="text"
            value={city}
            onChange={e => setCity(e.target.value)}
            placeholder="Město narození"
-          />*/
-        /* <input ---
+          />*/}
+        {/* <input ---
           className="tarot-input"
           type="text"
           value={occupation}
           onChange={e => setOccupation(e.target.value)}
           placeholder="Povolání (volitelné)"
-          />*/
+          />*/}
           <input
           className="tarot-input"
           type="text"
