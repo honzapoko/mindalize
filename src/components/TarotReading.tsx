@@ -258,10 +258,10 @@ const handleBuyPremium = async () => {
             required
           />
         </div>
-        <div className="tarot-section">
-          <label className="tarot-label">
-  Typ výkladu:
-<select
+<div className="tarot-section">
+  <label className="tarot-label">
+    Typ výkladu:
+    <select
       value={spreadType}
       onChange={e => setSpreadType(e.target.value)}
       required
@@ -287,8 +287,8 @@ const handleBuyPremium = async () => {
       <option value="year">Výklad na rok (12 karet)</option>
       <option value="chakra">Čakrový výklad (7 karet)</option>
     </select>
-</label>
-    </div>
+  </label>
+</div>
       
         <button className="tarot-button" type="submit">
           Vyložit karty
