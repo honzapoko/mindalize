@@ -113,7 +113,6 @@ const TarotReading: React.FC = () => {
   const [chatbotAnswer, setChatbotAnswer] = useState('');
   const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [selectedHistory, setSelectedHistory] = useState<TarotHistoryItem | null>(null);
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
 
 useEffect(() => {
