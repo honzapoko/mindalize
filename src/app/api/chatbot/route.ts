@@ -87,6 +87,15 @@ if (!confirmation || !confirmation.confirmed) {
 
   console.log('Readings count for', email, ':', countRes.count);
 
+  // --- NEW: Check how many readings this IP already has ---
+const ipCountRes = await supabase
+  .from('readings')
+  .select('*', { count: 'exact', head: true })
+  .eq('ip', ip);
+
+console.log('Readings count for IP', ip, ':', ipCountRes.count);
+
+
   // Block premium spreads for free users
   const premiumSpreads = ['celtic', 'partnersky'];
   if (premiumSpreads.includes(spreadType) && !isPremium && (countRes.count ?? 0) < 5) {
@@ -95,6 +104,14 @@ if (!confirmation || !confirmation.confirmed) {
       { status: 403 }
     );
   }
+
+  // --- NEW: Block if IP has reached the limit ---
+if ((ipCountRes.count ?? 0) >= 5) {
+  return NextResponse.json(
+    { error: 'Limit bezplatných výkladů z této IP adresy byl vyčerpán. Pro další výklady si prosím zakupte prémiový přístup.' },
+    { status: 403 }
+  );
+}
 
   // countRes.count is the number of rows for this email
   if ((countRes.count ?? 0) >= 5) {
