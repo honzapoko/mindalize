@@ -355,7 +355,7 @@ const handleBuyPremium = async () => {
         <>
           <div className="tarot-summary">
             <div><strong>Jméno:</strong> {name}</div>
-            <div><strong>Datum narození:</strong> {birthdate}</div>
+            <div><strong>Datum narození:</strong> {formatDateCz(birthdate)}</div>
             <div><strong>Znamení:</strong> {zodiac}</div>
             <div><strong>Životní číslo:</strong> {lifePath}</div>
             <div><strong>Otázka:</strong> {question}</div>
