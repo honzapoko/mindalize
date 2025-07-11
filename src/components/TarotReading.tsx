@@ -231,6 +231,30 @@ const handleBuyPremium = async () => {
           onChange={e => setOccupation(e.target.value)}
           placeholder="Povolání (volitelné)"
           />*/}
+        <div className="tarot-section">
+          <label className="tarot-label">
+            <span role="img" aria-label="person">👤</span> Jméno
+          </label>
+          <input
+            className="tarot-input"
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="tarot-section">
+          <label className="tarot-label">
+            <span role="img" aria-label="calendar">📅</span> Datum narození
+          </label>
+          <input
+            className="tarot-input"
+            type="date"
+            value={birthdate}
+            onChange={e => setBirthdate(e.target.value)}
+            required
+          />
+        </div>
        <div className="tarot-section">
         <label className="tarot-label">
           <span role="img" aria-label="person">👤</span> Osobní cíle
@@ -260,30 +284,6 @@ const handleBuyPremium = async () => {
           placeholder="Tvoje otázka"
         />
       </div>
-        <div className="tarot-section">
-          <label className="tarot-label">
-            <span role="img" aria-label="person">👤</span> Jméno
-          </label>
-          <input
-            className="tarot-input"
-            type="text"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="tarot-section">
-          <label className="tarot-label">
-            <span role="img" aria-label="calendar">📅</span> Datum narození
-          </label>
-          <input
-            className="tarot-input"
-            type="date"
-            value={birthdate}
-            onChange={e => setBirthdate(e.target.value)}
-            required
-          />
-        </div>
 <div className="tarot-section">
   <label className="tarot-label">
     Typ výkladu:
