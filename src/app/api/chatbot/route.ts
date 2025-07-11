@@ -23,6 +23,9 @@ async function sendEmail({ to, subject, html }: { to: string, subject: string, h
 
 export async function POST(req: NextRequest) {
   console.log('POST /api/chatbot called');
+    // Try to get IP from headers (works on Vercel, Netlify, etc.)
+  const forwarded = req.headers.get('x-forwarded-for');
+  const ip = forwarded ? forwarded.split(',')[0] : req.headers.get('x-real-ip') || '';
   const body = await req.json();
   const { name, birthdate, zodiac, lifePath, question, cards, email, spreadType, city, goals, occupation } = body;
 
