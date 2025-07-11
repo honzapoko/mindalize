@@ -39,6 +39,12 @@ function getZodiacSign(dateStr: string) {
   return '';
 }
 
+function formatDateCz(dateStr: string) {
+  if (!dateStr) return '';
+  const [year, month, day] = dateStr.split('-');
+  return `${day}.${month}.${year}`;
+}
+
 function getLifePathNumber(dateStr: string) {
   if (!dateStr) return '';
   const digits = dateStr.replace(/-/g, '').split('').map(Number);
@@ -74,6 +80,7 @@ type TarotHistoryItem = {
   lifePath: string;
   cards: string[];
   date: string;
+  prophecy?: string;
 };
 
 const TarotReading: React.FC = () => {
@@ -95,6 +102,7 @@ const TarotReading: React.FC = () => {
   const [chatbotAnswer, setChatbotAnswer] = useState('');
   const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [selectedHistory, setSelectedHistory] = useState<TarotHistoryItem | null>(null);
 
 useEffect(() => {
   const stored = localStorage.getItem('tarotHistory');
