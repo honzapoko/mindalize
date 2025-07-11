@@ -45,6 +45,17 @@ function formatDateCz(dateStr: string) {
   return `${day}.${month}.${year}`;
 }
 
+function formatDateTimeCz(dateStr: string) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  const hours = String(d.getHours()).padStart(2, '0');
+  const minutes = String(d.getMinutes()).padStart(2, '0');
+  return `${day}.${month}.${year} ${hours}:${minutes}`;
+}
+
 function getLifePathNumber(dateStr: string) {
   if (!dateStr) return '';
   const digits = dateStr.replace(/-/g, '').split('').map(Number);
@@ -103,6 +114,7 @@ const TarotReading: React.FC = () => {
   const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [selectedHistory, setSelectedHistory] = useState<TarotHistoryItem | null>(null);
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
 
 useEffect(() => {
   const stored = localStorage.getItem('tarotHistory');
@@ -403,12 +415,48 @@ const handleBuyPremium = async () => {
     {history.length === 0 && <div>Žádné výklady zatím nejsou.</div>}
     {history.map((item, idx) => (
       <div
-        className="tarot-history-item"
         key={idx}
-        style={{ cursor: 'pointer', textDecoration: 'underline', color: '#312e81', marginBottom: 8 }}
-        onClick={() => setSelectedHistory(item)}
+        style={{
+          background: '#fff',
+          border: '1px solid #312e81',
+          borderRadius: 10,
+          marginBottom: 16,
+          boxShadow: '0 2px 8px rgba(49,46,129,0.07)',
+          padding: 16,
+        }}
       >
-        <strong>Karty:</strong> {item.cards.join(', ')}
+        <div
+          style={{
+            cursor: 'pointer',
+            color: '#312e81',
+            fontWeight: 600,
+            fontSize: 16,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+          onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}
+        >
+          <span>
+            Výklad z {formatDateTimeCz(item.date)} &nbsp;|&nbsp; <strong>Karty:</strong> {item.cards.join(', ')}
+          </span>
+          <span style={{ fontSize: 22 }}>{expandedIdx === idx ? '▲' : '▼'}</span>
+        </div>
+        {expandedIdx === idx && (
+          <div
+            style={{
+              marginTop: 14,
+              background: '#312e81',
+              color: '#fff',
+              padding: 16,
+              borderRadius: 8,
+              fontSize: 16,
+              lineHeight: 1.6,
+            }}
+          >
+            {item.prophecy}
+          </div>
+        )}
       </div>
     ))}
   </div>
