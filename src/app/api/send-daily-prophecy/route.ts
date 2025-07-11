@@ -75,10 +75,10 @@ function formatDate(dateString: string) {
     // Build prompt for OpenAI
     const todayISO = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
     const today = formatDate(todayISO); // DD.MM.YYYY
-    const prompt =
-      `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byly na den ${today} vytaženy tyto karty: ${cards.join(', ')}. ` +
-      `Vytvoř unikátní, laskavé a inspirativní proroctví pro tento den, které propojí význam těchto karet s jeho životní cestou. ` +
-      `Odpověď napiš česky, maximálně 1000 znaků. Vždy konči tečkou, ne v polovině věty. `;
+const prompt =
+  `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byly na den ${today} vytaženy tyto karty: ${cards.join(', ')}. ` +
+  `Vytvoř unikátní, laskavé a inspirativní proroctví pro tento den, které propojí význam těchto karet s jeho životní cestou. ` +
+  `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.`;
 
     // Call OpenAI
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -90,13 +90,13 @@ function formatDate(dateString: string) {
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: 1000,
+        max_tokens: 1500,
       }),
     });
 
     const openaiData = await openaiRes.json();
     let prophecy = openaiData.choices?.[0]?.message?.content?.trim() || 'Odpověď není dostupná.';
-if (prophecy.length > 1000) prophecy = prophecy.slice(0, 997) + '...';
+if (prophecy.length > 1500) prophecy = prophecy.slice(0, 1497) + '...';
 
     // Build HTML for email
     const cardsHtml = cardInfos.map(card =>
