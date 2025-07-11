@@ -88,7 +88,6 @@ const TarotReading: React.FC = () => {
  // const [city, setCity] = useState('');
   const [goals, setGoals] = useState('');
   const [question, setQuestion] = useState('');
-  const [selectedHistory, setSelectedHistory] = useState<TarotHistoryItem | null>(null);
  // const [occupation, setOccupation] = useState('');
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
