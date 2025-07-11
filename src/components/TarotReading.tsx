@@ -215,6 +215,7 @@ const handleBuyPremium = async () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
+          placeholder="Vaše e-mailová adresa"
           />
         </div>
            {/* <input
@@ -241,6 +242,7 @@ const handleBuyPremium = async () => {
             value={name}
             onChange={e => setName(e.target.value)}
             required
+            placeholder="Vaše jméno"
           />
         </div>
         <div className="tarot-section">
@@ -253,6 +255,7 @@ const handleBuyPremium = async () => {
             value={birthdate}
             onChange={e => setBirthdate(e.target.value)}
             required
+          placeholder="Datum narození"
           />
         </div>
        <div className="tarot-section">
