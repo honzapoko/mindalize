@@ -178,6 +178,7 @@ const answer = openaiData.choices?.[0]?.message?.content || 'Odpověď není dos
       city,
       goals,
       occupation,
+      ip, // Store the IP address
     }
   ]);
 
