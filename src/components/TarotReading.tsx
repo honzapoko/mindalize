@@ -80,10 +80,10 @@ const TarotReading: React.FC = () => {
   const [email, setEmail] = useState('');
  // const [city, setCity] = useState('');
   const [goals, setGoals] = useState('');
+  const [question, setQuestion] = useState('');
  // const [occupation, setOccupation] = useState('');
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [question, setQuestion] = useState('');
 //  const [numCards, setNumCards] = useState(3);
   const userIsPremium = false; // TODO: Replace with your real premium user logic
   const [cards, setCards] = useState<string[]>([]);
@@ -231,18 +231,35 @@ const handleBuyPremium = async () => {
           onChange={e => setOccupation(e.target.value)}
           placeholder="Povolání (volitelné)"
           />*/}
-        <div className="tarot-section">
-          <label className="tarot-label">
-            <span role="img" aria-label="person">👤</span> Osobní cíle
-          </label>
-          <input
+       <div className="tarot-section">
+        <label className="tarot-label">
+          <span role="img" aria-label="person">👤</span> Osobní cíle
+        </label>
+        <input
           className="tarot-input"
           type="text"
           value={goals}
           onChange={e => setGoals(e.target.value)}
           placeholder="Osobní cíle"
-          />
-        </div>
+        />
+      </div>
+
+      <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 24, letterSpacing: 2, margin: '16px 0' }}>
+        NEBO
+      </div>
+
+      <div className="tarot-section">
+        <label className="tarot-label">
+          <span role="img" aria-label="cloud">☁️</span> Tvoje otázka
+        </label>
+        <input
+          className="tarot-input"
+          type="text"
+          value={question}
+          onChange={e => setQuestion(e.target.value)}
+          placeholder="Tvoje otázka"
+        />
+      </div>
         <div className="tarot-section">
           <label className="tarot-label">
             <span role="img" aria-label="person">👤</span> Jméno
@@ -264,18 +281,6 @@ const handleBuyPremium = async () => {
             type="date"
             value={birthdate}
             onChange={e => setBirthdate(e.target.value)}
-            required
-          />
-        </div>
-        <div className="tarot-section">
-          <label className="tarot-label">
-            <span role="img" aria-label="cloud">☁️</span> Tvoje otázka
-          </label>
-          <input
-            className="tarot-input"
-            type="text"
-            value={question}
-            onChange={e => setQuestion(e.target.value)}
             required
           />
         </div>
