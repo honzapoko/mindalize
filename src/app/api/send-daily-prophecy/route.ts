@@ -52,7 +52,7 @@ const { data: reading } = await supabase
     const goals = reading?.goals || 'neuveden';
 
     // Draw 3 random cards
-const BASE_URL = "https://mindalize.com";
+const BASE_URL = "https://vesteni.cz";
 
     const cards = drawCards(3);
 const cardInfos = cards.map(card => {
@@ -115,7 +115,7 @@ if (prophecy.length > 1500) prophecy = prophecy.slice(0, 1497) + '...';
 
     // Send email
     await resend.emails.send({
-      from: 'dream@mindalize.com',
+      from: 'vyklad@vesteni.cz',
       to: user.email,
       subject: `Denní tarotové proroctví pro ${today}`,
       html,
