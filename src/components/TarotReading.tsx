@@ -279,17 +279,17 @@ const handleBuyPremium = async () => {
           placeholder="Datum narození"
           />
         </div>
-       <div className="tarot-section">
-        <label className="tarot-label">
-          <span role="img" aria-label="person">👤</span> Osobní cíle
+      <div className="tarot-section">
+       <label className="tarot-label">
+           <span role="img" aria-label="target">🎯</span> Osobní cíle
         </label>
-        <input
-          className="tarot-input"
-          type="text"
-          value={goals}
-          onChange={e => setGoals(e.target.value)}
-          placeholder="Osobní cíle"
-        />
+       <input
+         className="tarot-input"
+         type="text"
+         value={goals}
+         onChange={e => setGoals(e.target.value)}
+         placeholder="Osobní cíle"
+         />
       </div>
 
       <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 24, letterSpacing: 2, margin: '16px 0' }}>
