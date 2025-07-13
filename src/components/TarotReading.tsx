@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/TarotReading.css';
 import Image from 'next/image';
 import cardMeanings from '../cardMeanings';
+import Link from 'next/link';
 
 const ZODIAC_SIGNS = [
   { name: 'Beran', start: [3, 21], end: [4, 19] },
@@ -94,8 +95,6 @@ type TarotHistoryItem = {
   prophecy?: string;
 };
 
-const [isLoggedIn, setIsLoggedIn] = useState(false); // TODO: Replace with real auth
-
 // ...in your render:
 {isLoggedIn && (
   <div>
@@ -124,6 +123,7 @@ const TarotReading: React.FC = () => {
   const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // TODO: Replace with real auth
 
 useEffect(() => {
   const stored = localStorage.getItem('tarotHistory');
@@ -233,8 +233,8 @@ const handleBuyPremium = async () => {
   return (
     <div className="tarot-container">
       <div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
-        <a href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</a>
-       <a href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</a>
+       <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
+       <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
       </div>
       <h1 className="tarot-title">
         <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
