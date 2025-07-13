@@ -94,6 +94,16 @@ type TarotHistoryItem = {
   prophecy?: string;
 };
 
+const [isLoggedIn, setIsLoggedIn] = useState(false); // TODO: Replace with real auth
+
+// ...in your render:
+{isLoggedIn && (
+  <div>
+    {/* Full options for paying users */}
+    {/* ... */}
+  </div>
+)}
+
 const TarotReading: React.FC = () => {
   const [email, setEmail] = useState('');
  // const [city, setCity] = useState('');
@@ -222,6 +232,10 @@ const handleBuyPremium = async () => {
 
   return (
     <div className="tarot-container">
+      <div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
+        <a href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</a>
+       <a href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</a>
+      </div>
       <h1 className="tarot-title">
         <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
       </h1>
