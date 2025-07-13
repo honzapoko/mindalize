@@ -437,7 +437,7 @@ const handleBuyPremium = async () => {
           onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}
         >
           <span>
-            Výklad z {formatDateTimeCz(item.date)} &nbsp;|&nbsp; <strong>Karty:</strong> {item.cards.join(', ')}
+            Výklad z {formatDateTimeCz(item.date)} &nbsp;|&nbsp; <strong>Karty:</strong> {item.cards.map(card => cardMeanings[card]?.name || card).join(', ')}
           </span>
           <span style={{ fontSize: 22 }}>{expandedIdx === idx ? '▲' : '▼'}</span>
         </div>
