@@ -394,7 +394,7 @@ const handleBuyPremium = async () => {
                   loading="lazy"
                 />
                 <div>
-                  <strong>{cardName}</strong>
+                  <strong>{cardMeanings[cardName]?.name || cardName}</strong>
                 </div>
                 <div className="tarot-insight">{cardMeanings[cardName as keyof typeof cardMeanings].description}</div>
               </div>
