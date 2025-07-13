@@ -21,7 +21,7 @@ export default function Login() {
         <button type="submit" style={{ width: '100%' }}>Přihlásit se</button>
       </form>
       <div style={{ marginTop: 16 }}>
-       Máte účet? <Link href="/login">Přihlášení</Link>
+       Nemáte účet? <Link href="/login">Přihlášení</Link>
       </div>
     </div>
   );
