@@ -239,6 +239,19 @@ const handleBuyPremium = async () => {
       <h1 className="tarot-title">
         <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
       </h1>
+      <button type="button" onClick={() => setIsLoggedIn(true)} style={{ marginBottom: 16 }}>
+        Simulovat přihlášení (test)
+      </button>
+      {isLoggedIn ? (
+        <div style={{ margin: '24px 0', padding: 16, background: '#e0e7ff', borderRadius: 8 }}>
+         <strong>Vítejte, prémiový uživateli!</strong>
+         {/* Zde můžeš později přidat další prémiové funkce */}
+        </div>
+    ) : (
+       <div style={{ margin: '24px 0', padding: 16, background: '#fef3c7', borderRadius: 8 }}>
+       Pro plný přístup se prosím <Link href="/login">přihlaste</Link> nebo <Link href="/registrace">zaregistrujte</Link>.
+      </div>
+    )}
       <form onSubmit={handleDraw}>
         <div className="tarot-section">
           <label className="tarot-label">
