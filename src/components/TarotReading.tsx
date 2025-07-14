@@ -242,25 +242,6 @@ const handleBuyPremium = async () => {
 
   return (
     <div className="tarot-container">
-      <div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
-       <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
-       <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
-      </div>
-      {isLoggedIn && (
-  <button
-    onClick={async () => {
-      await supabase.auth.signOut();
-      setIsLoggedIn(false);
-    }}
-    style={{ marginLeft: 16, color: '#312e81', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}
-  >
-    Odhlásit se
-  </button>
-)}
-      <h1 className="tarot-title">
-        <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
-      </h1>
-
 <div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
   {!isLoggedIn ? (
     <>
@@ -287,6 +268,9 @@ const handleBuyPremium = async () => {
     </button>
   )}
 </div>
+      <h1 className="tarot-title">
+        <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
+      </h1>
       <form onSubmit={handleDraw}>
         <div className="tarot-section">
           <label className="tarot-label">
