@@ -246,6 +246,17 @@ const handleBuyPremium = async () => {
        <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
        <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
       </div>
+      {isLoggedIn && (
+  <button
+    onClick={async () => {
+      await supabase.auth.signOut();
+      setIsLoggedIn(false);
+    }}
+    style={{ marginLeft: 16, color: '#312e81', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}
+  >
+    Odhlásit se
+  </button>
+)}
       <h1 className="tarot-title">
         <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
       </h1>
