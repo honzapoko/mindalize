@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 export default function Registrace() {
   const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ export default function Registrace() {
         <button type="submit" style={{ width: '100%' }}>Registrovat se</button>
       </form>
       <div style={{ marginTop: 16 }}>
-        Máte účet? <a href="/login">Přihlášení</a>
+       Máte účet? <Link href="/login">Přihlášení</Link>
       </div>
     </div>
   );
