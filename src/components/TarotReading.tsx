@@ -95,14 +95,6 @@ type TarotHistoryItem = {
   prophecy?: string;
 };
 
-// ...in your render:
-{isLoggedIn && (
-  <div>
-    {/* Full options for paying users */}
-    {/* ... */}
-  </div>
-)}
-
 const TarotReading: React.FC = () => {
   const [email, setEmail] = useState('');
  // const [city, setCity] = useState('');
