@@ -122,11 +122,13 @@ useEffect(() => {
   // Zjisti aktuální session při načtení
   supabase.auth.getUser().then(({ data }) => {
     setIsLoggedIn(!!data.user);
+    if (data.user?.email) setEmail(data.user.email); // ← přidej tento řádek
   });
 
   // Poslouchej změny session (login/logout)
   const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
     setIsLoggedIn(!!session?.user);
+    if (session?.user?.email) setEmail(session.user.email); // ← přidej tento řádek
   });
 
   // Úklid listeneru při odchodu komponenty
