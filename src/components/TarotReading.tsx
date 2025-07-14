@@ -285,6 +285,7 @@ const handleBuyPremium = async () => {
             onChange={e => setEmail(e.target.value)}
             required
           placeholder="Vaše e-mailová adresa"
+          readOnly={isLoggedIn} // ← přidáno
           />
         </div>
            {/* <input
