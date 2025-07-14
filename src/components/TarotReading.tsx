@@ -261,23 +261,32 @@ const handleBuyPremium = async () => {
         <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
       </h1>
 
-{!isLoggedIn && (
-  <div
-    style={{
-      margin: '24px 0',
-      padding: 16,
-      background: '#fffbe6',
-      borderRadius: 8,
-      border: '1.5px solid #facc15',
-      color: '#7c4700',
-      fontWeight: 500,
-      fontSize: 18,
-      boxShadow: '0 2px 8px rgba(250,204,21,0.08)',
-    }}
-  >
-    Pro plný přístup se prosím <Link href="/login" style={{ color: '#b45309', textDecoration: 'underline' }}>přihlaste</Link> nebo <Link href="/registrace" style={{ color: '#b45309', textDecoration: 'underline' }}>zaregistrujte</Link>.
-  </div>
-)}
+<div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
+  {!isLoggedIn ? (
+    <>
+      <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
+      <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
+    </>
+  ) : (
+    <button
+      onClick={async () => {
+        await supabase.auth.signOut();
+        setIsLoggedIn(false);
+      }}
+      style={{
+        color: '#312e81',
+        fontWeight: 600,
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        fontSize: 16,
+        padding: 0,
+      }}
+    >
+      Odhlásit se
+    </button>
+  )}
+</div>
       <form onSubmit={handleDraw}>
         <div className="tarot-section">
           <label className="tarot-label">
