@@ -3,6 +3,7 @@ import '../styles/TarotReading.css';
 import Image from 'next/image';
 import cardMeanings from '../cardMeanings';
 import Link from 'next/link';
+import { supabase } from '../../lib/supabaseClient';
 
 const ZODIAC_SIGNS = [
   { name: 'Beran', start: [3, 21], end: [4, 19] },
@@ -115,7 +116,24 @@ const TarotReading: React.FC = () => {
   const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // TODO: Replace with real auth
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+useEffect(() => {
+  // Zjisti aktuální session při načtení
+  supabase.auth.getUser().then(({ data }) => {
+    setIsLoggedIn(!!data.user);
+  });
+
+  // Poslouchej změny session (login/logout)
+  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    setIsLoggedIn(!!session?.user);
+  });
+
+  // Úklid listeneru při odchodu komponenty
+  return () => {
+    listener?.subscription.unsubscribe();
+  };
+}, []);
 
 useEffect(() => {
   const stored = localStorage.getItem('tarotHistory');
@@ -231,9 +249,7 @@ const handleBuyPremium = async () => {
       <h1 className="tarot-title">
         <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
       </h1>
-      <button type="button" onClick={() => setIsLoggedIn(true)} style={{ marginBottom: 16 }}>
-        Simulovat přihlášení (test)
-      </button>
+
 {!isLoggedIn && (
   <div
     style={{
