@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '../lib/supabaseClient';
+import '../styles/TarotReading.css';
 
 export default function Registrace() {
   const [email, setEmail] = useState('');
@@ -22,9 +23,14 @@ export default function Registrace() {
   };
 
   return (
-    <div style={{ maxWidth: 500, margin: '40px auto' }}>
-      <h2>Registrace</h2>
-      <ul>
+    <div className="tarot-container">
+      <div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
+        <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
+      </div>
+      <h1 className="tarot-title">
+        <span role="img" aria-label="register">📝</span> Registrace
+      </h1>
+      <ul style={{ marginBottom: 24 }}>
         <li>Neomezené prémiové výklady</li>
         <li>Historie všech výkladů</li>
         <li>Denní proroctví e-mailem</li>
@@ -32,21 +38,35 @@ export default function Registrace() {
         <li>Prioritní podpora</li>
       </ul>
       <form onSubmit={handleRegister}>
-        <label>
-          E-mail:
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required style={{ width: '100%', marginBottom: 12 }} />
-        </label>
-        <label>
-          Heslo:
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: '100%', marginBottom: 12 }} />
-        </label>
-        <button type="submit" style={{ width: '100%' }} disabled={loading}>
+        <div className="tarot-section">
+          <label className="tarot-label">E-mail</label>
+          <input
+            className="tarot-input"
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+            placeholder="Váš e-mail"
+          />
+        </div>
+        <div className="tarot-section">
+          <label className="tarot-label">Heslo</label>
+          <input
+            className="tarot-input"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+            placeholder="Vaše heslo"
+          />
+        </div>
+        <button className="tarot-button" type="submit" disabled={loading} style={{ width: '100%', marginTop: 16 }}>
           {loading ? 'Registruji...' : 'Registrovat se'}
         </button>
+        {message && <div style={{ marginTop: 16, color: '#b91c1c' }}>{message}</div>}
       </form>
-      {message && <div style={{ marginTop: 16, color: '#b91c1c' }}>{message}</div>}
-      <div style={{ marginTop: 16 }}>
-        Máte účet? <Link href="/login">Přihlášení</Link>
+      <div style={{ marginTop: 16, textAlign: 'center' }}>
+        Máte účet? <Link href="/login" style={{ color: '#312e81', textDecoration: 'underline' }}>Přihlášení</Link>
       </div>
     </div>
   );
