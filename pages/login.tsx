@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '../lib/supabaseClient';
 import { useRouter } from 'next/router';
-import '../styles/TarotReading.css';
-
+import '../src/styles/TarotReading.css';
 export default function Login() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');

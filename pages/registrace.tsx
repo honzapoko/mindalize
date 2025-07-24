@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '../lib/supabaseClient';
-import '../styles/TarotReading.css';
+import '../src/styles/TarotReading.css';
 
 export default function Registrace() {
   const [email, setEmail] = useState('');
