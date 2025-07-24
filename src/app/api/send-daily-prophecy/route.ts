@@ -30,12 +30,12 @@ export async function POST(req: Request) {
     }
 
     // Ověř potvrzeného uživatele
-    const { data: user, error: userError } = await supabase
-      .from('user_confirmations')
-      .select('email, confirmed')
-      .ilike('email', email.trim())
-      .eq('confirmed', true)
-      .maybeSingle();
+  const { data: user } = await supabase
+    .from('user_confirmations')
+    .select('email, confirmed')
+    .ilike('email', email.trim())
+    .eq('confirmed', true)
+    .maybeSingle();
 
     if (!user?.email) {
       return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
