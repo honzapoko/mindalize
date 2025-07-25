@@ -66,22 +66,22 @@ export async function POST(req: Request) {
 
     switch (dayOfWeek) {
   case 1: // Monday - 3-card tarot
-    cards = drawCards(3);
-    cardInfos = cards.map(card => {
-      let imageUrl = cardMeanings[card]?.imageUrl || '';
-      if (imageUrl && imageUrl.startsWith('/')) {
-        imageUrl = BASE_URL + imageUrl;
-      }
-      return {
-        name: cardMeanings[card]?.name || card,
-        imageUrl,
-        description: cardMeanings[card]?.description?.split('.')[0] || '',
-      };
-    });
-    prompt =
-      `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-      `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet a napiš česky, maximálně na 1000 znaků.`;
-    break;
+  cards = drawCards(3);
+  cardInfos = cards.map(card => {
+    let imageUrl = cardMeanings[card]?.imageUrl || '';
+    if (imageUrl && imageUrl.startsWith('/')) {
+      imageUrl = BASE_URL + imageUrl;
+    }
+    return {
+      name: cardMeanings[card]?.name || card,
+      imageUrl,
+      description: cardMeanings[card]?.description?.split('.')[0] || '',
+    };
+  });
+  prompt =
+    `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, jehož životním cílem je "${goals}", byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
+    `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet s jeho životním cílem a napiš česky, maximálně na 1000 znaků.`;
+  break;
   case 2: // Tuesday - astrology
     prompt =
       `Jsi astrolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš astrologickou předpověď na den ${today}. ` +
