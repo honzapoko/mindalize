@@ -65,96 +65,84 @@ export async function POST(req: Request) {
     let cardInfos: { name: string; imageUrl: string; description: string }[] = [];
 
     switch (dayOfWeek) {
-      case 1: // Monday
-        cards = drawCards(3);
-        cardInfos = cards.map(card => {
-          let imageUrl = cardMeanings[card]?.imageUrl || '';
-          if (imageUrl && imageUrl.startsWith('/')) {
-            imageUrl = BASE_URL + imageUrl;
-          }
-          return {
-            name: cardMeanings[card]?.name || card,
-            imageUrl,
-            description: cardMeanings[card]?.description?.split('.')[0] || '',
-          };
-        });
-        prompt =
-          `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byly na den ${today} vytaženy tyto karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-          `Vytvoř unikátní, laskavé a inspirativní proroctví pro tento den, které propojí význam těchto karet s jeho životní cestou. ` +
-          `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.`;
-        break;
-      case 2: // Tuesday
-        prompt =
-          `Jsi astrolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš astrologickou předpověď na den ${today}. ` +
-          `Zohledni znamení zvěrokruhu a aktuální postavení planet. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
-        break;
-      case 3: // Wednesday
-        prompt =
-          `Jsi numerolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš numerologickou předpověď na den ${today}. ` +
-          `Vysvětli význam jeho životního čísla a jak ovlivňuje tento den. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
-        break;
-      case 4: // Thursday
-        cards = drawCards(1);
-        cardInfos = cards.map(card => {
-          let imageUrl = cardMeanings[card]?.imageUrl || '';
-          if (imageUrl && imageUrl.startsWith('/')) {
-            imageUrl = BASE_URL + imageUrl;
-          }
-          return {
-            name: cardMeanings[card]?.name || card,
-            imageUrl,
-            description: cardMeanings[card]?.description?.split('.')[0] || '',
-          };
-        });
-        prompt =
-          `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byla na den ${today} vytažena tato karta: ${cardInfos[0].name}. ` +
-          `Vysvětli její význam a inspiruj uživatele pro dnešní den. Odpověď napiš česky, maximálně na 1000 znaků.`;
-        break;
-      case 5: // Friday
-        cards = drawCards(2);
-        cardInfos = cards.map(card => {
-          let imageUrl = cardMeanings[card]?.imageUrl || '';
-          if (imageUrl && imageUrl.startsWith('/')) {
-            imageUrl = BASE_URL + imageUrl;
-          }
-          return {
-            name: cardMeanings[card]?.name || card,
-            imageUrl,
-            description: cardMeanings[card]?.description?.split('.')[0] || '',
-          };
-        });
-        prompt =
-          `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy dvě karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-          `Jedna karta představuje výzvu, druhá podporu. Vysvětli jejich význam a inspiruj uživatele. Odpověď napiš česky, maximálně na 1000 znaků.`;
-        break;
-      case 6: // Saturday
-        prompt =
-          `Jsi vztahový poradce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš partnerské doporučení nebo inspiraci na den ${today}. ` +
-          `Buď laskavý, inspirativní a napiš česky, maximálně na 1000 znaků.`;
-        break;
-      case 0: // Sunday
-        prompt =
-          `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš shrnutí energie uplynulého týdne a inspiraci na týden následující. ` +
-          `Odpověď napiš česky, maximálně na 1000 znaků.`;
-        break;
-      default:
-        // fallback: 3-card tarot
-        cards = drawCards(3);
-        cardInfos = cards.map(card => {
-          let imageUrl = cardMeanings[card]?.imageUrl || '';
-          if (imageUrl && imageUrl.startsWith('/')) {
-            imageUrl = BASE_URL + imageUrl;
-          }
-          return {
-            name: cardMeanings[card]?.name || card,
-            imageUrl,
-            description: cardMeanings[card]?.description?.split('.')[0] || '',
-          };
-        });
-        prompt =
-          `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, s životním cílem "${goals}", byly na den ${today} vytaženy tyto karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-          `Vytvoř unikátní, laskavé a inspirativní proroctví pro tento den, které propojí význam těchto karet s jeho životní cestou. ` +
-          `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.`;
+  case 1: // Monday - 3-card tarot
+    cards = drawCards(3);
+    cardInfos = cards.map(card => {
+      let imageUrl = cardMeanings[card]?.imageUrl || '';
+      if (imageUrl && imageUrl.startsWith('/')) {
+        imageUrl = BASE_URL + imageUrl;
+      }
+      return {
+        name: cardMeanings[card]?.name || card,
+        imageUrl,
+        description: cardMeanings[card]?.description?.split('.')[0] || '',
+      };
+    });
+    prompt =
+      `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
+      `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet a napiš česky, maximálně na 1000 znaků.`;
+    break;
+  case 2: // Tuesday - astrology
+    prompt =
+      `Jsi astrolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš astrologickou předpověď na den ${today}. ` +
+      `Zohledni znamení zvěrokruhu a aktuální postavení planet. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
+    break;
+  case 3: // Wednesday - numerology
+    prompt =
+      `Jsi numerolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš numerologickou předpověď na den ${today}. ` +
+      `Vysvětli význam jeho životního čísla a jak ovlivňuje tento den. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
+    break;
+  case 4: // Thursday - affirmation/mantra
+    prompt =
+      `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš inspirativní afirmaci nebo mantru na den ${today}. ` +
+      `Afirmace by měla být krátká, pozitivní, osobní a v češtině. Přidej krátké vysvětlení, proč je vhodná právě pro tento den. Maximálně 1000 znaků.`;
+    break;
+  case 5: // Friday - shadow work
+    cards = drawCards(2);
+    cardInfos = cards.map(card => {
+      let imageUrl = cardMeanings[card]?.imageUrl || '';
+      if (imageUrl && imageUrl.startsWith('/')) {
+        imageUrl = BASE_URL + imageUrl;
+      }
+      return {
+        name: cardMeanings[card]?.name || card,
+        imageUrl,
+        description: cardMeanings[card]?.description?.split('.')[0] || '',
+      };
+    });
+    prompt =
+      `Jsi průvodce pro práci se stínem. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy dvě karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
+      `První karta představuje téma stínu, které je vhodné dnes zpracovat, druhá karta ukazuje podporu nebo zdroj síly pro tuto práci. ` +
+      `Vysvětli význam obou karet v kontextu práce se stínem, inspiruj uživatele ke změně a napiš česky, maximálně na 1000 znaků.`;
+    break;
+  case 6: // Saturday - relationship advice
+    prompt =
+      `Jsi vztahový poradce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš partnerské doporučení nebo inspiraci na den ${today}. ` +
+      `Buď laskavý, inspirativní a napiš česky, maximálně na 1000 znaků.`;
+    break;
+  case 0: // Sunday - weekly summary
+    prompt =
+      `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš shrnutí energie uplynulého týdne a inspiraci na týden následující. ` +
+      `Odpověď napiš česky, maximálně na 1000 znaků.`;
+    break;
+  default:
+    // fallback: 3-card tarot
+    cards = drawCards(3);
+    cardInfos = cards.map(card => {
+      let imageUrl = cardMeanings[card]?.imageUrl || '';
+      if (imageUrl && imageUrl.startsWith('/')) {
+        imageUrl = BASE_URL + imageUrl;
+      }
+      return {
+        name: cardMeanings[card]?.name || card,
+        imageUrl,
+        description: cardMeanings[card]?.description?.split('.')[0] || '',
+      };
+    });
+    prompt =
+      `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
+      `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet a napiš česky, maximálně na 1000 znaků.`;
+     `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.`;
     }
 
     // Call OpenAI
