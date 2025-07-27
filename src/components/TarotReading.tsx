@@ -241,7 +241,9 @@ const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
   });
   const data = await res.json();
   if (data.url) {
-    window.location.href = data.url; // Stripe checkout URL
+    window.location.href = data.url;
+  } else {
+    alert('Nepodařilo se získat Stripe odkaz.');
   }
 };
 

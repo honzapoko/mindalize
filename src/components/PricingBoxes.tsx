@@ -148,7 +148,7 @@ export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
       599 Kč / měsíc
       <span style={{
         display: 'block',
-        fontSize: 16,
+        fontSize: 12,
         color: '#7c3aed',
         fontWeight: 600,
         marginTop: 4,
@@ -162,7 +162,7 @@ export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
       2 999 Kč / rok
       <span style={{
         display: 'block',
-        fontSize: 16,
+        fontSize: 12,
         color: '#7c3aed',
         fontWeight: 600,
         marginTop: 4,
