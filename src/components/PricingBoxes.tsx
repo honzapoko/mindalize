@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 
-const PRICES = {
-  weekly: 12.9,
-  monthly: 30,
-  yearly: 200,
-};
-
 export default function PricingBoxes() {
   const [plan, setPlan] = useState<'weekly' | 'monthly' | 'yearly'>('monthly');
 
