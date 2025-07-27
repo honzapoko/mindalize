@@ -234,6 +234,10 @@ const isPremiumSpread = () => {
 };
 
 const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
+  if (!email) {
+    window.location.href = '/registrace'; // nebo '/login' podle preferencí
+    return;
+  }
   const res = await fetch('/api/create-checkout-session', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
