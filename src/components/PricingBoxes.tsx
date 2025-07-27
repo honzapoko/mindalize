@@ -149,7 +149,7 @@ export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
       <span style={{
         display: 'block',
         fontSize: 16,
-        color: '#f59e42',
+        color: '#7c3aed',
         fontWeight: 600,
         marginTop: 4,
       }}>
@@ -163,7 +163,7 @@ export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
       <span style={{
         display: 'block',
         fontSize: 16,
-        color: '#f59e42',
+        color: '#7c3aed',
         fontWeight: 600,
         marginTop: 4,
       }}>
