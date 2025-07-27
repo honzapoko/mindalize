@@ -418,7 +418,7 @@ const handleBuyPremium = async () => {
     </button>
 */}
 
-<PricingBoxes />
+<PricingBoxes onBuyPremium={handleBuyPremium} />
 
 {confirmation && (
   <div className="tarot-confirmation">

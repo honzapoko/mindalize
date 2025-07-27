@@ -130,7 +130,10 @@ export default function PricingBoxes() {
             {plan === 'yearly' && '200 € / rok'}
           </div>
         </div>
-        <a href="/platba" className="tarot-button" style={{
+         <a
+        href="#"
+        className="tarot-button"
+        style={{
           background: '#b45309',
           color: '#fff',
           fontWeight: 700,
@@ -141,9 +144,14 @@ export default function PricingBoxes() {
           display: 'inline-block',
           marginTop: 8,
           boxShadow: '0 2px 8px rgba(180,83,9,0.08)',
-        }}>
-          Aktivovat prémiové služby
-        </a>
+        }}
+        onClick={e => {
+          e.preventDefault();
+          if (onBuyPremium) onBuyPremium();
+        }}
+      >
+        Aktivovat prémiové služby
+      </a>
       </div>
     </div>
   );
