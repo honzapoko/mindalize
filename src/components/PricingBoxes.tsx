@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-export default function PricingBoxes() {
+type PricingBoxesProps = {
+  onBuyPremium?: () => void;
+};
+
+export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
   const [plan, setPlan] = useState<'weekly' | 'monthly' | 'yearly'>('monthly');
 
   return (
