@@ -2,6 +2,17 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 32px 16px 64px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .tarot-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .tarot-title {
