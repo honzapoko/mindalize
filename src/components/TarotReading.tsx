@@ -233,14 +233,16 @@ const isPremiumSpread = () => {
   );
 };
 
-const handleBuyPremium = async () => {
+const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
   const res = await fetch('/api/create-checkout-session', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, plan }),
   });
   const data = await res.json();
-  window.location.href = data.url;
+  if (data.url) {
+    window.location.href = data.url; // Stripe checkout URL
+  }
 };
 
   return (

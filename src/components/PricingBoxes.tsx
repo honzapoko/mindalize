@@ -141,11 +141,37 @@ export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
               Ročně
             </button>
           </div>
-          <div style={{ fontSize: 22, fontWeight: 700, color: '#7c3aed', marginBottom: 8 }}>
-            {plan === 'weekly' && '12,9 € / týden'}
-            {plan === 'monthly' && '30 € / měsíc'}
-            {plan === 'yearly' && '200 € / rok'}
-          </div>
+<div style={{ fontSize: 22, fontWeight: 700, color: '#7c3aed', marginBottom: 8 }}>
+  {plan === 'weekly' && '249 Kč / týden'}
+  {plan === 'monthly' && (
+    <>
+      599 Kč / měsíc
+      <span style={{
+        display: 'block',
+        fontSize: 16,
+        color: '#f59e42',
+        fontWeight: 600,
+        marginTop: 4,
+      }}>
+        Ušetříte 397 Kč měsíčně oproti týdennímu tarifu
+      </span>
+    </>
+  )}
+  {plan === 'yearly' && (
+    <>
+      2 999 Kč / rok
+      <span style={{
+        display: 'block',
+        fontSize: 16,
+        color: '#f59e42',
+        fontWeight: 600,
+        marginTop: 4,
+      }}>
+        Ušetříte 4 189 Kč ročně oproti měsíčnímu tarifu
+      </span>
+    </>
+  )}
+</div>
         </div>
         <a
   href="#"
