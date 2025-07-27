@@ -46,19 +46,19 @@ export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
           <span role="img" aria-label="info">💡</span> Doporučujeme vyzkoušet partnerský výklad, roční proroctví nebo práci se stínem v prémiové verzi!
         </div>
         <a
-          href="#premium"
-          className="tarot-button"
-          style={{
-            background: '#7c3aed',
-            color: '#fff',
-            fontWeight: 600,
-            borderRadius: 8,
-            padding: '12px 28px',
-            textDecoration: 'none',
-            fontSize: 18,
-            display: 'inline-block',
-            boxShadow: '0 2px 8px rgba(124,58,237,0.10)',
-          }}
+     href="#premium"
+  className="tarot-button"
+  style={{
+    background: '#f59e42', // oranžová
+    color: '#fff',
+    fontWeight: 600,
+    borderRadius: 8,
+    padding: '12px 28px',
+    textDecoration: 'none',
+    fontSize: 18,
+    display: 'inline-block',
+    boxShadow: '0 2px 8px rgba(245,158,66,0.10)',
+  }}
         >
           Zjistit více o prémiu
         </a>
@@ -148,24 +148,24 @@ export default function PricingBoxes({ onBuyPremium }: PricingBoxesProps) {
           </div>
         </div>
         <a
-          href="#"
-          className="tarot-button"
-          style={{
-            background: '#7c3aed',
-            color: '#fff',
-            fontWeight: 700,
-            borderRadius: 8,
-            padding: '14px 32px',
-            textDecoration: 'none',
-            fontSize: 20,
-            display: 'inline-block',
-            marginTop: 8,
-            boxShadow: '0 2px 8px rgba(124,58,237,0.10)',
-          }}
-          onClick={e => {
-            e.preventDefault();
-            if (onBuyPremium) onBuyPremium(plan);
-          }}
+  href="#"
+  className="tarot-button"
+  style={{
+    background: '#f59e42', // oranžová
+    color: '#fff',
+    fontWeight: 700,
+    borderRadius: 8,
+    padding: '14px 32px',
+    textDecoration: 'none',
+    fontSize: 20,
+    display: 'inline-block',
+    marginTop: 8,
+    boxShadow: '0 2px 8px rgba(245,158,66,0.10)',
+  }}
+  onClick={e => {
+    e.preventDefault();
+    if (onBuyPremium) onBuyPremium(plan);
+  }}
         >
           Aktivovat prémiové služby
         </a>
