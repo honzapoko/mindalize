@@ -4,6 +4,7 @@ import Image from 'next/image';
 import cardMeanings from '../cardMeanings';
 import Link from 'next/link';
 import { supabase } from '../../lib/supabaseClient';
+import PricingBoxes from './PricingBoxes';
 
 const ZODIAC_SIGNS = [
   { name: 'Beran', start: [3, 21], end: [4, 19] },
@@ -405,7 +406,7 @@ const handleBuyPremium = async () => {
 )}
       </form>
 
-    {/* ADD THE PREMIUM BUTTON HERE */}
+    {/* ADD THE PREMIUM BUTTON HERE 
     <button
       className="tarot-button tarot-premium"
       type="button"
@@ -415,6 +416,9 @@ const handleBuyPremium = async () => {
     >
       Koupit prémiový přístup
     </button>
+*/}
+
+<PricingBoxes />
 
 {confirmation && (
   <div className="tarot-confirmation">
