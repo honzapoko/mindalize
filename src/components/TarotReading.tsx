@@ -418,13 +418,6 @@ const handleBuyPremium = async () => {
     </button>
 */}
 
-<PricingBoxes onBuyPremium={handleBuyPremium} />
-
-{confirmation && (
-  <div className="tarot-confirmation">
-    {confirmation}
-  </div>
-)}
       {cards.length > 0 && (
         <>
           <div className="tarot-summary">
@@ -461,6 +454,15 @@ const handleBuyPremium = async () => {
     {chatbotAnswer}
   </div>
 )}
+
+<PricingBoxes onBuyPremium={handleBuyPremium} />
+
+{confirmation && (
+  <div className="tarot-confirmation">
+    {confirmation}
+  </div>
+)}
+
 {mounted && (
   <div className="tarot-history">
     <h2>Historie výkladů</h2>
