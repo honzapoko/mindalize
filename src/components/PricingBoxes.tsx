@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 type PricingBoxesProps = {
-  onBuyPremium?: (plan: 'weekly' | 'monthly' | 'yearly') => void;
+  onBuyPremium?: (plan: 'weekly' | 'monthly' | 'yearly', email?: string) => void;
   email?: string | null;
 };
 
 export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps) {
   const [plan, setPlan] = useState<'weekly' | 'monthly' | 'yearly'>('monthly');
+  const [localEmail, setLocalEmail] = useState('');
 
   return (
     <div
@@ -175,20 +176,38 @@ export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps)
           </div>
         </div>
 
-        {/* Upozornění pro nepřihlášené uživatele */}
+        {/* Info box and email input for non-logged-in users */}
         {!email && (
-          <div style={{
-            background: '#f59e42',
-            color: '#fff',
-            borderRadius: 8,
-            padding: '14px 18px',
-            marginBottom: 16,
-            fontWeight: 600,
-            fontSize: 16,
-            textAlign: 'center',
-          }}>
-            Pro aktivaci služby vyberte období a vyplňte svoji e-mailovou adresu.
-          </div>
+          <>
+            <div style={{
+              background: '#fff7ed',
+              color: '#b45309',
+              borderRadius: 8,
+              padding: '10px 16px',
+              marginBottom: 10,
+              fontWeight: 500,
+              fontSize: 15,
+              textAlign: 'center',
+              border: '1px solid #f59e42',
+            }}>
+              Pro aktivaci služby vyberte období a vyplňte svoji e-mailovou adresu.
+            </div>
+            <input
+              type="email"
+              value={localEmail}
+              onChange={e => setLocalEmail(e.target.value)}
+              placeholder="Zadejte e-mail"
+              style={{
+                width: '100%',
+                padding: '10px',
+                borderRadius: 6,
+                border: '1px solid #f59e42',
+                marginBottom: 12,
+                fontSize: 16,
+                boxSizing: 'border-box',
+              }}
+            />
+          </>
         )}
 
         <a
@@ -208,7 +227,7 @@ export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps)
           }}
           onClick={e => {
             e.preventDefault();
-            if (onBuyPremium) onBuyPremium(plan);
+            if (onBuyPremium) onBuyPremium(plan, email || localEmail);
           }}
         >
           Aktivovat prémiové služby
