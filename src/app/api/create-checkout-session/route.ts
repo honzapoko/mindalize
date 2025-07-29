@@ -6,31 +6,25 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 export async function POST(req: NextRequest) {
   const { email, plan } = await req.json();
 
-  // Nastav cenu podle plánu
-  let unit_amount = 19900; // default: týdenní
-  let product_name = 'Prémiový výklad karet – týdenní';
-
-  if (plan === 'monthly') {
-    unit_amount = 59900;
-    product_name = 'Prémiový výklad karet – měsíční';
+  // Use Stripe Price IDs for subscriptions
+  let priceId = '';
+  if (plan === 'weekly') {
+    priceId = 'price_weekly_id'; // replace with your Stripe weekly price ID
+  } else if (plan === 'monthly') {
+    priceId = 'price_monthly_id'; // replace with your Stripe monthly price ID
   } else if (plan === 'yearly') {
-    unit_amount = 299900;
-    product_name = 'Prémiový výklad karet – roční';
+    priceId = 'price_yearly_id'; // replace with your Stripe yearly price ID
+  } else {
+    return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
   }
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    mode: 'payment',
+    mode: 'subscription',
     customer_email: email,
     line_items: [
       {
-        price_data: {
-          currency: 'czk',
-          product_data: {
-            name: product_name,
-          },
-          unit_amount, // cena v haléřích
-        },
+        price: priceId,
         quantity: 1,
       },
     ],
