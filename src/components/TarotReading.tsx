@@ -463,7 +463,7 @@ const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
   </div>
 )}
 
-<PricingBoxes onBuyPremium={handleBuyPremium} email={user.email} />
+<PricingBoxes onBuyPremium={handleBuyPremium} email={email} />
 
 {confirmation && (
   <div className="tarot-confirmation">
