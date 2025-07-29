@@ -163,7 +163,7 @@ export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps)
             )}
             {plan === 'yearly' && (
               <>
-                2 999 Kč / rok
+                2 990 Kč / rok
                 <span style={{
                   display: 'block',
                   fontSize: 16,
