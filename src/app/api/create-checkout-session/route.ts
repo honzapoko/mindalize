@@ -9,11 +9,11 @@ export async function POST(req: NextRequest) {
   // Use Stripe Price IDs for subscriptions
   let priceId = '';
   if (plan === 'weekly') {
-    priceId = 'price_weekly_id'; // replace with your Stripe weekly price ID
+    priceId = 'price_weekly_249'; // replace with your Stripe weekly price ID
   } else if (plan === 'monthly') {
-    priceId = 'price_monthly_id'; // replace with your Stripe monthly price ID
+    priceId = 'price_monthly_599'; // replace with your Stripe monthly price ID
   } else if (plan === 'yearly') {
-    priceId = 'price_yearly_id'; // replace with your Stripe yearly price ID
+    priceId = 'price_yearly_2990'; // replace with your Stripe yearly price ID
   } else {
     return NextResponse.json({ error: 'Invalid plan' }, { status: 400 });
   }
