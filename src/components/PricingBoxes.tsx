@@ -9,6 +9,8 @@ export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps)
   const [plan, setPlan] = useState<'weekly' | 'monthly' | 'yearly'>('monthly');
   const [localEmail, setLocalEmail] = useState('');
 
+  const isEmailValid = email || localEmail;
+
   return (
     <div
       className="tarot-container"
@@ -177,7 +179,7 @@ export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps)
         </div>
 
         {/* Info box and email input for non-logged-in users */}
-        {!email && (
+        {!email ? (
           <>
             <div style={{
               background: '#fff7ed',
@@ -208,6 +210,20 @@ export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps)
               }}
             />
           </>
+        ) : (
+          <div style={{
+            background: '#fff7ed',
+            color: '#b45309',
+            borderRadius: 8,
+            padding: '10px 16px',
+            marginBottom: 10,
+            fontWeight: 500,
+            fontSize: 15,
+            textAlign: 'center',
+            border: '1px solid #f59e42',
+          }}>
+            Pro aktivaci služby vyberte období.
+          </div>
         )}
 
         <a
@@ -224,14 +240,27 @@ export default function PricingBoxes({ onBuyPremium, email }: PricingBoxesProps)
             display: 'inline-block',
             marginTop: 8,
             boxShadow: '0 2px 8px rgba(245,158,66,0.10)',
+            pointerEvents: isEmailValid ? 'auto' : 'none',
+            opacity: isEmailValid ? 1 : 0.6,
           }}
           onClick={e => {
             e.preventDefault();
-            if (onBuyPremium) onBuyPremium(plan, email || localEmail);
+            if (onBuyPremium && isEmailValid) onBuyPremium(plan, email || localEmail);
           }}
         >
           Aktivovat prémiové služby
         </a>
+        {!email && !localEmail && (
+          <div style={{
+            color: '#dc2626',
+            fontWeight: 600,
+            fontSize: 15,
+            marginTop: 8,
+            textAlign: 'center',
+          }}>
+            Vyplňte e-mailovou adresu
+          </div>
+        )}
       </div>
     </div>
   );
