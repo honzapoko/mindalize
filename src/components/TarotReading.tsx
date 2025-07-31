@@ -401,45 +401,53 @@ const [userIsPremium] = useState(false);
       </form>
 
       {/* PREMIUM MODAL */}
-      {showPremiumModal && (
-        <div className="tarot-modal" style={{
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          background: 'rgba(0,0,0,0.4)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000,
-        }}>
-          <div style={{
-            background: '#fff',
-            borderRadius: 16,
-            padding: 32,
-            maxWidth: 480,
-            width: '100%',
-            boxShadow: '0 4px 32px rgba(49,46,129,0.15)',
-            position: 'relative',
-          }}>
-            <PricingBoxes onBuyPremium={handleBuyPremium} email={email} />
-            <button
-              style={{
-                position: 'absolute',
-                top: 16,
-                right: 16,
-                background: 'none',
-                border: 'none',
-                fontSize: 24,
-                cursor: 'pointer',
-                color: '#312e81',
-              }}
-              onClick={() => setShowPremiumModal(false)}
-              aria-label="Zavřít"
-            >
-              ×
-            </button>
-          </div>
-        </div>
-      )}
+{showPremiumModal && (
+  <div
+    className="tarot-modal"
+    style={{
+      position: 'fixed',
+      top: 0, left: 0, right: 0, bottom: 0,
+      background: 'rgba(0,0,0,0.4)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000,
+      overflowY: 'auto', // allow scrolling if needed
+    }}
+  >
+    <div
+      style={{
+        background: '#fff',
+        borderRadius: 16,
+        padding: 32,
+        maxWidth: 480,
+        width: '100%',
+        boxShadow: '0 4px 32px rgba(49,46,129,0.15)',
+        position: 'relative',
+        maxHeight: '90vh', // limit height
+        overflowY: 'auto', // scroll inside modal if content is too tall
+      }}
+    >
+      <PricingBoxes onBuyPremium={handleBuyPremium} email={email} />
+      <button
+        style={{
+          position: 'absolute',
+          top: 16,
+          right: 16,
+          background: 'none',
+          border: 'none',
+          fontSize: 24,
+          cursor: 'pointer',
+          color: '#312e81',
+        }}
+        onClick={() => setShowPremiumModal(false)}
+        aria-label="Zavřít"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+)}
 
       {cards.length > 0 && (
         <>
