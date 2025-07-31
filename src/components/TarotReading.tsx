@@ -117,7 +117,7 @@ const TarotReading: React.FC = () => {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
 
   // TODO: Replace with your real premium user logic
-  const [userIsPremium, setUserIsPremium] = useState(false);
+const [userIsPremium] = useState(false);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
