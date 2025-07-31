@@ -23,17 +23,6 @@ export default function LoginPage() {
      }
      window.location.href = '/';
 
-    // Demo only:
-    setTimeout(() => {
-      setLoading(false);
-      if (email === 'demo@email.com' && password === 'demo') {
-        window.location.href = '/';
-      } else {
-        setError('Nesprávný e-mail nebo heslo.');
-      }
-    }, 1000);
-  };
-
   return (
     <div style={{
       minHeight: '100vh',
