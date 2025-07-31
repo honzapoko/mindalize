@@ -99,14 +99,10 @@ type TarotHistoryItem = {
 
 const TarotReading: React.FC = () => {
   const [email, setEmail] = useState('');
- // const [city, setCity] = useState('');
   const [goals, setGoals] = useState('');
   const [question, setQuestion] = useState('');
- // const [occupation, setOccupation] = useState('');
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
-//  const [numCards, setNumCards] = useState(3);
-  const userIsPremium = false; // TODO: Replace with your real premium user logic
   const [cards, setCards] = useState<string[]>([]);
   const [zodiac, setZodiac] = useState('');
   const [lifePath, setLifePath] = useState('');
@@ -118,167 +114,166 @@ const TarotReading: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
 
-useEffect(() => {
-  // Zjisti aktuální session při načtení
-  supabase.auth.getUser().then(({ data }) => {
-    setIsLoggedIn(!!data.user);
-    if (data.user?.email) setEmail(data.user.email); // ← přidej tento řádek
-  });
+  // TODO: Replace with your real premium user logic
+  const [userIsPremium, setUserIsPremium] = useState(false);
 
-  // Poslouchej změny session (login/logout)
-  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-    setIsLoggedIn(!!session?.user);
-    if (session?.user?.email) setEmail(session.user.email); // ← přidej tento řádek
-  });
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setIsLoggedIn(!!data.user);
+      if (data.user?.email) setEmail(data.user.email);
+      // TODO: setUserIsPremium based on your logic
+    });
 
-  // Úklid listeneru při odchodu komponenty
-  return () => {
-    listener?.subscription.unsubscribe();
-  };
-}, []);
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session?.user);
+      if (session?.user?.email) setEmail(session.user.email);
+      // TODO: setUserIsPremium based on your logic
+    });
 
-useEffect(() => {
-  const stored = localStorage.getItem('tarotHistory');
-  if (stored) {
-    setHistory(JSON.parse(stored));
-  }
-  setMounted(true); // <-- add this line
-}, []);
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('tarotHistory');
+    if (stored) {
+      setHistory(JSON.parse(stored));
+    }
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     setZodiac(getZodiacSign(birthdate));
     setLifePath(getLifePathNumber(birthdate));
   }, [birthdate]);
 
-const handleDraw = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setConfirmation('');
-  setChatbotAnswer('');
-  setIsLoadingChatbot(true);
+  const handleDraw = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setConfirmation('');
+    setChatbotAnswer('');
+    setIsLoadingChatbot(true);
 
-  let numCardsToDraw = 1;
-  if (spreadType === '3') numCardsToDraw = 3;
-  else if (spreadType === '5') numCardsToDraw = 5;
-  else if (spreadType === 'celtic') numCardsToDraw = 10;
-  else if (spreadType === 'partnersky') numCardsToDraw = 7;
+    let numCardsToDraw = 1;
+    if (spreadType === '3') numCardsToDraw = 3;
+    else if (spreadType === '5') numCardsToDraw = 5;
+    else if (spreadType === 'celtic') numCardsToDraw = 10;
+    else if (spreadType === 'partnersky') numCardsToDraw = 7;
 
-  const drawn = getRandomCardKeys(numCardsToDraw);
-  setCards(drawn);
+    const drawn = getRandomCardKeys(numCardsToDraw);
+    setCards(drawn);
 
-  try {
-    const res = await fetch('/api/chatbot', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
+    try {
+      const res = await fetch('/api/chatbot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          name,
+          birthdate,
+          zodiac,
+          lifePath,
+          question,
+          cards: drawn,
+          spreadType,
+          goals,
+        }),
+      });
+      const data = await res.json();
+      setIsLoadingChatbot(false);
+
+      if (data.error) {
+        setChatbotAnswer(data.error);
+        return;
+      }
+
+      setChatbotAnswer(data.aiAnswer || 'Odpověď není dostupná.');
+      setConfirmation(data.confirmationMessage || 'Potvrzovací e-mail byl odeslán! Prosím potvrďte svou adresu.');
+
+      const newHistoryItem = {
         name,
         birthdate,
+        question,
         zodiac,
         lifePath,
-        question,
         cards: drawn,
-        spreadType,
-      //  city,
-        goals,
-      //  occupation,
-      }),
-    });
-    const data = await res.json();
-    setIsLoadingChatbot(false);
+        date: new Date().toISOString(),
+        prophecy: data.aiAnswer || 'Odpověď není dostupná.',
+      };
+      const updatedHistory = [newHistoryItem, ...history].slice(0, 10);
+      setHistory(updatedHistory);
+      localStorage.setItem('tarotHistory', JSON.stringify(updatedHistory));
+    } catch {
+      setIsLoadingChatbot(false);
+      setChatbotAnswer('Chyba při získávání odpovědi od AI.');
+    }
+  };
 
-    if (data.error) {
-      setChatbotAnswer(data.error);
+  // Block non-premium users from submitting premium spreads
+  const isPremiumSpread = () => {
+    return (
+      spreadType === "5" ||
+      spreadType === "celtic" ||
+      spreadType === "partnersky" ||
+      spreadType === "7" ||
+      spreadType === "horseshoe" ||
+      spreadType === "relationship" ||
+      spreadType === "career" ||
+      spreadType === "year" ||
+      spreadType === "chakra"
+    );
+  };
+
+  // Accepts email from PricingBoxes (input) or from logged-in user
+  const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly', userEmail?: string) => {
+    const usedEmail = userEmail || email;
+    if (!usedEmail) {
+      window.location.href = '/registrace';
       return;
     }
-
-    setChatbotAnswer(data.aiAnswer || 'Odpověď není dostupná.');
-    setConfirmation(data.confirmationMessage || 'Potvrzovací e-mail byl odeslán! Prosím potvrďte svou adresu.');
-
-    // --- MOVE THIS BLOCK HERE ---
-    const newHistoryItem = {
-      name,
-      birthdate,
-      question,
-      zodiac,
-      lifePath,
-      cards: drawn,
-      date: new Date().toISOString(),
-      prophecy: data.aiAnswer || 'Odpověď není dostupná.',
-
-    };
-    const updatedHistory = [newHistoryItem, ...history].slice(0, 10);
-    setHistory(updatedHistory);
-    localStorage.setItem('tarotHistory', JSON.stringify(updatedHistory));
-    // --- END BLOCK ---
-
-} catch {
-  setIsLoadingChatbot(false);
-  setChatbotAnswer('Chyba při získávání odpovědi od AI.');
-}
-};
-
-// Add logic to block non-premium users from submitting premium spreads
-const isPremiumSpread = () => {
-  return (
-    spreadType === "5" ||
-    spreadType === "celtic" ||
-    spreadType === "partnersky" ||
-    spreadType === "7" ||
-    spreadType === "horseshoe" ||
-    spreadType === "relationship" ||
-    spreadType === "career" ||
-    spreadType === "year" ||
-    spreadType === "chakra"
-  );
-};
-
-const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
-  if (!email) {
-    window.location.href = '/registrace'; // nebo '/login' podle preferencí
-    return;
-  }
-  const res = await fetch('/api/create-checkout-session', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, plan }),
-  });
-  const data = await res.json();
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    alert('Nepodařilo se získat Stripe odkaz.');
-  }
-};
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: usedEmail, plan }),
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Nepodařilo se získat Stripe odkaz.');
+    }
+  };
 
   return (
     <div className="tarot-container">
-<div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
-  {!isLoggedIn ? (
-    <>
-      <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
-      <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
-    </>
-  ) : (
-    <button
-      onClick={async () => {
-        await supabase.auth.signOut();
-        setIsLoggedIn(false);
-      }}
-      style={{
-        color: '#312e81',
-        fontWeight: 600,
-        background: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        fontSize: 16,
-        padding: 0,
-      }}
-    >
-      Odhlásit se
-    </button>
-  )}
-</div>
+      <div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
+        {!isLoggedIn ? (
+          <>
+            <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
+            <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
+          </>
+        ) : (
+          <button
+            onClick={async () => {
+              await supabase.auth.signOut();
+              setIsLoggedIn(false);
+            }}
+            style={{
+              color: '#312e81',
+              fontWeight: 600,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: 16,
+              padding: 0,
+            }}
+          >
+            Odhlásit se
+          </button>
+        )}
+      </div>
       <h1 className="tarot-title">
         <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
       </h1>
@@ -293,24 +288,10 @@ const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
-          placeholder="Vaše e-mailová adresa"
-          readOnly={isLoggedIn} // ← přidáno
+            placeholder="Vaše e-mailová adresa"
+            readOnly={isLoggedIn}
           />
         </div>
-           {/* <input
-           className="tarot-input"
-           type="text"
-           value={city}
-           onChange={e => setCity(e.target.value)}
-           placeholder="Město narození"
-          />*/}
-        {/* <input ---
-          className="tarot-input"
-          type="text"
-          value={occupation}
-          onChange={e => setOccupation(e.target.value)}
-          placeholder="Povolání (volitelné)"
-          />*/}
         <div className="tarot-section">
           <label className="tarot-label">
             <span role="img" aria-label="person">👤</span> Jméno
@@ -334,97 +315,131 @@ const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
             value={birthdate}
             onChange={e => setBirthdate(e.target.value)}
             required
-          placeholder="Datum narození"
+            placeholder="Datum narození"
           />
         </div>
-      <div className="tarot-section">
-       <label className="tarot-label">
-           <span role="img" aria-label="target">🎯</span> Osobní cíle
-        </label>
-       <input
-         className="tarot-input"
-         type="text"
-         value={goals}
-         onChange={e => setGoals(e.target.value)}
-         placeholder="Osobní cíle"
-         />
-      </div>
-
-      <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 24, letterSpacing: 2, margin: '16px 0' }}>
-        NEBO
-      </div>
-
-      <div className="tarot-section">
-        <label className="tarot-label">
-          <span role="img" aria-label="cloud">☁️</span> Tvoje otázka
-        </label>
-        <input
-          className="tarot-input"
-          type="text"
-          value={question}
-          onChange={e => setQuestion(e.target.value)}
-          placeholder="Tvoje otázka"
-        />
-      </div>
-<div className="tarot-section">
-  <label className="tarot-label">
-    Typ výkladu:
-    <select
-      value={spreadType}
-      onChange={e => setSpreadType(e.target.value)}
-      required
-      style={{
-        width: "100%",
-        minHeight: "48px",
-        fontSize: "1.1em",
-        marginTop: 8,
-        padding: "8px",
-        borderRadius: "8px",
-        border: "1px solid #ccc",
-      }}
-    >
-      <option value="1">1 karta (Rada)</option>
-      <option value="3">3 karty (Minulost/Přítomnost/Budoucnost)</option>
-      <option value="5">5 karet (Vývoj situace) (PREMIUM)</option>
-      <option value="celtic">Keltský kříž (PREMIUM)</option>
-      <option value="partnersky">Partnerský výklad (PREMIUM)</option>
-      <option value="7">7 karet (Týdenní výklad) (PREMIUM)</option>
-      <option value="horseshoe">Podkova (7 karet) (PREMIUM)</option>
-      <option value="relationship">Vztahový výklad (6 karet) (PREMIUM)</option>
-      <option value="career">Kariérní výklad (5 karet) (PREMIUM)</option>
-      <option value="year">Výklad na rok (12 karet) (PREMIUM)</option>
-      <option value="chakra">Čakrový výklad (7 karet) (PREMIUM)</option>
-    </select>
-  </label>
-</div>
-
-{/* In your form, disable the submit button for premium spreads if the user is not premium */}
-<button
-  className="tarot-button"
-  type="submit"
-  disabled={isPremiumSpread() && !userIsPremium} // userIsPremium = your logic for premium user
->
-  Vyložit karty
-</button>
-
-{isPremiumSpread() && !userIsPremium && (
-  <div style={{ color: "#b91c1c", marginTop: 8 }}>
-    Tento typ výkladu je dostupný pouze pro prémiové uživatele.
-  </div>
-)}
+        <div className="tarot-section">
+          <label className="tarot-label">
+            <span role="img" aria-label="target">🎯</span> Osobní cíle
+          </label>
+          <input
+            className="tarot-input"
+            type="text"
+            value={goals}
+            onChange={e => setGoals(e.target.value)}
+            placeholder="Osobní cíle"
+          />
+        </div>
+        <div style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 24, letterSpacing: 2, margin: '16px 0' }}>
+          NEBO
+        </div>
+        <div className="tarot-section">
+          <label className="tarot-label">
+            <span role="img" aria-label="cloud">☁️</span> Tvoje otázka
+          </label>
+          <input
+            className="tarot-input"
+            type="text"
+            value={question}
+            onChange={e => setQuestion(e.target.value)}
+            placeholder="Tvoje otázka"
+          />
+        </div>
+        <div className="tarot-section">
+          <label className="tarot-label">
+            Typ výkladu:
+            <select
+              value={spreadType}
+              onChange={e => setSpreadType(e.target.value)}
+              required
+              style={{
+                width: "100%",
+                minHeight: "48px",
+                fontSize: "1.1em",
+                marginTop: 8,
+                padding: "8px",
+                borderRadius: "8px",
+                border: "1px solid #ccc",
+              }}
+            >
+              <option value="1">1 karta (Rada)</option>
+              <option value="3">3 karty (Minulost/Přítomnost/Budoucnost)</option>
+              <option value="5">5 karet (Vývoj situace) (PREMIUM)</option>
+              <option value="celtic">Keltský kříž (PREMIUM)</option>
+              <option value="partnersky">Partnerský výklad (PREMIUM)</option>
+              <option value="7">7 karet (Týdenní výklad) (PREMIUM)</option>
+              <option value="horseshoe">Podkova (7 karet) (PREMIUM)</option>
+              <option value="relationship">Vztahový výklad (6 karet) (PREMIUM)</option>
+              <option value="career">Kariérní výklad (5 karet) (PREMIUM)</option>
+              <option value="year">Výklad na rok (12 karet) (PREMIUM)</option>
+              <option value="chakra">Čakrový výklad (7 karet) (PREMIUM)</option>
+            </select>
+          </label>
+        </div>
+        <button
+          className="tarot-button"
+          type="submit"
+          disabled={isPremiumSpread() && !userIsPremium}
+        >
+          Vyložit karty
+        </button>
+        {isPremiumSpread() && !userIsPremium && (
+          <>
+            <div style={{ color: "#b91c1c", marginTop: 8 }}>
+              Tento typ výkladu je dostupný pouze pro prémiové uživatele.
+            </div>
+            <button
+              className="tarot-button"
+              type="button"
+              onClick={() => setShowPremiumModal(true)}
+              style={{ marginTop: 16 }}
+            >
+              Získat prémiový přístup
+            </button>
+          </>
+        )}
       </form>
 
-    {/* ADD THE PREMIUM BUTTON HERE 
-    <button
-      className="tarot-button tarot-premium"
-      type="button"
-      onClick={handleBuyPremium}
-      disabled={!email}
-      style={{ marginTop: 24 }}
-    >
-      Koupit prémiový přístup
-    </button>
-*/}
+      {/* PREMIUM MODAL */}
+      {showPremiumModal && (
+        <div className="tarot-modal" style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,0,0,0.4)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+        }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: 16,
+            padding: 32,
+            maxWidth: 480,
+            width: '100%',
+            boxShadow: '0 4px 32px rgba(49,46,129,0.15)',
+            position: 'relative',
+          }}>
+            <PricingBoxes onBuyPremium={handleBuyPremium} email={email} />
+            <button
+              style={{
+                position: 'absolute',
+                top: 16,
+                right: 16,
+                background: 'none',
+                border: 'none',
+                fontSize: 24,
+                cursor: 'pointer',
+                color: '#312e81',
+              }}
+              onClick={() => setShowPremiumModal(false)}
+              aria-label="Zavřít"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
 
       {cards.length > 0 && (
         <>
@@ -442,9 +457,9 @@ const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
                   className="tarot-image"
                   src={cardMeanings[cardName as keyof typeof cardMeanings].imageUrl}
                   alt={cardName}
-                  width={300} // set your desired width
-                  height={450} // set your desired height, or the correct aspect ratio
-                  style={{ width: '100%', height: 'auto' }} // maintain aspect ratio if resizing
+                  width={300}
+                  height={450}
+                  style={{ width: '100%', height: 'auto' }}
                   loading="lazy"
                 />
                 <div>
@@ -454,75 +469,73 @@ const handleBuyPremium = async (plan: 'weekly' | 'monthly' | 'yearly') => {
               </div>
             ))}
           </div>
-               </>
+        </>
       )}
-{isLoadingChatbot && <div>Připravuji pro Tebe odpověď ...</div>}      
-{chatbotAnswer && (
-  <div className="tarot-chatbot-answer" style={{ marginTop: 16, background: '#312e81', color: '#fff', padding: 16, borderRadius: 8 }}>
-    {chatbotAnswer}
-  </div>
-)}
-
-<PricingBoxes onBuyPremium={handleBuyPremium} email={email} />
-
-{confirmation && (
-  <div className="tarot-confirmation">
-    {confirmation}
-  </div>
-)}
-
-{mounted && (
-  <div className="tarot-history">
-    <h2>Historie výkladů</h2>
-    {history.length === 0 && <div>Žádné výklady zatím nejsou.</div>}
-    {history.map((item, idx) => (
-      <div
-        key={idx}
-        style={{
-          background: '#fff',
-          border: '1px solid #312e81',
-          borderRadius: 10,
-          marginBottom: 16,
-          boxShadow: '0 2px 8px rgba(49,46,129,0.07)',
-          padding: 16,
-        }}
-      >
-        <div
-          style={{
-            cursor: 'pointer',
-            color: '#312e81',
-            fontWeight: 600,
-            fontSize: 16,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-          onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}
-        >
-          <span>
-            Výklad z {formatDateTimeCz(item.date)} &nbsp;|&nbsp; <strong>Karty:</strong> {item.cards.map(card => cardMeanings[card]?.name || card).join(', ')}
-          </span>
-          <span style={{ fontSize: 22 }}>{expandedIdx === idx ? '▲' : '▼'}</span>
+      {isLoadingChatbot && <div>Připravuji pro Tebe odpověď ...</div>}
+      {chatbotAnswer && (
+        <div className="tarot-chatbot-answer" style={{ marginTop: 16, background: '#312e81', color: '#fff', padding: 16, borderRadius: 8 }}>
+          {chatbotAnswer}
         </div>
-        {expandedIdx === idx && (
-          <div
-            style={{
-              marginTop: 14,
-              background: '#312e81',
-              color: '#fff',
-              padding: 16,
-              borderRadius: 8,
-              fontSize: 16,
-              lineHeight: 1.6,
-            }}
-          >
-            {item.prophecy}
-          </div>
-        )}
-      </div>
-    ))}
-  </div>
-)}
+      )}
+
+      {confirmation && (
+        <div className="tarot-confirmation">
+          {confirmation}
+        </div>
+      )}
+
+      {mounted && (
+        <div className="tarot-history">
+          <h2>Historie výkladů</h2>
+          {history.length === 0 && <div>Žádné výklady zatím nejsou.</div>}
+          {history.map((item, idx) => (
+            <div
+              key={idx}
+              style={{
+                background: '#fff',
+                border: '1px solid #312e81',
+                borderRadius: 10,
+                marginBottom: 16,
+                boxShadow: '0 2px 8px rgba(49,46,129,0.07)',
+                padding: 16,
+              }}
+            >
+              <div
+                style={{
+                  cursor: 'pointer',
+                  color: '#312e81',
+                  fontWeight: 600,
+                  fontSize: 16,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+                onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}
+              >
+                <span>
+                  Výklad z {formatDateTimeCz(item.date)} &nbsp;|&nbsp; <strong>Karty:</strong> {item.cards.map(card => cardMeanings[card]?.name || card).join(', ')}
+                </span>
+                <span style={{ fontSize: 22 }}>{expandedIdx === idx ? '▲' : '▼'}</span>
+              </div>
+              {expandedIdx === idx && (
+                <div
+                  style={{
+                    marginTop: 14,
+                    background: '#312e81',
+                    color: '#fff',
+                    padding: 16,
+                    borderRadius: 8,
+                    fontSize: 16,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {item.prophecy}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
