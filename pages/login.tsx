@@ -15,13 +15,13 @@ export default function LoginPage() {
     setLoading(true);
 
     // Example with Supabase (uncomment if using)
-    // const { error } = await supabase.auth.signInWithPassword({ email, password });
-    // if (error) {
-    //   setError(error.message);
-    //   setLoading(false);
-    //   return;
-    // }
-    // window.location.href = '/';
+     const { error } = await supabase.auth.signInWithPassword({ email, password });
+     if (error) {
+       setError(error.message);
+       setLoading(false);
+       return;
+     }
+     window.location.href = '/';
 
     // Demo only:
     setTimeout(() => {
