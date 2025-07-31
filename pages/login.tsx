@@ -8,20 +8,19 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Replace with your real login logic
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    // Example with Supabase (uncomment if using)
-     const { error } = await supabase.auth.signInWithPassword({ email, password });
-     if (error) {
-       setError(error.message);
-       setLoading(false);
-       return;
-     }
-     window.location.href = '/';
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+      return;
+    }
+    window.location.href = '/';
+  }; // <-- This was missing
 
   return (
     <div style={{
