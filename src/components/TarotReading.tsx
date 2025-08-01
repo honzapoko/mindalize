@@ -137,22 +137,6 @@ useEffect(() => {
     });
 }, [email]);  
 
-// In your render:
-if (trialExpired && !userIsPremium) {
-  return (
-    <div style={{ padding: 40, textAlign: 'center', background: '#fff7ed', borderRadius: 16, margin: 40 }}>
-      <h2 style={{ color: '#7c3aed' }}>Zkušební období skončilo</h2>
-      <p>Pro pokračování je potřeba aktivovat prémiové členství.</p>
-      <button
-        className="tarot-button"
-        onClick={() => setShowPremiumModal(true)}
-        style={{ marginTop: 24 }}
-      >
-        Získat prémiový přístup
-      </button>
-    </div>
-  );
-}
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       setIsLoggedIn(!!data.user);
@@ -285,6 +269,23 @@ useEffect(() => {
       alert('Nepodařilo se získat Stripe odkaz.');
     }
   };
+
+  // In your render:
+if (trialExpired && !userIsPremium) {
+  return (
+    <div style={{ padding: 40, textAlign: 'center', background: '#fff7ed', borderRadius: 16, margin: 40 }}>
+      <h2 style={{ color: '#7c3aed' }}>Zkušební období skončilo</h2>
+      <p>Pro pokračování je potřeba aktivovat prémiové členství.</p>
+      <button
+        className="tarot-button"
+        onClick={() => setShowPremiumModal(true)}
+        style={{ marginTop: 24 }}
+      >
+        Získat prémiový přístup
+      </button>
+    </div>
+  );
+}
 
   return (
     <div className="tarot-container">
