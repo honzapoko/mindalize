@@ -362,8 +362,8 @@ const [userIsPremium] = useState(false);
                 border: "1px solid #ccc",
               }}
             >
-              <option value="1">1 karta (Rada)</option>
-              <option value="3">3 karty (Minulost/Přítomnost/Budoucnost)</option>
+              <option value="1">1 karta (Rada) - ZDARMA</option>
+              <option value="3">3 karty (Minulost/Budoucnost) - ZDARMA</option>
               <option value="5">5 karet (Vývoj situace) (PREMIUM)</option>
               <option value="celtic">Keltský kříž (PREMIUM)</option>
               <option value="partnersky">Partnerský výklad (PREMIUM)</option>
@@ -385,7 +385,7 @@ const [userIsPremium] = useState(false);
         </button>
         {isPremiumSpread() && !userIsPremium && (
           <>
-            <div style={{ color: "#b91c1c", marginTop: 8 }}>
+            <div style={{ color: "#FFFFFF", marginTop: 8 }}>
               Tento typ výkladu je dostupný pouze pro prémiové uživatele.
             </div>
             <button
