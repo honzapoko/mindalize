@@ -21,6 +21,44 @@ const ZODIAC_SIGNS = [
   { name: 'Ryby', start: [2, 19], end: [3, 20] },
 ];
 
+const [userRecord, setUserRecord] = useState<any>(null);
+const [trialExpired, setTrialExpired] = useState(false);
+useEffect(() => {
+  if (!email) return;
+  // Fetch user record from Supabase
+  supabase
+    .from('users')
+    .select('*')
+    .eq('email', email)
+    .single()
+    .then(({ data }) => {
+      setUserRecord(data);
+      if (data && data.free_trial_start && !data.is_premium) {
+        const start = new Date(data.free_trial_start);
+        const now = new Date();
+        const diffDays = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+        if (diffDays >= 3) setTrialExpired(true);
+      }
+    });
+}, [email]);
+
+// In your render:
+if (trialExpired && !userIsPremium) {
+  return (
+    <div style={{ padding: 40, textAlign: 'center', background: '#fff7ed', borderRadius: 16, margin: 40 }}>
+      <h2 style={{ color: '#7c3aed' }}>Zkušební období skončilo</h2>
+      <p>Pro pokračování je potřeba aktivovat prémiové členství.</p>
+      <button
+        className="tarot-button"
+        onClick={() => setShowPremiumModal(true)}
+        style={{ marginTop: 24 }}
+      >
+        Získat prémiový přístup
+      </button>
+    </div>
+  );
+}
+
 function getZodiacSign(dateStr: string) {
   if (!dateStr) return '';
   const date = new Date(dateStr);
@@ -492,7 +530,7 @@ const [userIsPremium] = useState(false);
         </div>
       )}
 
-      {mounted && (
+      {mounted && isLoggedIn && (
         <div className="tarot-history">
           <h2>Historie výkladů</h2>
           {history.length === 0 && <div>Žádné výklady zatím nejsou.</div>}
