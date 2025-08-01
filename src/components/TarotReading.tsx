@@ -175,13 +175,19 @@ const [userIsPremium] = useState(false);
     };
   }, []);
 
-  useEffect(() => {
-    const stored = localStorage.getItem('tarotHistory');
-    if (stored) {
-      setHistory(JSON.parse(stored));
-    }
-    setMounted(true);
-  }, []);
+useEffect(() => {
+  setMounted(true);
+  if (isLoggedIn && email) {
+    supabase
+      .from('readings')
+      .select('*')
+      .eq('email', email)
+      .order('created_at', { ascending: false })
+      .then(({ data }) => setHistory(data || []));
+  } else {
+    setHistory([]); // Clear history if not logged in
+  }
+}, [isLoggedIn, email]);
 
   useEffect(() => {
     setZodiac(getZodiacSign(birthdate));
