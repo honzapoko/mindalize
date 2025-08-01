@@ -20,7 +20,34 @@ async function sendEmail({ to, subject, html }: { to: string, subject: string, h
     throw error;
   }
 }
+export default async function handler(req, res) {
+  const { email, name, birthdate } = req.body;
 
+  // Check if user exists
+  let { data: user, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('email', email)
+    .single();
+
+  if (!user) {
+    // Create user with free trial start
+    const { data, error: insertError } = await supabase
+      .from('users')
+      .insert([
+        {
+          email,
+          name,
+          birthdate,
+          free_trial_start: new Date().toISOString().slice(0, 10),
+          is_premium: false,
+        },
+      ]);
+    if (insertError) {
+      return res.status(500).json({ error: insertError.message });
+    }
+  }
+  
 export async function POST(req: NextRequest) {
   console.log('POST /api/chatbot called');
     // Try to get IP from headers (works on Vercel, Netlify, etc.)
