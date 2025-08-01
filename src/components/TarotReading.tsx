@@ -127,7 +127,6 @@ useEffect(() => {
     .eq('email', email)
     .single()
     .then(({ data }) => {
-      setUserRecord(data);
       if (data && data.free_trial_start && !data.is_premium) {
         const start = new Date(data.free_trial_start);
         const now = new Date();
