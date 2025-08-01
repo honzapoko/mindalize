@@ -22,6 +22,12 @@ function formatDate(dateString: string) {
   return `${day}.${month}.${year}`;
 }
 
+function daysSince(dateString: string) {
+  const start = new Date(dateString);
+  const now = new Date();
+  return Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+}
+
 export async function POST(req: Request) {
   try {
     const { email } = await req.json().catch(() => ({}));
@@ -29,17 +35,21 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
     }
 
-    // Ověř potvrzeného uživatele
-  const { data: user } = await supabase
-    .from('user_confirmations')
-    .select('email, confirmed')
-    .ilike('email', email.trim())
-    .eq('confirmed', true)
-    .maybeSingle();
+    // Najdi uživatele a jeho trial info
+    const { data: user } = await supabase
+      .from('user_confirmations')
+      .select('email, confirmed, created_at, is_premium')
+      .ilike('email', email.trim())
+      .maybeSingle();
 
-    if (!user?.email) {
+    if (!user?.email || !user.confirmed) {
       return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
     }
+
+    // Zjisti, kolik dní od registrace
+    const createdAt = user.created_at || new Date().toISOString().slice(0, 10);
+    const isPremium = !!user.is_premium;
+    const days = daysSince(createdAt);
 
     // Dotáhni údaje z readings
     const { data: reading } = await supabase
@@ -54,96 +64,121 @@ export async function POST(req: Request) {
     const birthdate = reading?.birthdate || 'neznámé datum';
     const goals = reading?.goals || 'neuveden';
 
-    // Calendar logic
     const BASE_URL = "https://vesteni.cz";
     const todayISO = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
     const today = formatDate(todayISO); // DD.MM.YYYY
-    const dayOfWeek = new Date().getDay(); // 0 = Sunday, 1 = Monday, ...
+    const dayOfWeek = new Date().getDay();
 
+    // --- FREE TRIAL LOGIC ---
+    if (!isPremium && days >= 3) {
+      // Send unified premium promo email on 4th day and after
+      const promoHtml = `
+        <h2>Vaše zkušební období skončilo</h2>
+        <p>
+          Děkujeme, že jste využili 3denní zkušební období s denními proroctvími.<br/>
+          Pro pokračování a neomezený přístup ke všem funkcím a denním proroctvím si prosím aktivujte prémiové členství.
+        </p>
+        <a href="https://vesteni.cz/#premium" style="display:inline-block;margin-top:18px;padding:12px 24px;background:#7c3aed;color:#fff;border-radius:8px;text-decoration:none;font-weight:700;">
+          Aktivovat Premium
+        </a>
+      `;
+      await resend.emails.send({
+        from: 'vyklad@vesteni.cz',
+        to: user.email,
+        subject: 'Získejte prémiové členství a pokračujte v denních proroctvích!',
+        html: promoHtml,
+      });
+      return NextResponse.json({
+        message: 'Zkušební období skončilo, byl odeslán promo e-mail.',
+        trialEnded: true,
+      });
+    }
+
+    // --- SEND DAILY PROPHECY (first 3 days or premium) ---
     let prompt = '';
     let cards: string[] = [];
     let cardInfos: { name: string; imageUrl: string; description: string }[] = [];
 
     switch (dayOfWeek) {
-  case 1: // Monday - 3-card tarot
-  cards = drawCards(3);
-  cardInfos = cards.map(card => {
-    let imageUrl = cardMeanings[card]?.imageUrl || '';
-    if (imageUrl && imageUrl.startsWith('/')) {
-      imageUrl = BASE_URL + imageUrl;
+      case 1: // Monday - 3-card tarot
+        cards = drawCards(3);
+        cardInfos = cards.map(card => {
+          let imageUrl = cardMeanings[card]?.imageUrl || '';
+          if (imageUrl && imageUrl.startsWith('/')) {
+            imageUrl = BASE_URL + imageUrl;
+          }
+          return {
+            name: cardMeanings[card]?.name || card,
+            imageUrl,
+            description: cardMeanings[card]?.description?.split('.')[0] || '',
+          };
+        });
+        prompt =
+          `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, jehož životním cílem je "${goals}", byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
+          `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet s jeho životním cílem a napiš česky, maximálně na 1000 znaků.`;
+        break;
+      case 2: // Tuesday - astrology
+        prompt =
+          `Jsi astrolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš astrologickou předpověď na den ${today}. ` +
+          `Zohledni znamení zvěrokruhu a aktuální postavení planet. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
+        break;
+      case 3: // Wednesday - numerology
+        prompt =
+          `Jsi numerolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš numerologickou předpověď na den ${today}. ` +
+          `Vysvětli význam jeho životního čísla a jak ovlivňuje tento den. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
+        break;
+      case 4: // Thursday - affirmation/mantra
+        prompt =
+          `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš inspirativní afirmaci nebo mantru na den ${today}. ` +
+          `Afirmace by měla být krátká, pozitivní, osobní a v češtině. Přidej krátké vysvětlení, proč je vhodná právě pro tento den. Maximálně 1000 znaků.`;
+        break;
+      case 5: // Friday - shadow work
+        cards = drawCards(2);
+        cardInfos = cards.map(card => {
+          let imageUrl = cardMeanings[card]?.imageUrl || '';
+          if (imageUrl && imageUrl.startsWith('/')) {
+            imageUrl = BASE_URL + imageUrl;
+          }
+          return {
+            name: cardMeanings[card]?.name || card,
+            imageUrl,
+            description: cardMeanings[card]?.description?.split('.')[0] || '',
+          };
+        });
+        prompt =
+          `Jsi průvodce pro práci se stínem. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy dvě karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
+          `První karta představuje téma stínu, které je vhodné dnes zpracovat, druhá karta ukazuje podporu nebo zdroj síly pro tuto práci. ` +
+          `Vysvětli význam obou karet v kontextu práce se stínem, inspiruj uživatele ke změně a napiš česky, maximálně na 1000 znaků.`;
+        break;
+      case 6: // Saturday - relationship advice
+        prompt =
+          `Jsi vztahový poradce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš partnerské doporučení nebo inspiraci na den ${today}. ` +
+          `Buď laskavý, inspirativní a napiš česky, maximálně na 1000 znaků.`;
+        break;
+      case 0: // Sunday - weekly summary
+        prompt =
+          `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš shrnutí energie uplynulého týdne a inspiraci na týden následující. ` +
+          `Odpověď napiš česky, maximálně na 1000 znaků.`;
+        break;
+      default:
+        // fallback: 3-card tarot
+        cards = drawCards(3);
+        cardInfos = cards.map(card => {
+          let imageUrl = cardMeanings[card]?.imageUrl || '';
+          if (imageUrl && imageUrl.startsWith('/')) {
+            imageUrl = BASE_URL + imageUrl;
+          }
+          return {
+            name: cardMeanings[card]?.name || card,
+            imageUrl,
+            description: cardMeanings[card]?.description?.split('.')[0] || '',
+          };
+        });
+        prompt =
+          `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
+          `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet a napiš česky, maximálně na 1000 znaků. ` +
+          `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.`;
     }
-    return {
-      name: cardMeanings[card]?.name || card,
-      imageUrl,
-      description: cardMeanings[card]?.description?.split('.')[0] || '',
-    };
-  });
-  prompt =
-    `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, jehož životním cílem je "${goals}", byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-    `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet s jeho životním cílem a napiš česky, maximálně na 1000 znaků.`;
-  break;
-  case 2: // Tuesday - astrology
-    prompt =
-      `Jsi astrolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš astrologickou předpověď na den ${today}. ` +
-      `Zohledni znamení zvěrokruhu a aktuální postavení planet. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
-    break;
-  case 3: // Wednesday - numerology
-    prompt =
-      `Jsi numerolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš numerologickou předpověď na den ${today}. ` +
-      `Vysvětli význam jeho životního čísla a jak ovlivňuje tento den. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
-    break;
-  case 4: // Thursday - affirmation/mantra
-    prompt =
-      `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš inspirativní afirmaci nebo mantru na den ${today}. ` +
-      `Afirmace by měla být krátká, pozitivní, osobní a v češtině. Přidej krátké vysvětlení, proč je vhodná právě pro tento den. Maximálně 1000 znaků.`;
-    break;
-  case 5: // Friday - shadow work
-    cards = drawCards(2);
-    cardInfos = cards.map(card => {
-      let imageUrl = cardMeanings[card]?.imageUrl || '';
-      if (imageUrl && imageUrl.startsWith('/')) {
-        imageUrl = BASE_URL + imageUrl;
-      }
-      return {
-        name: cardMeanings[card]?.name || card,
-        imageUrl,
-        description: cardMeanings[card]?.description?.split('.')[0] || '',
-      };
-    });
-    prompt =
-      `Jsi průvodce pro práci se stínem. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy dvě karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-      `První karta představuje téma stínu, které je vhodné dnes zpracovat, druhá karta ukazuje podporu nebo zdroj síly pro tuto práci. ` +
-      `Vysvětli význam obou karet v kontextu práce se stínem, inspiruj uživatele ke změně a napiš česky, maximálně na 1000 znaků.`;
-    break;
-  case 6: // Saturday - relationship advice
-    prompt =
-      `Jsi vztahový poradce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš partnerské doporučení nebo inspiraci na den ${today}. ` +
-      `Buď laskavý, inspirativní a napiš česky, maximálně na 1000 znaků.`;
-    break;
-  case 0: // Sunday - weekly summary
-    prompt =
-      `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš shrnutí energie uplynulého týdne a inspiraci na týden následující. ` +
-      `Odpověď napiš česky, maximálně na 1000 znaků.`;
-    break;
-  default:
-    // fallback: 3-card tarot
-    cards = drawCards(3);
-    cardInfos = cards.map(card => {
-      let imageUrl = cardMeanings[card]?.imageUrl || '';
-      if (imageUrl && imageUrl.startsWith('/')) {
-        imageUrl = BASE_URL + imageUrl;
-      }
-      return {
-        name: cardMeanings[card]?.name || card,
-        imageUrl,
-        description: cardMeanings[card]?.description?.split('.')[0] || '',
-      };
-    });
-    prompt =
-   prompt =
-  `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-  `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet a napiš česky, maximálně na 1000 znaků. ` +
-  `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.`;}
 
     // Call OpenAI
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
