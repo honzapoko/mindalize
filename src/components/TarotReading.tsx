@@ -560,7 +560,7 @@ if (trialExpired && !userIsPremium) {
                 onClick={() => setExpandedIdx(expandedIdx === idx ? null : idx)}
               >
                 <span>
-                  Výklad z {formatDateTimeCz(item.date)} &nbsp;|&nbsp; <strong>Karty:</strong> {item.cards.map(card => cardMeanings[card]?.name || card).join(', ')}
+                  Výklad z {formatDateTimeCz(item.date)} &nbsp;|&nbsp; <strong>Karty:</strong> {(Array.isArray(item.cards) ? item.cards : typeof item.cards === 'string' ? JSON.parse(item.cards) : []).map(card => cardMeanings[card]?.name || card).join(', ')}
                 </span>
                 <span style={{ fontSize: 22 }}>{expandedIdx === idx ? '▲' : '▼'}</span>
               </div>
