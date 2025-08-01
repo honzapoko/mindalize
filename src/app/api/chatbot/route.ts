@@ -20,7 +20,7 @@ async function sendEmail({ to, subject, html }: { to: string, subject: string, h
     throw error;
   }
 }
-export default async function handler(req, res) {
+  export async function POST(req: NextRequest) {
   const { email, name, birthdate } = req.body;
 
   // Check if user exists
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: insertError.message });
     }
   }
-  
+
 export async function POST(req: NextRequest) {
   console.log('POST /api/chatbot called');
     // Try to get IP from headers (works on Vercel, Netlify, etc.)
