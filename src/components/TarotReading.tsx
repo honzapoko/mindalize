@@ -117,7 +117,6 @@ const TarotReading: React.FC = () => {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   // TODO: Replace with your real premium user logic
   const [userIsPremium] = useState(false);
-  const [userRecord, setUserRecord] = useState<any>(null);
   const [trialExpired, setTrialExpired] = useState(false);
 useEffect(() => {
   if (!email) return;
@@ -154,7 +153,6 @@ if (trialExpired && !userIsPremium) {
     </div>
   );
 }
-
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       setIsLoggedIn(!!data.user);
