@@ -227,7 +227,6 @@ useEffect(() => {
       };
       const updatedHistory = [newHistoryItem, ...history].slice(0, 10);
       setHistory(updatedHistory);
-      localStorage.setItem('tarotHistory', JSON.stringify(updatedHistory));
     } catch {
       setIsLoadingChatbot(false);
       setChatbotAnswer('Chyba při získávání odpovědi od AI.');
