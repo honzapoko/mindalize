@@ -42,23 +42,6 @@ useEffect(() => {
     });
 }, [email]);
 
-// In your render:
-if (trialExpired && !userIsPremium) {
-  return (
-    <div style={{ padding: 40, textAlign: 'center', background: '#fff7ed', borderRadius: 16, margin: 40 }}>
-      <h2 style={{ color: '#7c3aed' }}>Zkušební období skončilo</h2>
-      <p>Pro pokračování je potřeba aktivovat prémiové členství.</p>
-      <button
-        className="tarot-button"
-        onClick={() => setShowPremiumModal(true)}
-        style={{ marginTop: 24 }}
-      >
-        Získat prémiový přístup
-      </button>
-    </div>
-  );
-}
-
 function getZodiacSign(dateStr: string) {
   if (!dateStr) return '';
   const date = new Date(dateStr);
@@ -153,9 +136,25 @@ const TarotReading: React.FC = () => {
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
-
   // TODO: Replace with your real premium user logic
-const [userIsPremium] = useState(false);
+  const [userIsPremium] = useState(false);
+  
+// In your render:
+if (trialExpired && !userIsPremium) {
+  return (
+    <div style={{ padding: 40, textAlign: 'center', background: '#fff7ed', borderRadius: 16, margin: 40 }}>
+      <h2 style={{ color: '#7c3aed' }}>Zkušební období skončilo</h2>
+      <p>Pro pokračování je potřeba aktivovat prémiové členství.</p>
+      <button
+        className="tarot-button"
+        onClick={() => setShowPremiumModal(true)}
+        style={{ marginTop: 24 }}
+      >
+        Získat prémiový přístup
+      </button>
+    </div>
+  );
+}
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
