@@ -286,35 +286,35 @@ const [userIsPremium] = useState(false);
 
   return (
     <div className="tarot-container">
-      <div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
-        {!isLoggedIn ? (
-          <>
-            <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
-            <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
-          </>
-        ) : (
-          <button
-            onClick={async () => {
-              await supabase.auth.signOut();
-              setIsLoggedIn(false);
-            }}
-            style={{
-              color: '#312e81',
-              fontWeight: 600,
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              fontSize: 16,
-              padding: 0,
-            }}
-          >
-            Odhlásit se
-          </button>
-        )}
-      </div>
-      <h1 className="tarot-title">
-        <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
-      </h1>
+<div className="tarot-header" style={{ display: 'flex', justifyContent: 'flex-end', gap: 16, marginBottom: 24 }}>
+  {!isLoggedIn ? (
+    <>
+      <Link href="/login" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Přihlášení</Link>
+      <Link href="/registrace" style={{ color: '#312e81', fontWeight: 600, textDecoration: 'none' }}>Registrace</Link>
+    </>
+  ) : (
+    <button
+      onClick={async () => {
+        await supabase.auth.signOut();
+        setIsLoggedIn(false);
+      }}
+      style={{
+        color: '#312e81',
+        fontWeight: 600,
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        fontSize: 16,
+        padding: 0,
+      }}
+    >
+      Odhlásit se
+    </button>
+  )}
+</div>
+<h1 className="tarot-title">
+  <span role="img" aria-label="crystal ball">🔮</span> Výklad karet tarot
+</h1>
       <form onSubmit={handleDraw}>
         <div className="tarot-section">
           <label className="tarot-label">
