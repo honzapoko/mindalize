@@ -136,23 +136,45 @@ useEffect(() => {
     });
 }, [email]);  
 
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      setIsLoggedIn(!!data.user);
-      if (data.user?.email) setEmail(data.user.email);
-      // TODO: setUserIsPremium based on your logic
-    });
+useEffect(() => {
+  supabase.auth.getUser().then(async ({ data }) => {
+    setIsLoggedIn(!!data.user);
+    if (data.user?.email) {
+      setEmail(data.user.email);
+      // Fetch user profile from Supabase
+      const { data: userProfile } = await supabase
+        .from('users')
+        .select('name, birthdate')
+        .eq('email', data.user.email)
+        .single();
+      if (userProfile) {
+        if (userProfile.name) setName(userProfile.name);
+        if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
+      }
+    }
+  });
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsLoggedIn(!!session?.user);
-      if (session?.user?.email) setEmail(session.user.email);
-      // TODO: setUserIsPremium based on your logic
-    });
+  const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    setIsLoggedIn(!!session?.user);
+    if (session?.user?.email) {
+      setEmail(session.user.email);
+      // Fetch user profile from Supabase
+      const { data: userProfile } = await supabase
+        .from('users')
+        .select('name, birthdate')
+        .eq('email', session.user.email)
+        .single();
+      if (userProfile) {
+        if (userProfile.name) setName(userProfile.name);
+        if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
+      }
+    }
+  });
 
-    return () => {
-      listener?.subscription.unsubscribe();
-    };
-  }, []);
+  return () => {
+    listener?.subscription.unsubscribe();
+  };
+}, []);
 
 useEffect(() => {
   setMounted(true);
