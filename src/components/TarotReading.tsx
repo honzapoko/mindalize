@@ -21,27 +21,6 @@ const ZODIAC_SIGNS = [
   { name: 'Ryby', start: [2, 19], end: [3, 20] },
 ];
 
-const [userRecord, setUserRecord] = useState<any>(null);
-const [trialExpired, setTrialExpired] = useState(false);
-useEffect(() => {
-  if (!email) return;
-  // Fetch user record from Supabase
-  supabase
-    .from('users')
-    .select('*')
-    .eq('email', email)
-    .single()
-    .then(({ data }) => {
-      setUserRecord(data);
-      if (data && data.free_trial_start && !data.is_premium) {
-        const start = new Date(data.free_trial_start);
-        const now = new Date();
-        const diffDays = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-        if (diffDays >= 3) setTrialExpired(true);
-      }
-    });
-}, [email]);
-
 function getZodiacSign(dateStr: string) {
   if (!dateStr) return '';
   const date = new Date(dateStr);
@@ -138,7 +117,27 @@ const TarotReading: React.FC = () => {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   // TODO: Replace with your real premium user logic
   const [userIsPremium] = useState(false);
-  
+  const [userRecord, setUserRecord] = useState<any>(null);
+  const [trialExpired, setTrialExpired] = useState(false);
+useEffect(() => {
+  if (!email) return;
+  // Fetch user record from Supabase
+  supabase
+    .from('users')
+    .select('*')
+    .eq('email', email)
+    .single()
+    .then(({ data }) => {
+      setUserRecord(data);
+      if (data && data.free_trial_start && !data.is_premium) {
+        const start = new Date(data.free_trial_start);
+        const now = new Date();
+        const diffDays = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+        if (diffDays >= 3) setTrialExpired(true);
+      }
+    });
+}, [email]);  
+
 // In your render:
 if (trialExpired && !userIsPremium) {
   return (
