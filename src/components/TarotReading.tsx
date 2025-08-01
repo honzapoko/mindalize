@@ -522,6 +522,20 @@ if (trialExpired && !userIsPremium) {
       {chatbotAnswer && (
         <div className="tarot-chatbot-answer" style={{ marginTop: 16, background: '#312e81', color: '#fff', padding: 16, borderRadius: 8 }}>
           {chatbotAnswer}
+          {chatbotAnswer === 'Limit bezplatných výkladů z této IP adresy byl vyčerpán. Pro další výklady si prosím zakupte prémiový přístup.' && (
+  <div style={{ marginTop: 24 }}>
+    <div style={{ color: '#7c3aed', fontWeight: 600, marginBottom: 12 }}>
+      Chcete pokračovat? Získejte neomezený přístup k výkladům s Premium!
+    </div>
+    <button
+      className="tarot-button"
+      onClick={() => setShowPremiumModal(true)}
+      style={{ marginTop: 8 }}
+    >
+      Získat prémiový přístup
+    </button>
+  </div>
+)}
         </div>
       )}
 
