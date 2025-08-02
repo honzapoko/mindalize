@@ -561,7 +561,7 @@ if (trialExpired && !userIsPremium) {
     </button>
   </div>
 )}
-        </div>
+
       )}
 
       {confirmation && (
