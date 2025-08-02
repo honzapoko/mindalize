@@ -115,22 +115,26 @@ export async function POST(req: Request) {
         });
         prompt =
           `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, jehož životním cílem je "${goals}", byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
-          `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet s jeho životním cílem a napiš česky, maximálně na 1000 znaků.`;
+          `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet s jeho životním cílem a napiš česky, maximálně na 1000 znaků.`+
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
         break;
       case 2: // Tuesday - astrology
         prompt =
           `Jsi astrolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš astrologickou předpověď na den ${today}. ` +
-          `Zohledni znamení zvěrokruhu a aktuální postavení planet. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
+          `Zohledni znamení zvěrokruhu a aktuální postavení planet. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.` +
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
         break;
       case 3: // Wednesday - numerology
         prompt =
           `Jsi numerolog. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš numerologickou předpověď na den ${today}. ` +
-          `Vysvětli význam jeho životního čísla a jak ovlivňuje tento den. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.`;
+          `Vysvětli význam jeho životního čísla a jak ovlivňuje tento den. Odpověď napiš česky, inspirativně a maximálně na 1000 znaků.` +
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
         break;
       case 4: // Thursday - affirmation/mantra
         prompt =
           `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš inspirativní afirmaci nebo mantru na den ${today}. ` +
-          `Afirmace by měla být krátká, pozitivní, osobní a v češtině. Přidej krátké vysvětlení, proč je vhodná právě pro tento den. Maximálně 1000 znaků.`;
+          `Afirmace by měla být krátká, pozitivní, osobní a v češtině. Přidej krátké vysvětlení, proč je vhodná právě pro tento den. Maximálně 1000 znaků.` +
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
         break;
       case 5: // Friday - shadow work
         cards = drawCards(2);
@@ -148,17 +152,20 @@ export async function POST(req: Request) {
         prompt =
           `Jsi průvodce pro práci se stínem. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy dvě karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
           `První karta představuje téma stínu, které je vhodné dnes zpracovat, druhá karta ukazuje podporu nebo zdroj síly pro tuto práci. ` +
-          `Vysvětli význam obou karet v kontextu práce se stínem, inspiruj uživatele ke změně a napiš česky, maximálně na 1000 znaků.`;
+          `Vysvětli význam obou karet v kontextu práce se stínem, inspiruj uživatele ke změně a napiš česky, maximálně na 1000 znaků.` +
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
         break;
       case 6: // Saturday - relationship advice
         prompt =
           `Jsi vztahový poradce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš partnerské doporučení nebo inspiraci na den ${today}. ` +
-          `Buď laskavý, inspirativní a napiš česky, maximálně na 1000 znaků.`;
+          `Buď laskavý, inspirativní a napiš česky, maximálně na 1000 znaků.` +
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
         break;
       case 0: // Sunday - weekly summary
         prompt =
           `Jsi spirituální průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, napiš shrnutí energie uplynulého týdne a inspiraci na týden následující. ` +
-          `Odpověď napiš česky, maximálně na 1000 znaků.`;
+          `Odpověď napiš česky, maximálně na 1000 znaků.` + 
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
         break;
       default:
         // fallback: 3-card tarot
@@ -177,7 +184,8 @@ export async function POST(req: Request) {
         prompt =
           `Jsi tarotový průvodce. Pro uživatele jménem ${name}, narozeného ${birthdate}, byly na den ${today} vytaženy tyto tři karty: ${cardInfos.map(c => c.name).join(', ')}. ` +
           `Vytvoř klasický tarotový výklad pro tento den, propoj význam všech tří karet a napiš česky, maximálně na 1000 znaků. ` +
-          `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.`;
+          `Odpověď napiš česky, co nejblíže 1000 znakům, ale nikdy nepřekroč tento limit. Piš rozvitě, detailně a inspirativně, využij celý rozsah. Vždy konči tečkou, ne v polovině věty.` +
+          `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod.`;
     }
 
     // Call OpenAI
