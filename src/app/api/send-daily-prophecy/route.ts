@@ -35,27 +35,27 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
     }
 
-// 1. Najdi potvrzení e-mailu
-const { data: confirmation } = await supabase
-  .from('user_confirmations')
-  .select('email, confirmed')
-  .ilike('email', email.trim())
-  .maybeSingle();
+    // 1. Najdi potvrzení e-mailu
+    const { data: confirmation } = await supabase
+      .from('user_confirmations')
+      .select('email, confirmed')
+      .ilike('email', email.trim())
+      .maybeSingle();
 
-if (!confirmation?.email || !confirmation.confirmed) {
-  return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
-}
+    if (!confirmation?.email || !confirmation.confirmed) {
+      return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
+    }
 
-// 2. Najdi uživatele v tabulce users
-const { data: user } = await supabase
-  .from('users')
-  .select('email, free_trial_start, is_premium')
-  .ilike('email', email.trim())
-  .maybeSingle();
+    // 2. Najdi uživatele v tabulce users
+    const { data: user } = await supabase
+      .from('users')
+      .select('email, free_trial_start, is_premium')
+      .ilike('email', email.trim())
+      .maybeSingle();
 
-const freeTrialStart = user?.free_trial_start;
-const isPremium = !!user?.is_premium;
-const days = freeTrialStart ? daysSince(freeTrialStart) : 0;
+    const freeTrialStart = user?.free_trial_start;
+    const isPremium = !!user?.is_premium;
+    const days = freeTrialStart ? daysSince(freeTrialStart) : 0;
 
     // Dotáhni údaje z readings
     const { data: reading } = await supabase
@@ -76,38 +76,34 @@ const days = freeTrialStart ? daysSince(freeTrialStart) : 0;
     const dayOfWeek = new Date().getDay();
 
     // --- FREE TRIAL LOGIC ---
-if (!isPremium && days >= 3) {
-  // Kontrola existence e-mailu
-  if (!user?.email) {
-    return NextResponse.json({ error: 'Uživatel nemá e-mail.' }, { status: 400 });
-  }
-  // Send unified premium promo email on 4th day and after
-  const promoHtml = `
-    <h2>Vaše zkušební období skončilo</h2>
-    <p>
-      Děkujeme, že jste využili 3denní zkušební období s denními proroctvími.<br/>
-      Pro pokračování a neomezený přístup ke všem funkcím a denním proroctvím si prosím aktivujte prémiové členství.
-    </p>
-    <a href="https://vesteni.cz/#premium" style="display:inline-block;margin-top:18px;padding:12px 24px;background:#7c3aed;color:#fff;border-radius:8px;text-decoration:none;font-weight:700;">
-      Aktivovat Premium
-    </a>
-  `;
+    if (!isPremium && days >= 3) {
+      // Kontrola existence e-mailu
+      if (!user || !user.email) {
+        return NextResponse.json({ error: 'Uživatel nebyl nalezen nebo nemá e-mail.' }, { status: 400 });
+      }
+      // Send unified premium promo email on 4th day and after
+      const promoHtml = `
+        <h2>Vaše zkušební období skončilo</h2>
+        <p>
+          Děkujeme, že jste využili 3denní zkušební období s denními proroctvími.<br/>
+          Pro pokračování a neomezený přístup ke všem funkcím a denním proroctvím si prosím aktivujte prémiové členství.
+        </p>
+        <a href="https://vesteni.cz/#premium" style="display:inline-block;margin-top:18px;padding:12px 24px;background:#7c3aed;color:#fff;border-radius:8px;text-decoration:none;font-weight:700;">
+          Aktivovat Premium
+        </a>
+      `;
 
-if (!user || !user.email) {
-  return NextResponse.json({ error: 'Uživatel nebyl nalezen nebo nemá e-mail.' }, { status: 400 });
-}
-
-  await resend.emails.send({
-    from: 'vyklad@vesteni.cz',
-    to: user!.email,
-    subject: 'Získejte prémiové členství a pokračujte v denních proroctvích!',
-    html: promoHtml,
-  });
-  return NextResponse.json({
-    message: 'Zkušební období skončilo, byl odeslán promo e-mail.',
-    trialEnded: true,
-  });
-}
+      await resend.emails.send({
+        from: 'vyklad@vesteni.cz',
+        to: user.email,
+        subject: 'Získejte prémiové členství a pokračujte v denních proroctvích!',
+        html: promoHtml,
+      });
+      return NextResponse.json({
+        message: 'Zkušební období skončilo, byl odeslán promo e-mail.',
+        trialEnded: true,
+      });
+    }
 
     // --- SEND DAILY PROPHECY (first 3 days or premium) ---
     let prompt = '';
@@ -238,6 +234,11 @@ if (!user || !user.email) {
       ${cardsHtml}
       <p style="margin-top:18px;font-size:16px;"><strong>Proroctví:</strong><br/>${prophecy}</p>
     `;
+
+    // Kontrola existence user i zde!
+    if (!user || !user.email) {
+      return NextResponse.json({ error: 'Uživatel nebyl nalezen nebo nemá e-mail.' }, { status: 400 });
+    }
 
     // Send email
     await resend.emails.send({
