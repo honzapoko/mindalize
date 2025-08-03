@@ -49,7 +49,7 @@ if (!confirmation?.email || !confirmation.confirmed) {
 // 2. Najdi uživatele v tabulce users
 const { data: user } = await supabase
   .from('users')
-  .select('free_trial_start, is_premium')
+  .select('email, free_trial_start, is_premium')
   .ilike('email', email.trim())
   .maybeSingle();
 
