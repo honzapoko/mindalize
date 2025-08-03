@@ -13,10 +13,18 @@ export async function GET(req: NextRequest) {
 
   if (!confirmation) return NextResponse.json({ error: 'Invalid token' }, { status: 400 });
 
+  // Označ uživatele jako potvrzeného
   await supabase
     .from('user_confirmations')
     .update({ confirmed: true })
     .eq('confirmation_token', token);
+
+  // Nastav free_trial_start pouze pokud ještě není nastaveno
+  await supabase
+    .from('users')
+    .update({ free_trial_start: new Date().toISOString().slice(0, 10) })
+    .eq('email', confirmation.email)
+    .is('free_trial_start', null); // nastav pouze pokud ještě není trial
 
   // Přesměrování na confirmed s e-mailem v query parametru
   return NextResponse.redirect(

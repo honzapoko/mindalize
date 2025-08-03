@@ -35,21 +35,27 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Email nebyl poslán v požadavku.' }, { status: 400 });
     }
 
-    // Najdi uživatele a jeho trial info
-    const { data: user } = await supabase
-      .from('user_confirmations')
-      .select('email, confirmed, created_at, is_premium')
-      .ilike('email', email.trim())
-      .maybeSingle();
+// 1. Najdi potvrzení e-mailu
+const { data: confirmation } = await supabase
+  .from('user_confirmations')
+  .select('email, confirmed')
+  .ilike('email', email.trim())
+  .maybeSingle();
 
-    if (!user?.email || !user.confirmed) {
-      return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
-    }
+if (!confirmation?.email || !confirmation.confirmed) {
+  return NextResponse.json({ error: 'Žádný potvrzený e-mail nebyl nalezen.' }, { status: 400 });
+}
 
-    // Zjisti, kolik dní od registrace
-    const createdAt = user.created_at || new Date().toISOString().slice(0, 10);
-    const isPremium = !!user.is_premium;
-    const days = daysSince(createdAt);
+// 2. Najdi uživatele v tabulce users
+const { data: user } = await supabase
+  .from('users')
+  .select('free_trial_start, is_premium')
+  .ilike('email', email.trim())
+  .maybeSingle();
+
+const freeTrialStart = user?.free_trial_start;
+const isPremium = !!user?.is_premium;
+const days = freeTrialStart ? daysSince(freeTrialStart) : 0;
 
     // Dotáhni údaje z readings
     const { data: reading } = await supabase
