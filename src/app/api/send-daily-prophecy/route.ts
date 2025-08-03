@@ -76,29 +76,33 @@ const days = freeTrialStart ? daysSince(freeTrialStart) : 0;
     const dayOfWeek = new Date().getDay();
 
     // --- FREE TRIAL LOGIC ---
-    if (!isPremium && days >= 3) {
-      // Send unified premium promo email on 4th day and after
-      const promoHtml = `
-        <h2>Vaše zkušební období skončilo</h2>
-        <p>
-          Děkujeme, že jste využili 3denní zkušební období s denními proroctvími.<br/>
-          Pro pokračování a neomezený přístup ke všem funkcím a denním proroctvím si prosím aktivujte prémiové členství.
-        </p>
-        <a href="https://vesteni.cz/#premium" style="display:inline-block;margin-top:18px;padding:12px 24px;background:#7c3aed;color:#fff;border-radius:8px;text-decoration:none;font-weight:700;">
-          Aktivovat Premium
-        </a>
-      `;
-      await resend.emails.send({
-        from: 'vyklad@vesteni.cz',
-        to: user.email,
-        subject: 'Získejte prémiové členství a pokračujte v denních proroctvích!',
-        html: promoHtml,
-      });
-      return NextResponse.json({
-        message: 'Zkušební období skončilo, byl odeslán promo e-mail.',
-        trialEnded: true,
-      });
-    }
+if (!isPremium && days >= 3) {
+  // Kontrola existence e-mailu
+  if (!user?.email) {
+    return NextResponse.json({ error: 'Uživatel nemá e-mail.' }, { status: 400 });
+  }
+  // Send unified premium promo email on 4th day and after
+  const promoHtml = `
+    <h2>Vaše zkušební období skončilo</h2>
+    <p>
+      Děkujeme, že jste využili 3denní zkušební období s denními proroctvími.<br/>
+      Pro pokračování a neomezený přístup ke všem funkcím a denním proroctvím si prosím aktivujte prémiové členství.
+    </p>
+    <a href="https://vesteni.cz/#premium" style="display:inline-block;margin-top:18px;padding:12px 24px;background:#7c3aed;color:#fff;border-radius:8px;text-decoration:none;font-weight:700;">
+      Aktivovat Premium
+    </a>
+  `;
+  await resend.emails.send({
+    from: 'vyklad@vesteni.cz',
+    to: user.email,
+    subject: 'Získejte prémiové členství a pokračujte v denních proroctvích!',
+    html: promoHtml,
+  });
+  return NextResponse.json({
+    message: 'Zkušební období skončilo, byl odeslán promo e-mail.',
+    trialEnded: true,
+  });
+}
 
     // --- SEND DAILY PROPHECY (first 3 days or premium) ---
     let prompt = '';
