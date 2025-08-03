@@ -93,13 +93,13 @@ if (!isPremium && days >= 3) {
     </a>
   `;
 
-  if (!user || !user.email) {
+if (!user || !user.email) {
   return NextResponse.json({ error: 'Uživatel nebyl nalezen nebo nemá e-mail.' }, { status: 400 });
 }
 
   await resend.emails.send({
     from: 'vyklad@vesteni.cz',
-    to: user.email,
+    to: user!.email,
     subject: 'Získejte prémiové členství a pokračujte v denních proroctvích!',
     html: promoHtml,
   });
