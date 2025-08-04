@@ -119,22 +119,6 @@ const TarotReading: React.FC = () => {
  const [trialExpired, setTrialExpired] = useState(false);
 
 useEffect(() => {
-  if (isLoggedIn && email) {
-    supabase
-      .from('users')
-      .select('name, birthdate')
-      .eq('email', email)
-      .single()
-      .then(({ data: userProfile }) => {
-        if (userProfile) {
-          if (userProfile.name) setName(userProfile.name);
-          if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
-        }
-      });
-  }
-}, [isLoggedIn, email]);
-
-useEffect(() => {
   const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
     setIsLoggedIn(!!session?.user);
     if (session?.user?.email) {
@@ -151,21 +135,21 @@ useEffect(() => {
         if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
       }
     }
-    if (!session?.user) {
-      setEmail('');
-      setName('');
-      setBirthdate('');
-      setHistory([]);
-      setGoals('');
-      setQuestion('');
-      setCards([]);
-      setZodiac('');
-      setLifePath('');
-      setSpreadType('1');
-      setChatbotAnswer('');
-      setConfirmation('');
-      setTrialExpired(false);
-    }
+if (!session?.user) {
+  setEmail('');
+  setName('');
+  setBirthdate('');
+  setHistory([]);
+  setGoals('');
+  setQuestion('');
+  setCards([]);
+  setZodiac('');
+  setLifePath('');
+  setSpreadType('1');
+  setChatbotAnswer('');
+  setConfirmation('');
+  setTrialExpired(false);
+}
   });
   return () => {
     listener?.subscription.unsubscribe();
