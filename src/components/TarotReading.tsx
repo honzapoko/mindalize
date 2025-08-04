@@ -371,7 +371,7 @@ if (trialExpired && !userIsPremium) {
             onChange={e => setName(e.target.value)}
             required
             placeholder="Vaše jméno"
-            readOnly={isLoggedIn}
+            readOnly={isLoggedIn && !!name}
           />
         </div>
         <div className="tarot-section">
@@ -385,7 +385,7 @@ if (trialExpired && !userIsPremium) {
             onChange={e => setBirthdate(e.target.value)}
             required
             placeholder="Datum narození"
-            readOnly={isLoggedIn}
+            readOnly={isLoggedIn && !!birthdate}
           />
         </div>
         <div className="tarot-section">
