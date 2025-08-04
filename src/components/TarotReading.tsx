@@ -117,7 +117,7 @@ const TarotReading: React.FC = () => {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   // TODO: Replace with your real premium user logic
   const [userIsPremium] = useState(false);
-const [trialExpired, setTrialExpired] = useState(false);
+ const [trialExpired, setTrialExpired] = useState(false);
 
 useEffect(() => {
   if (isLoggedIn && email) {
@@ -135,6 +135,30 @@ useEffect(() => {
   }
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [isLoggedIn, email]);
+
+useEffect(() => {
+  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    setIsLoggedIn(!!session?.user);
+    if (!session?.user) {
+      setEmail('');
+      setName('');
+      setBirthdate('');
+      setHistory([]);
+      setGoals('');
+      setQuestion('');
+      setCards([]);
+      setZodiac('');
+      setLifePath('');
+      setSpreadType('1');
+      setChatbotAnswer('');
+      setConfirmation('');
+      setTrialExpired(false);
+    }
+  });
+  return () => {
+    listener?.subscription.unsubscribe();
+  };
+}, []);
 
 useEffect(() => {
     setMounted(true);
@@ -284,21 +308,6 @@ if (trialExpired && !userIsPremium) {
       <button
   onClick={async () => {
     await supabase.auth.signOut();
-    setIsLoggedIn(false);
-    setEmail('');
-    setName('');
-    setBirthdate('');
-    setHistory([]);
-    setGoals('');
-    setQuestion('');
-    setCards([]);
-    setZodiac('');
-    setLifePath('');
-    setSpreadType('1');
-    setChatbotAnswer('');
-    setConfirmation('');
-    setTrialExpired(false);
-    window.location.reload();
   }}
         style={{
           color: '#312e81',
@@ -356,7 +365,6 @@ if (trialExpired && !userIsPremium) {
             onChange={e => setBirthdate(e.target.value)}
             required
             placeholder="Datum narození"
-            readOnly={isLoggedIn && !!birthdate}
           />
         </div>
         <div className="tarot-section">
