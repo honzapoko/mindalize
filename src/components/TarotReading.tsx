@@ -139,6 +139,9 @@ useEffect(() => {
 useEffect(() => {
   const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
     setIsLoggedIn(!!session?.user);
+    if (session?.user?.email) {
+      setEmail(session.user.email);
+    }
     if (!session?.user) {
       setEmail('');
       setName('');
