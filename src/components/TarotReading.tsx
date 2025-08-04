@@ -111,7 +111,6 @@ const TarotReading: React.FC = () => {
   const [confirmation, setConfirmation] = useState('');
   const [chatbotAnswer, setChatbotAnswer] = useState('');
   const [isLoadingChatbot, setIsLoadingChatbot] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
@@ -133,7 +132,6 @@ useEffect(() => {
         }
       });
   }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [isLoggedIn, email]);
 
 useEffect(() => {
@@ -568,7 +566,7 @@ if (trialExpired && !userIsPremium) {
         </div>
       )}
 
-      {mounted && isLoggedIn && (
+      {isLoggedIn && (
         <div className="tarot-history">
           <h2>Historie výkladů</h2>
           {history.length === 0 && <div>Žádné výklady zatím nejsou.</div>}
