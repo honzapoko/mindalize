@@ -181,17 +181,24 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-  setMounted(true);
+    setMounted(true);
   if (isLoggedIn && email) {
-    supabase
-      .from('readings')
-      .select('*')
-      .eq('email', email)
-      .order('created_at', { ascending: false })
-      .then(({ data }) => setHistory(data || []));
-  } else {
-    setHistory([]); // Clear history if not logged in
+    // Only fetch if both fields are empty
+    if (!name && !birthdate) {
+      supabase
+        .from('users')
+        .select('name, birthdate')
+        .eq('email', email)
+        .single()
+        .then(({ data: userProfile }) => {
+          if (userProfile) {
+            if (userProfile.name) setName(userProfile.name);
+            if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
+          }
+        });
+    }
   }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [isLoggedIn, email]);
 
   useEffect(() => {
@@ -322,15 +329,24 @@ if (trialExpired && !userIsPremium) {
       </>
     ) : (
       <button
-        onClick={async () => {
-          await supabase.auth.signOut();
-          setIsLoggedIn(false);
-          setEmail('');
-          setName('');
-          setBirthdate('');
-          setHistory([]);
-          window.location.reload(); // ensure full logout
-        }}
+  onClick={async () => {
+    await supabase.auth.signOut();
+    setIsLoggedIn(false);
+    setEmail('');
+    setName('');
+    setBirthdate('');
+    setHistory([]);
+    setGoals('');
+    setQuestion('');
+    setCards([]);
+    setZodiac('');
+    setLifePath('');
+    setSpreadType('1');
+    setChatbotAnswer('');
+    setConfirmation('');
+    setTrialExpired(false);
+    window.location.reload();
+  }}
         style={{
           color: '#312e81',
           fontWeight: 600,
