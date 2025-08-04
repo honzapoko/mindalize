@@ -141,15 +141,17 @@ useEffect(() => {
     setIsLoggedIn(!!data.user);
     if (data.user?.email) {
       setEmail(data.user.email);
-      // Fetch user profile from Supabase
-      const { data: userProfile } = await supabase
-        .from('users')
-        .select('name, birthdate')
-        .eq('email', data.user.email)
-        .single();
-      if (userProfile) {
-        if (userProfile.name) setName(userProfile.name);
-        if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
+      // Only fetch and set if not already filled
+      if (!name || !birthdate) {
+        const { data: userProfile } = await supabase
+          .from('users')
+          .select('name, birthdate')
+          .eq('email', data.user.email)
+          .single();
+        if (userProfile) {
+          if (userProfile.name && !name) setName(userProfile.name);
+          if (userProfile.birthdate && !birthdate) setBirthdate(userProfile.birthdate);
+        }
       }
     }
   });
@@ -158,15 +160,17 @@ useEffect(() => {
     setIsLoggedIn(!!session?.user);
     if (session?.user?.email) {
       setEmail(session.user.email);
-      // Fetch user profile from Supabase
-      const { data: userProfile } = await supabase
-        .from('users')
-        .select('name, birthdate')
-        .eq('email', session.user.email)
-        .single();
-      if (userProfile) {
-        if (userProfile.name) setName(userProfile.name);
-        if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
+      // Only fetch and set if not already filled
+      if (!name || !birthdate) {
+        const { data: userProfile } = await supabase
+          .from('users')
+          .select('name, birthdate')
+          .eq('email', session.user.email)
+          .single();
+        if (userProfile) {
+          if (userProfile.name && !name) setName(userProfile.name);
+          if (userProfile.birthdate && !birthdate) setBirthdate(userProfile.birthdate);
+        }
       }
     }
   });
