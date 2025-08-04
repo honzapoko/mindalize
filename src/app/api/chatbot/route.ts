@@ -153,7 +153,8 @@ export async function POST(req: NextRequest) {
       `Nejprve odpověz na význam karet (${cards.join(', ')}) v kontextu jeho otázky: "${question}". ` +
       `Poté udělej prázdný řádek (ENTER) k oddělení výkladu karet a pokračuj astrologickou předpovědí. ` +
       ` ${aztroText} V astrologické části popiš, jaké astrologické vlivy (např. postavení Slunce, Měsíce, planet) mohou ovlivnit jeho den a co to znamená, a přidej krátké astrologické doporučení. ` +
-      `Navrhni konkrétní krok nebo afirmaci pro další růst. Celková odpověď maximálně 1000 znaků. Text pěkně strukturuj, můžeš použít odstavce, tučné písmo pro zvýraznění a podobně. `;
+      `Navrhni konkrétní krok nebo afirmaci pro další růst. Celková odpověď maximálně 1000 znaků. Text pěkně strukturuj, můžeš použít odstavce, tučné písmo pro zvýraznění a podobně. ` +
+      `Odpověz ve formátu HTML s nadpisy, odstavci, tučným písmem, odrážkami apod. `;
 
     // Call OpenAI
     const openaiRes = await fetch('https://api.openai.com/v1/chat/completions', {
