@@ -117,87 +117,27 @@ const TarotReading: React.FC = () => {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   // TODO: Replace with your real premium user logic
   const [userIsPremium] = useState(false);
-  const [trialExpired, setTrialExpired] = useState(false);
-useEffect(() => {
-  if (!email) return;
-  // Fetch user record from Supabase
-  supabase
-    .from('users')
-    .select('*')
-    .eq('email', email)
-    .single()
-    .then(({ data }) => {
-      if (data && data.free_trial_start && !data.is_premium) {
-        const start = new Date(data.free_trial_start);
-        const now = new Date();
-        const diffDays = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-        if (diffDays >= 3) setTrialExpired(true);
-      }
-    });
-}, [email]);  
+const [trialExpired, setTrialExpired] = useState(false);
 
 useEffect(() => {
-  supabase.auth.getUser().then(async ({ data }) => {
-    setIsLoggedIn(!!data.user);
-    if (data.user?.email) {
-      setEmail(data.user.email);
-      // Only fetch and set if not already filled
-      if (!name || !birthdate) {
-        const { data: userProfile } = await supabase
-          .from('users')
-          .select('name, birthdate')
-          .eq('email', data.user.email)
-          .single();
+  if (isLoggedIn && email) {
+    supabase
+      .from('users')
+      .select('name, birthdate')
+      .eq('email', email)
+      .single()
+      .then(({ data: userProfile }) => {
         if (userProfile) {
-          if (userProfile.name && !name) setName(userProfile.name);
-          if (userProfile.birthdate && !birthdate) setBirthdate(userProfile.birthdate);
+          if (userProfile.name) setName(userProfile.name);
+          if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
         }
-      }
-    }
-  });
-
-  const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
-    setIsLoggedIn(!!session?.user);
-    if (session?.user?.email) {
-      setEmail(session.user.email);
-      // Only fetch and set if not already filled
-      if (!name || !birthdate) {
-        const { data: userProfile } = await supabase
-          .from('users')
-          .select('name, birthdate')
-          .eq('email', session.user.email)
-          .single();
-        if (userProfile) {
-          if (userProfile.name && !name) setName(userProfile.name);
-          if (userProfile.birthdate && !birthdate) setBirthdate(userProfile.birthdate);
-        }
-      }
-    }
-  });
-
-  return () => {
-    listener?.subscription.unsubscribe();
-  };
-}, []);
+      });
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [isLoggedIn, email]);
 
 useEffect(() => {
     setMounted(true);
-  if (isLoggedIn && email) {
-    // Only fetch if both fields are empty
-    if (!name && !birthdate) {
-      supabase
-        .from('users')
-        .select('name, birthdate')
-        .eq('email', email)
-        .single()
-        .then(({ data: userProfile }) => {
-          if (userProfile) {
-            if (userProfile.name) setName(userProfile.name);
-            if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
-          }
-        });
-    }
-  }
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [isLoggedIn, email]);
 
@@ -206,11 +146,24 @@ useEffect(() => {
     setLifePath(getLifePathNumber(birthdate));
   }, [birthdate]);
 
-  const handleDraw = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setConfirmation('');
-    setChatbotAnswer('');
-    setIsLoadingChatbot(true);
+const handleDraw = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setConfirmation('');
+  setChatbotAnswer('');
+  setIsLoadingChatbot(true);
+
+  // Fetch name and birthdate from Supabase if logged in and fields are empty
+  if (isLoggedIn && email && (!name || !birthdate)) {
+    const { data: userProfile } = await supabase
+      .from('users')
+      .select('name, birthdate')
+      .eq('email', email)
+      .single();
+    if (userProfile) {
+      if (userProfile.name && !name) setName(userProfile.name);
+      if (userProfile.birthdate && !birthdate) setBirthdate(userProfile.birthdate);
+    }
+  }
 
     let numCardsToDraw = 1;
     if (spreadType === '3') numCardsToDraw = 3;
@@ -377,7 +330,6 @@ if (trialExpired && !userIsPremium) {
             onChange={e => setEmail(e.target.value)}
             required
             placeholder="Vaše e-mailová adresa"
-            readOnly={isLoggedIn}
           />
         </div>
         <div className="tarot-section">
@@ -391,7 +343,6 @@ if (trialExpired && !userIsPremium) {
             onChange={e => setName(e.target.value)}
             required
             placeholder="Vaše jméno"
-            readOnly={isLoggedIn && !!name}
           />
         </div>
         <div className="tarot-section">
