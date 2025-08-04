@@ -137,10 +137,21 @@ useEffect(() => {
 }, [isLoggedIn, email]);
 
 useEffect(() => {
-  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+  const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
     setIsLoggedIn(!!session?.user);
     if (session?.user?.email) {
       setEmail(session.user.email);
+
+      // Fetch name and birthdate right after setting email
+      const { data: userProfile } = await supabase
+        .from('users')
+        .select('name, birthdate')
+        .eq('email', session.user.email)
+        .single();
+      if (userProfile) {
+        if (userProfile.name) setName(userProfile.name);
+        if (userProfile.birthdate) setBirthdate(userProfile.birthdate);
+      }
     }
     if (!session?.user) {
       setEmail('');
@@ -162,11 +173,6 @@ useEffect(() => {
     listener?.subscription.unsubscribe();
   };
 }, []);
-
-useEffect(() => {
-    setMounted(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [isLoggedIn, email]);
 
   useEffect(() => {
     setZodiac(getZodiacSign(birthdate));
